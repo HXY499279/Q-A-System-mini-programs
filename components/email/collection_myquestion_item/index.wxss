@@ -1,0 +1,19 @@
+/* components/email/collection/index.wxss */
+.category{
+  display: inline-block;
+  font-size: 24rpx;
+  padding: 8rpx;
+  background-color: #8DBA00;
+  color: white;
+  border-radius: 8rpx;
+  white-space: nowrap;
+}
+.title{
+  display: flex;
+  justify-content: space-between;
+}
+.state{
+  color: var(--theme);
+  font-size: var(fontSize);
+  white-space: nowrap;
+}

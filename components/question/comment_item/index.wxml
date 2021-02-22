@@ -1,0 +1,8 @@
+<!--components/question/comment/index.wxml-->
+<view>
+	<detail-item-box>
+		<view slot="ru_operate">
+			<view class="iconfont icon-jubao"></view>
+		</view>
+	</detail-item-box>
+</view>

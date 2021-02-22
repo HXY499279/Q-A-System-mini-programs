@@ -1,0 +1,10 @@
+/* pages/index/complain/index.wxss */
+.complain_page{
+  padding: 25rpx;
+  font-size: var(--fontSize);
+}
+.title{
+  color: var(--grayWord);
+  padding: 0 10rpx;
+  font-size: 32rpx;
+}

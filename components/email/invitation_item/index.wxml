@@ -1,0 +1,13 @@
+<!--components/email/invitation_item/index.wxml-->
+<question-card  bindtap="toQustionDetail">
+	<view class="item_head" slot="head_left">
+		<image class="head_img" src="/img/timg.jpg"></image>
+		<text class="head_name">易烊千玺\n的提问期待你的回答</text>
+	</view>
+  <view slot="head_operate">✕</view>
+  <text  class="category" slot="category">大学物理</text>
+  <view slot="question_operate" class="write">
+    <image src="/img/email/write.svg" class="write_icon"></image>
+    <text>写回答</text>
+  </view>
+</question-card>

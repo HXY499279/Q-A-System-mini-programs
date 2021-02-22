@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="index_page">
+	<swiper>
+		<block wx:for="{{imgUrls}}">
+			<swiper-item>
+				<image style="display:block;margin:0 auto;" src="{{item}}" mode="widthFix" width="355" height="150" />
+			</swiper-item>
+		</block>
+	</swiper>
+	<view class="box">
+		<title icon="/img/identity/volunteer.svg" title="基础课程" />
+	</view>
+	<view class="box">
+		<title icon="/img/identity/volunteer.svg" title="专业课程" />
+	</view>
+	<view class="box">
+		<view class="other_question_title" bindtap="gotoQuestionList">
+			<title icon="/img/identity/volunteer.svg" title="其他疑难" />
+			<image src="/img/common/show.svg"></image>
+		</view>
+		<detail-item-box bindtap="togoQuestionDetail">
+			<view slot="title" class="title">
+				<view class="title_text">
+					苏联当局上的飞机数量上地附近家里就可怜见手动阀
+				</view>
+				<view class="title_state">已解决</view>
+			</view>
+			<view slot="bl_operate">1 赞同 1 收藏 </view>
+		</detail-item-box>
+	</view>
+
+</view>

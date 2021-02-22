@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "search":"/components/common/search/index",
+    "question-list-item":"/components/question/question_list_item/index"
+  }
+}

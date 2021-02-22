@@ -1,0 +1,10 @@
+/* components/question/answer_list_item/index.wxss */
+@import "/img/operate/iconfont.wxss";
+.operate{
+  display: flex;
+}
+.iconfont{
+  margin-left: 15rpx;
+  color: gray;
+  font-size: 32rpx;
+}

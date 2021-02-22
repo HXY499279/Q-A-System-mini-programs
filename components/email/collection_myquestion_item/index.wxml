@@ -1,0 +1,13 @@
+<!--components/email/collection/index.wxml-->
+<view bindtap="gotoQuestionDetail">
+	<detail-item-box>
+		<view class="title" slot="title">
+			<view class="text">
+				上选合适的开发建设链接发
+				<text class="category">高数</text>
+			</view>
+			<view class="state">已解决</view>
+		</view>
+		<view slot="bl_operate">2收藏 5赞同</view>
+	</detail-item-box>
+</view>

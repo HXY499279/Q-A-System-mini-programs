@@ -1,0 +1,32 @@
+/**index.wxss**/
+.index_page{
+  background-color: var(--background);
+}
+.img{
+  height: 280rpx;
+}
+.box{
+  background-color: white;
+  margin:15rpx 0;
+  border-radius: 6rpx;
+  padding: 0 20rpx;
+}
+.other_question_title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3rpx solid var(--line);
+}
+.other_question_title>image{
+  width: 30rpx;
+  height: 30rpx;
+  padding:0 10rpx;
+}
+.title{
+  display: flex;
+  justify-content: space-between;
+}
+.title_state{
+  color: var(--theme);
+  white-space: nowrap;
+}

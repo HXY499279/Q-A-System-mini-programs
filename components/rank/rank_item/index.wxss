@@ -1,0 +1,35 @@
+/* components/rank/rank_item/index.wxss */
+.rank_item_box{
+  display: flex;
+  padding: 25rpx;
+  border-bottom: 2rpx solid var(--line);
+  justify-content: space-between;
+}
+.rank_item_left{
+  display: flex;
+  align-items: center;
+}
+.rank_item_icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 16rpx;
+}
+
+.user_msg{
+  display: flex;
+}
+
+.user_mag_img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  margin-right:16rpx ;
+}
+
+.rank_item_right{
+  text-align: center;
+}
+
+.user_msg>text::first-line,.rank_item_right::first-line{
+  color: #999999;
+}

@@ -1,0 +1,7 @@
+/* pages/message/index.wxss */
+.message_page{
+  padding: 25rpx;
+}
+.message_list{
+  margin-top: 30rpx;
+}

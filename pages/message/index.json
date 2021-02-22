@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "search":"/components/common/search/index",
+    "message-item":"/components/message/message_item/index"
+
+  },
+  "navigationBarTitleText":"校内资讯"
+}

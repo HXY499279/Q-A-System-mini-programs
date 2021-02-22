@@ -1,0 +1,14 @@
+/* components/feedback/feedback_item/index.wxss */
+@import "/img/operate/iconfont.wxss";
+.agree_box{
+  padding-left: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.agree{
+  color: rgb(255, 141, 26);
+}
+
+.disagree{
+  color: gray;
+}

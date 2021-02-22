@@ -1,0 +1,33 @@
+<!--components/common/question_card/index.wxml-->
+<!-- 
+	五个slot
+	head_left：左上用户信息 
+	head_operate：右上操作
+	comments:评论
+	category:问题类别
+	question_operate:操作（写回答）
+ -->
+<view class="question_card">
+	<view class="head">
+		<view class="head_left">
+			<slot name="head_left"></slot>
+		</view>
+		<slot name="head_operate"></slot>
+	</view>
+	<slot name="comments"></slot>
+	<view class="question_content">
+		<view class="content_left">
+			<view>
+				<view class="question_titile">阿拉拉善良的客机飞抵空军副司令的空间手动阀手动阀十分
+					<slot name="category"></slot>
+				</view>
+				<view class="footer">
+					<view class="question_inform">0 收藏 0 回答</view>
+					<slot name="question_operate"></slot>
+				</view>
+
+			</view>
+
+		</view>
+	</view>
+</view>

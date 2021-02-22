@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "personal-card":"/components/personal/userInfo/index",
+    "item":"/components/personal/item/index"
+  },
+  "navigationBarTitleText":"个人中心"
+}

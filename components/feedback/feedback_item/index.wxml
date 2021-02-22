@@ -1,0 +1,9 @@
+<!--components/feedback/feedback_item/index.wxml-->
+<view>
+	<detail-item-box>
+    <view slot="bl_operate" class="agree_box">
+      <view class="iconfont icon-dianzan {{isAgree ?'agree':'disagree'}}"  bindtap="handleAgree"></view>
+      <text>(123)</text>
+    </view>
+	</detail-item-box>
+</view>

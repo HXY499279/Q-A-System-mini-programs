@@ -1,0 +1,11 @@
+<!--components/common/my_textarea/index.wxml-->
+<!-- 
+	文本框，记录字数
+	父组件传递my_placeholder值作为文本框里的提示内容
+	父组件通过调用子组件 getValue() 函数获取输入框的值
+	父组件需要有ivew toast容器
+ -->
+<view class="my_textarea_box">
+	<textarea class="introduce_area" bindinput="wordLimit" maxlength="140" placeholder="{{myPlaceholder}}"></textarea>
+	<text class="words_count">{{currentWordsLen}}/140</text>
+</view>

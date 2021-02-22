@@ -1,0 +1,36 @@
+<!--components/common/detail_item_box/index.wxml-->
+<!-- 
+	title:标题
+	state:状态（是否解决）
+	ru_operate:右上角的操作（分享、举报）
+	bl_operate：左下角的信息（赞、收藏等）
+ -->
+<view class="detail_item_box">
+	<view class="title">
+		<slot name="title"></slot>
+	</view> 
+
+	<view class="basic_inform">
+		<view class="user_infor">
+			<view class="user_head">
+				<image class="user_head_img" src="/img/timg.jpg"></image>
+				<text>明世隐</text>
+			</view>
+			<view class="user_identity">
+				<image class="user_identity_icon" src="/img/identity/student.svg"></image>
+				<text class="user_identity_text">学生</text>
+			</view>
+		</view>
+		<slot name="ru_operate"></slot>
+	</view>
+	<view class="item_content">
+		<view class="content_words">喇叭把手点击发送累计飞机啊螺丝钉咖啡碱顺利打开房间数量雕刻技法喇叭把手点击发送累计飞机啊螺丝钉咖啡碱顺利打开房间数量雕刻技法</view>
+		<view class="content_img">
+			<image mode='aspectFill' bindtap="handleImage" src="/img/timg.jpg"></image>
+		</view>
+	</view>
+	<view class="item_footer">
+		<view>2020-11-12 13:00</view>
+		<slot name="bl_operate"></slot>
+	</view>
+</view>

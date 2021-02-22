@@ -1,0 +1,7 @@
+<!--pages/question/choose_ category/index.wxml-->
+<view class="choose_category_page">
+	<search searchPlaceholder="搜索问题类别" />
+	<choose-category-item />
+	<choose-category-item />
+	<choose-category-item />
+</view>

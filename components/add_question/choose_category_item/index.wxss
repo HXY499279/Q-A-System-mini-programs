@@ -1,0 +1,8 @@
+/* components/choose_category_item/index.wxss */
+.add{
+  padding: 15rpx 25rpx;
+  color: white;
+  background-color: var(--theme);
+  border-radius: 6rpx;
+  white-space: nowrap;
+}

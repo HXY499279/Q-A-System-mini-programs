@@ -1,0 +1,38 @@
+/* pages/personal/pages/rank/index.wxss */
+.rank_page{
+  font-size: var(--fontSize);
+}
+.my_score{
+  text-align: center;
+  background-color: thistle;
+  font-size: var(--fontSize);
+  padding: 30rpx 0;
+}
+.my_score_num{
+  padding: 20rpx 0;
+  font-size: 40rpx;
+  color: var(--theme);
+}
+.my_score_level{
+  color: #999999;
+}
+.rank_title{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2rpx solid var(--background);
+}
+.rank_title_type{
+  display: flex;
+}
+.rank_list{
+  box-shadow: 0 8rpx 8rpx var(--background);
+}
+.my_rank{
+  padding: 25rpx;
+}
+.rank_introduce{
+  margin-top: 20rpx;
+}
+.rank_introduce_content{
+  padding: 0 25rpx;
+}

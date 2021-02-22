@@ -1,0 +1,5 @@
+<!--pages/index/pages/question_list/index.wxml-->
+<view class="question_list_page">
+	<search searchPlaceholder="搜索相关问题" />
+	<question-list-item />
+</view>

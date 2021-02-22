@@ -1,0 +1,7 @@
+<!--pages/index/complain/index.wxml-->
+<view class="complain_page">
+	<view class="title">你将要举报的内容如下</view>
+	<question-card />
+	<picture-text-box />
+	<button class="btn" hover-class="btn-hover" style="width:90vw">立即举报</button>
+</view>

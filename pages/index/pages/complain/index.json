@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "question-card":"/components/common/question_card/index",
+    "picture-text-box":"/components/common/picture_text_box/index"
+  }
+}

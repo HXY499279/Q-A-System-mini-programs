@@ -1,0 +1,8 @@
+<!--components/common/picture_update_box/index.wxml-->
+<view class="picture_update_box">
+	<view class="item" wx:for="{{imgTempPath}}" wx:key="item">
+		<image mode='aspectFill' class="item_pic" src="{{item}}"  data-src="{{item}}" bindtap="previewPic"></image>
+		<view class="item_delet" bindtap="imgDelete" data-index="{{index}}">✕</view>
+	</view>
+	<view class="update_pic" bindtap="imgChoose">+</view>
+</view>

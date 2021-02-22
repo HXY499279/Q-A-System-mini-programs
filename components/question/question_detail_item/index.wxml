@@ -1,0 +1,26 @@
+<!--components/question/question_card_item/index.wxml-->
+<view class="question_detail_item">
+	<view class="head">
+		<view class="title">顺利打开减肥减肥冷静而扣分记录的附件是手动阀手动阀手动阀</view>
+		<view class="state">
+			<view class="state_text">未解决</view>
+			<view class="iconfont icon-jubao"></view>
+			<view class="iconfont icon-fenxiang"></view>
+		</view>
+	</view>
+	<view class="content">
+		<view>三菱电机肥婆数量的快捷方式了解对方老师的就发上来大家覅欸的设立欸我欸家里的房间数量</view>
+		<view class="content_img">
+			<image src="/img/bg.jpeg" mode='aspectFill'></image>
+		</view>
+
+		<view class="content_footer">
+			<view>0 回答 0 收藏 <text class="edit_btn">修改</text><text class="del_btn">删除</text></view>
+			<view>2020-11-11 11:11</view>
+		</view>
+
+	</view>
+	<slot name="footer">
+
+	</slot>
+</view>

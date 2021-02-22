@@ -1,0 +1,38 @@
+/* components/common/question_card/index.wxss */
+.question_card {
+  padding: 25rpx;
+  background-color: white;
+  line-height: 50rpx;
+  box-shadow: 0 8rpx 8rpx var(--background);
+  margin-bottom: 10rpx;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.question_content {
+  padding: 20rpx;
+  background-color: var(--background);
+}
+
+.content_left {
+  display: flex;
+}
+
+.question_titile {
+  font-size: 35rpx;
+  margin-bottom: 10rpx;
+}
+
+.question_inform {
+  color: var(--grayWord);
+}
+
+.footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

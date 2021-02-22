@@ -1,0 +1,59 @@
+/* components/question/question_card_item/index.wxss */
+@import "/img/operate/iconfont.wxss";
+
+.question_detail_item {
+  word-spacing: 2rpx;
+  padding: 25rpx;
+  background-color: white;
+  border-radius: 6rpx;
+  box-shadow: 0 8rpx 8rpx var(--background);
+  margin-bottom: 10rpx;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.state {
+  display: flex;
+  white-space: nowrap;
+}
+.state_text{
+  color: var(--theme);
+}
+
+.iconfont {
+  margin-left: 12rpx;
+  font-size: 30rpx;
+  color: gray;
+}
+
+.content {
+  margin-top: 20rpx;
+}
+
+.content_img {
+  display: flex;
+}
+
+.content_img>image {
+  height: 350rpx;
+  margin-right: 10rpx;
+  margin-top:10rpx;
+}
+.content_footer{
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  color: var(--grayWord);
+}
+.edit_btn{
+  padding: 0 15rpx;
+  color: var(--theme);
+}
+.del_btn{
+  padding: 0 15rpx;
+  color: rgb(255,87,51)
+}
+

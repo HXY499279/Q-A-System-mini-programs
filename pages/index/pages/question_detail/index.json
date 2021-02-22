@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "question-card-item":"/components/question/question_detail_item/index",
+    "answer-list-item":"/components/question/answer_list_item/index"
+  }
+}

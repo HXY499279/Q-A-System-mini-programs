@@ -1,0 +1,21 @@
+.item_box{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 40rpx;
+  /* font-size: var(--fontSize); */
+  position: relative;
+  border-bottom: 2rpx solid var(--line);
+}
+.icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 15rpx;
+}
+.show{
+  position: absolute;
+  right: 30rpx;
+}
+.show>image{
+  width: 30rpx;
+  height: 30rpx;
+}

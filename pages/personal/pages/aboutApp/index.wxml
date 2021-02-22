@@ -1,0 +1,14 @@
+<!--pages/personal/pages/aboutApp/index.wxml-->
+<view class="aboutApp_box">
+  <!-- <image src=""></image> -->
+  <view class="image"></view>
+  <view class="intro">
+    <title class="title" icon="/img/userInfo/introduce_icon.svg" title="简介"/>
+    <view class="intro_content">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</view>
+  </view>
+  <view class="footer">
+    <view>重庆邮电大学学生处</view>
+    <view>Copyright @ 2021 All rights reserved</view>
+  </view>
+</view>
+

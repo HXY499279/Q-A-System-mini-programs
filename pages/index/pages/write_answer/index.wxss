@@ -1,0 +1,11 @@
+/* pages/index/pages/write_answer/index.wxss */
+.write_answer_page{
+  padding: 25rpx;
+}
+.update_title{
+  padding: 10rpx 0;
+  color: var(--theme);
+}
+.submit{
+  margin-top: 20rpx;
+}

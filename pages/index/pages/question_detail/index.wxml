@@ -1,0 +1,22 @@
+<!--pages/index/pages/question_detail/index.wxml-->
+<view class="question_detail_page">
+	<question-card-item>
+		<view class="footer" slot="footer">
+			<view class="collection">
+				<view class="iconfont icon-shoucang {{isCollection?'collectioned':''}}" bindtap="addIntoCollection"></view>
+				<view>收藏问题，日后回顾</view>
+			</view>
+			<button class="btn" hover-class="btn-hover" style="width:90vw" bindtap="gotoWriteAnswer">我来回答</button>
+		</view>
+	</question-card-item>
+	<view class="answer_title">
+		<view>回答 2</view>
+		<view class="answer_sort_type" bindtap="changeAnswerSortType">
+			<text data-type="hot" class=" type {{answerSortType == 'hot'?'active_type':'unactive_type'}} ">最热</text>
+			<text data-type="new" class="type {{answerSortType == 'new'?'active_type':'unactive_type'}}">最新</text>
+		</view>
+	</view>
+	<view>
+		<answer-list-item />
+	</view>
+</view>

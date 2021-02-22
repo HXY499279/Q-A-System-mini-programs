@@ -1,0 +1,8 @@
+/* pages/index/pages/comment/index.wxss */
+.comment_page{
+  padding: 25rpx ;
+}
+.head{
+  padding: 20rpx 0;
+  font-size: var(--fontSize);
+}

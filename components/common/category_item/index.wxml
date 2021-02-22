@@ -1,0 +1,15 @@
+<!--components/common/category_item/index.wxml-->
+<view class="category_item_box">
+	<view class="item_left">
+		<image  class="icon" src="/img/userInfo/feedback.svg"></image>
+		<text class="left_text">通信学院\n大学物理</text>
+	</view>
+	<view class="item_right">
+		<view>
+			<view>此科目已累计<text class="number_g">80</text>个问题</view>
+			<view>待解决<text class="number_y">80</text> 今日新增<text class="number_y">80</text></view>
+			<view>志愿者统一解答时间：周一：13：00-15：00 周四 16：00</view>
+		</view>
+    <slot name="operate"></slot>
+	</view>
+</view>

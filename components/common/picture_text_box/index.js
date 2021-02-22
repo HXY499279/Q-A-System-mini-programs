@@ -1,0 +1,47 @@
+// components/common/picture_text_box/index.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    "titlePlaceholder":{
+      type:String,
+      value:"请输入标题"
+    },
+    "contentPlaceholder":{
+      type:String,
+      value:"内容的描述"
+    }
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+    titleInput:""
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    //获取标题输入框的内容
+    titleInput(e){
+      const titleInput = e.detail.value;
+      this.setData({
+        titleInput
+      })
+    },
+  
+    //用于父组件获取子组件的值
+    getValues(){
+      const myTextArea = this.selectComponent("#my-textarea");
+      const picUpdateBox = this.selectComponent("#picture-update-box");
+      return{
+        titleInput:this.data.titleInput,
+        textAreat:myTextArea.getValues(),
+        tempFilePath:picUpdateBox.getValues()
+      }
+    }
+  }
+})

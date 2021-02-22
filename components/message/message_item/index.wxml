@@ -1,0 +1,7 @@
+<!--components/message/message_item/index.wxml-->
+<view bindtap="gotoMessageDetail">
+	<detail-item-box>
+		<view slot="title" class="title">双选会双选会双选十六点就发士大夫精神的富士康会双选会</view>
+		<view slot="bl_operate">3 阅读</view>
+	</detail-item-box>
+</view>

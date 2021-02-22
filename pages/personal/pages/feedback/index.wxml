@@ -1,0 +1,12 @@
+<!--pages/personal/pages/feedback/index.wxml-->
+<view class="feedback_box">
+	<view class="feedback_ipt">
+		<pic-text-box titlePlaceholder="请输入反馈类型（功能，页面...)" contentPlaceholder="好的建议会被采纳哟~感谢您的支持" />
+		<button class="btn " hover-class="btn-hover" style="width:90vw">提交反馈</button>
+	</view>
+	<view class="feedback_item">
+		<title icon="/img/feedback/feedback.svg" title="最新反馈" />
+		<feedback-item />
+	</view>
+	<i-toast id="toast" />
+</view>

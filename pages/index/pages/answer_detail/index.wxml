@@ -1,0 +1,8 @@
+<!--pages/index/pages/answer_detail/index.wxml-->
+<view class="answer_detail_page">
+	<qustion-detail-item />
+	<view class="title">回答</view>
+	<answer-detail />
+	<view class="title">评论</view>
+	<comment-item/>
+</view>

@@ -1,0 +1,4 @@
+<!--components/choose_category_item/index.wxml-->
+<category-item>
+	<view slot="operate" class="add" bindtap="chooseCategory">添加</view>
+</category-item>

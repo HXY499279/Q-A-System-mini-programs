@@ -1,0 +1,11 @@
+<!--components/rank/rank_item/index.wxml-->
+<view class="rank_item_box">
+	<view class="rank_item_left">
+		<image class="rank_item_icon" src="{{icon}}"></image>
+		<view class="user_msg">
+			<image class="user_mag_img" src="/img/timg.jpg"></image>
+			<text> 小明 \n 尊贵铂金</text>
+		</view>
+	</view>
+	<text class="rank_item_right">总积分\n 999</text>
+</view>

@@ -1,0 +1,17 @@
+/* components/common/title/index.wxss */
+.title_box{
+  background-color: white;
+  padding: 25rpx 15rpx;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  letter-spacing: 2rpx;
+}
+.title_box_icon{
+  width:38rpx;
+  height: 38rpx;
+  margin-right: 15rpx;
+}
+.title_box_title{
+  font-size: 30rpx;
+}

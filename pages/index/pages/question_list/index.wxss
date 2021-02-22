@@ -1,0 +1,5 @@
+/* pages/index/pages/question_list/index.wxss */
+.question_list_page{
+  font-size: var(--fontSize);
+  padding: 25rpx;
+}

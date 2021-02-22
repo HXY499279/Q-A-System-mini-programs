@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "my-textarea":"/components/common/my_textarea/index"
+  }
+}

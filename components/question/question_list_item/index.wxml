@@ -1,0 +1,13 @@
+<!--components/question_list/question_list_item/index.wxml-->
+<view bindtap="gotoQuestionDetail">
+	<detail-item-box>
+		<view slot="title">苏联的军事科技反馈</view>
+		<view slot="state" class="state">
+			<view>已解决</view>
+			<view class="iconfont icon-jubao"></view>
+			<view class="iconfont icon-fenxiang"></view>
+			<!-- <view class="iconfont "></view> -->
+		</view>
+    <view slot="bl_operate">1 收藏 3 回答</view>
+	</detail-item-box>
+</view>

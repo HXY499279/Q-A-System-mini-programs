@@ -1,0 +1,8 @@
+<!--pages/message/index.wxml-->
+<view class="message_page">
+	<search searchPlaceholder="搜索相关资讯" />
+	<view class="message_list">
+		<message-item />
+		<message-item />
+	</view>
+</view>

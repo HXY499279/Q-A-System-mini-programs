@@ -1,0 +1,10 @@
+/* pages/personal/index.wxss */
+.personal_page{
+  background-color: var(--background);
+  padding: 6rpx;
+}
+.operate{
+  background-color: white;
+  margin-top: 10rpx;
+  border-radius: 5rpx;
+}

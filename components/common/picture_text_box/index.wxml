@@ -1,0 +1,11 @@
+<!--components/common/picture_text_box/index.wxml-->
+<!-- 
+	父组件传参 titlePlaceholder：标题输入框的提示 contentPlaceholder：内容输入框的提示
+	父组件通过getValues()方法获取 titleInput（标题）、textAreat（内容）、tempFilePath（图片地址）
+ -->
+<view class="picture_text_box">
+	<input class="title_input" type="text" placeholder="{{titlePlaceholder}}" bindinput="titleInput"/>
+	<my-textarea myPlaceholder="{{contentPlaceholder}}" id="my-textarea"/>
+	<view class="picture_update_box_title">有时候一张图片胜过千言万语！</view>
+	<picture-update-box  id="picture_update_box"/>
+</view>

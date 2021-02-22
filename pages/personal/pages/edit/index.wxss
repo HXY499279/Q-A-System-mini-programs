@@ -1,0 +1,24 @@
+/* pages/personal/pages/edit/index.wxss */
+.edit_page {
+  padding: 25rpx;
+}
+
+.user_img_area {
+  text-align: center;
+  padding: 30rpx;
+}
+
+.user_img_box {
+  width: 222rpx;
+  height: 222rpx;
+  border-radius: 50%;
+}
+
+.change_img {
+  margin-top: 20rpx;
+  color: var(--theme);
+}
+
+.btn {
+  margin-top: 40rpx;
+}

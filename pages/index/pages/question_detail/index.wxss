@@ -1,0 +1,43 @@
+/* pages/index/pages/question_detail/index.wxss */
+@import "/img/operate/iconfont.wxss";
+
+.question_detail_page{
+  padding: 20rpx;
+}
+.collection{
+  display: flex;
+  justify-content: center;
+  color: gray;
+  padding: 20rpx 0;
+}
+.collectioned{
+  color: rgb(255,141,21);
+}
+.icon-shoucang{
+  font-size: 35rpx;
+  margin-right:10rpx;
+}
+.answer_title{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 25rpx;
+  background-color: white;
+  margin-top: 10rpx;
+  align-items: center;
+}
+.answer_sort_type{
+  background-color: var(--background);
+  border-radius: 999rpx;
+  padding: 15rpx 10rpx;
+}
+.type{
+  padding: 10rpx 15rpx;
+}
+.active_type{
+  border-radius: 999rpx;
+  background-color: white;
+  color:black;
+}
+.unactive_type{
+  color: gray;
+}

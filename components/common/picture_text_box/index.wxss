@@ -1,0 +1,13 @@
+/* components/common/picture_text_box/index.wxss */
+.picture_text_box{
+  padding: 25rpx;
+}
+
+.title_input{
+  padding: 10rpx;
+}
+
+.picture_update_box_title{
+  color: var(--theme);
+  padding: 25rpx 0;
+}

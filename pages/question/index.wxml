@@ -1,0 +1,10 @@
+<!--pages/question/index.wxml-->
+<view class="add_question_page">
+	<view class="add">
+		<navigator url="./choose_ category/index">请添加问题类别</navigator>
+	</view>
+	<view class="choosed_category">高数<text class="delete" bindtap="">✕</text></view>
+	<picture-text-box />
+	<button class="btn" hover-class="btn-hover" style="width:90vw">发布问题</button>
+	<i-toast id="toast" />
+</view>

@@ -1,0 +1,11 @@
+<!--pages/personal/pages/edit/index.wxml-->
+<view class="edit_page">
+  <view class="user_img_area">
+    <image class="user_img_box" src="/img/timg.jpg" ></image>
+    <view class="change_img">点击更换头像</view>
+  </view>
+  <title icon="/img/userInfo/introduce_icon.svg" title="个人简介"/>
+  <my-textarea my_placeholder="个人简介" bindgetInputValue="getInputValue"/>
+  <button class="btn" hover-class="btn-hover" style="width:90vw">保存</button>
+  <i-toast id="toast" />
+</view>

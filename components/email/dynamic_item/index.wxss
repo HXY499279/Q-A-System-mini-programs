@@ -1,0 +1,26 @@
+/* components/email/dynamic_item/index.wxss */
+.item_head{
+  display: flex;
+  align-items: center;
+}
+.head_img{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.head_name{
+  color: var(--grayWord);
+}
+.head_name::first-line{
+  color: black;
+}
+.category{
+  display: inline;
+  font-size: 24rpx;
+  padding: 8rpx;
+  background-color: #8DBA00;
+  color: white;
+  border-radius: 8rpx;
+  white-space: nowrap;
+}

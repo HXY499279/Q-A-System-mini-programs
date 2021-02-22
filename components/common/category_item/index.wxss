@@ -1,0 +1,43 @@
+/* components/common/category_item/index.wxss */
+.category_item_box{
+  display: flex;
+  padding: 25rpx;
+  box-shadow: 0 8rpx 8rpx var(--background);
+  margin-bottom: 10rpx;
+}
+.item_left{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding:0 35rpx 0 0;
+  border-right: 4rpx solid var(--line);
+}
+.left_text::first-line{
+  font-size: 22rpx;
+  color: var(--theme);
+}
+.icon{
+  width: 80rpx;
+  height: 80rpx;
+  padding: 8rpx;
+  border: 2rpx solid var(--theme);
+  border-radius: 20rpx;
+  margin-bottom: 10rpx;
+}
+.item_right{
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 25rpx;
+}
+.number_g{
+  font-size: 35rpx;
+  color: var(--theme);
+  padding: 0 10rpx;
+}
+.number_y{
+  font-size: 35rpx;
+  color: orange;
+  padding: 0 10rpx;
+}

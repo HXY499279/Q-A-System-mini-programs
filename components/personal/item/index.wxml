@@ -1,0 +1,10 @@
+<!--pages/personal/Components/item/index.wxml-->
+<view >
+	<navigator class="item_box" url="{{url}}" >
+		<image class="icon" src="{{icon}}"></image>
+		<view>{{type}}</view>
+		<view class="show">
+			<image src="/img/common/show.svg"></image>
+		</view>
+	</navigator>
+</view>

@@ -1,0 +1,11 @@
+<!--components/question/answer_list_item/index.wxml-->
+<view bindtap="gotoAnswerDetail">
+	<detail-item-box>
+		<view slot="ru_operate" class="operate">
+			<view>已采纳</view>
+			<view class="iconfont icon-jubao" bindtap="gotoComplain"></view>
+			<view class="iconfont icon-fenxiang"></view>
+		</view>
+		<view slot="bl_operate"> 0 赞同 0 评论</view>
+	</detail-item-box>
+</view>

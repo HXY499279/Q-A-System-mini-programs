@@ -1,0 +1,6 @@
+/* components/question/comment/index.wxss */
+@import "/img/operate/iconfont.wxss";
+.icon-jubao{
+  color: gray;
+  font-size: 32rpx;
+}

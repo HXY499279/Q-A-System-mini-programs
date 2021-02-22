@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/email/index",
+    "pages/message/index",
+    "pages/personal/index",
+    "pages/question/index",
+    "pages/personal/pages/edit/index",
+    "pages/personal/pages/aboutApp/index",
+    "pages/personal/pages/feedback/index",
+    "pages/personal/pages/rank/index",
+    "pages/question/choose_ category/index",
+    "pages/index/pages/question_list/index",
+    "pages/index/pages/question_detail/index",
+    "pages/index/pages/answer_detail/index",
+    "pages/index/pages/comment/index",
+    "pages/index/pages/write_answer/index",
+    "pages/message/message_detail/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#30CB88",
+    "navigationBarTitleText": "邮问必答学业辅导中心",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#30CB88",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/img/tabBar/index.png",
+        "selectedIconPath": "/img/tabBar/active_index.png"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "text": "资讯",
+        "iconPath": "/img/tabBar/msg.png",
+        "selectedIconPath": "/img/tabBar/active_msg.png"
+      },
+      {
+        "pagePath": "pages/question/index",
+        "text": "提问",
+        "iconPath": "/img/tabBar/question.png",
+        "selectedIconPath": "/img/tabBar/active_question.png"
+      },
+      {
+        "pagePath": "pages/email/index",
+        "text": "邮件",
+        "iconPath": "/img/tabBar/email.png",
+        "selectedIconPath": "/img/tabBar/active_email.png"
+      },
+      {
+        "pagePath": "pages/personal/index",
+        "text": "我的",
+        "iconPath": "/img/tabBar/personal.png",
+        "selectedIconPath": "/img/tabBar/active_personal.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

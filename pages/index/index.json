@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "title":"/components/common/title/index",
+    "detail-item-box":"/components/common/detail_item_box/index"
+  }
+}

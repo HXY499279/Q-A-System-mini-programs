@@ -1,0 +1,28 @@
+<!--pages/personal/pages/rank/index.wxml-->
+<view class="rank_page">
+	<view class='my_score'>
+		<view class="my_score_title">成长总积分</view>
+		<view class="my_score_num">999</view>
+		<view class="my_score_level">段位：名扬四海</view>
+	</view>
+	<view class="rank_title">
+		<view class="rank_title_type">
+			<title icon="/img/userInfo/rank.svg" title="全校总榜" />
+			<title title="志愿者榜" />
+		</view>
+		<view class="my_rank">NO.18</view>
+	</view>
+	<view class="rank_list">
+		<!-- 传参第n名的图标（icon），第n名的信息（obj 名字 段位 总积分） -->
+		<rank-item icon='/img/rank/first.svg' />
+		<rank-item icon='/img/rank/second.svg' />
+		<rank-item icon='/img/rank/third.svg' />
+		<rank-item icon='/img/rank/fourth.svg' />
+		<rank-item icon='/img/rank/fifth.svg' />
+		<rank-item icon='/img/rank/sixth.svg' />
+	</view>
+  <view class="rank_introduce">
+      <title icon='/img/common/prompt.svg' title='排行榜说明'/>
+      <view class="rank_introduce_content">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</view>
+  </view>
+</view>

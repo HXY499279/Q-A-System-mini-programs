@@ -1,0 +1,9 @@
+<!--components/email/dynamic_item/index.wxml-->
+<question-card>
+	<view slot="head_left" class="item_head">
+		<image class="head_img" src="/img/timg.jpg"></image>
+		<text class="head_name">易烊千玺赞同了你的评论\n2021-5-20</text>
+	</view>
+	<view slot="comments">深刻搭街坊斯拉夫军绿色i放进塑料袋放进十六岁</view>
+	<text slot="category" class="category">高数</text>
+</question-card>

@@ -1,0 +1,67 @@
+/* pages/personal/Components/personal_card/index.wxss */
+.userInfo{
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fontSize);
+  background-color: white;
+  border-radius: 6rpx;
+}
+.userInfo_left{
+  width: 30%;
+  text-align: center;
+}
+.userInfo_left>image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.personal_edit{
+  padding: 15rpx;
+}
+.personal_edit>navigator{
+  display: inline;
+  border: 2rpx solid var(--theme);
+  color: var(--theme);
+}
+
+.userInfo_right{
+  width: 70%;
+}
+.userInfo_right_personalMsg{
+  display: flex;
+  padding: 20rpx 10rpx 20rpx 0 ;
+  justify-content: space-between;
+}
+
+.userInfo_right_personalMsg image{
+  margin-right: 5rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+.userInfo_right_personalMsg_item{
+  display: flex;
+  align-items: center;
+}
+
+.userInfo_right_introduce{
+  color: rgb(128,128,128);
+  height: 80rpx;
+  overflow: auto;
+}
+
+.user_track{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding:20rpx 10rpx 0 0;
+}
+
+.user_track_item>view:nth-child(1){
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.user_track_item>view:nth-child(2){
+  padding: 10rpx 0;
+ color: #999999;
+}

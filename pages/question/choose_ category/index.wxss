@@ -1,0 +1,4 @@
+/* pages/question/choose_ category/index.wxss */
+.choose_category_page{
+  padding: 25rpx;
+}
