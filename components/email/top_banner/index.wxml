@@ -1,0 +1,11 @@
+<!--components/email/top_banner_item/index.wxml-->
+<view class="top_banner">
+	<block wx:for="{{barDetail}}" wx:key="type">
+		<view class="top_banner_item" bindtap="changeItem" data-type="{{item.type}}">
+			<view class="item_img  {{item.type === currentType ? 'item_click_class':''}}" style="background-color:{{item.backgroundColor}}">
+				<image class="item_icon" src="{{item.icon}}"></image>
+			</view>
+			<view class="item_text">{{item.text}}</view>
+		</view>
+	</block>
+</view>

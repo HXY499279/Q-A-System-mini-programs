@@ -4,4 +4,6 @@
 	<question-card />
 	<picture-text-box />
 	<button class="btn" hover-class="btn-hover" style="width:90vw">立即举报</button>
+
+	<i-toast id="toast" />
 </view>

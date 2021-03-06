@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "my-textarea":"/components/common/my_textarea/index"
+    "my-textarea":"/components/common/my_textarea/index",
+    "i-toast": "/iview/toast/index"
   }
 }

@@ -28,7 +28,7 @@ Component({
    */
   methods: {
     imgChoose() {
-      //如果大于 1 张图片，则出现警告
+      //如果大于 x 张图片，则出现警告
       if (this.data.imgTempPath.length >= this.data.allowPicNum) {
         $Toast({
           content: `${this.data.allowPicNum}张就够啦`,
@@ -39,12 +39,18 @@ Component({
 
       //选择图片
       chooseImg(this.data.allowPicNum)
-        .then((res) => {
+        .then(res => {
           const tempFilePaths = [...res, ...this.data.imgTempPath];
           this.setData({
             imgTempPath: tempFilePaths
           })
           wx.hideLoading();
+        })
+        .catch(err=>{
+          $Toast({
+            content:"请检查你的网络",
+            type: 'warning'
+          });
         })
     },
 

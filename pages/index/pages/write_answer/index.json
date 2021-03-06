@@ -2,6 +2,7 @@
   "usingComponents": {
     "question-detail-item":"/components/question/question_detail_item/index",
     "my-textarea":"/components/common/my_textarea/index",
-    "picture-update-box":"/components/common/picture_update_box/index"
+    "picture-update-box":"/components/common/picture_update_box/index",
+    "i-toast": "/iview/toast/index"
   }
 }

@@ -34,7 +34,7 @@
 				<view class="iconfont icon-taoxin {{isAgree?'agreed':''}}"></view>
 				<view>赞同</view>
 			</view>
-			<view  class="operate_item">
+			<view  class="operate_item" bindtap="handleComment">
 				<view class="iconfont icon-message"></view>
 				<view>评论</view>
 			</view>

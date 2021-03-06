@@ -1,6 +1,6 @@
 /* components/common/detail_item_box/index.wxss */
 .detail_item_box {
-  padding: 25rpx;
+  padding: 20rpx;
   box-shadow: 0 8rpx 8rpx var(--background);
   margin-bottom: 10rpx;
   background-color: white;

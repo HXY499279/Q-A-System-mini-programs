@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "bar-item":"/components/email/top_banner_item/index",
+    "top-bar":"/components/email/top_banner/index",
     "invitation-item":"/components/email/invitation_item/index",
     "dynamic-item":"/components/email/dynamic_item/index",
     "collection-myquestion-item":"/components/email/collection_myquestion_item/index"

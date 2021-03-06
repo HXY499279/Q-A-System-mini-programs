@@ -1,6 +1,8 @@
 <!--pages/index/pages/comment/index.wxml-->
 <view class="comment_page">
-<view class="head">评论给 易烊千玺</view>
-<my-textarea/>
-<button>发布评论</button>
+	<view class="head">评论给 易烊千玺</view>
+	<my-textarea myPlaceholder="请文明评论~" />
+	<button class="btn" hover-class="btn-hover" style="width:90vw">发布评论</button>
+
+	<i-toast id="toast" />
 </view>

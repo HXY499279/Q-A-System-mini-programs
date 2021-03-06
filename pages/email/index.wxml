@@ -1,11 +1,6 @@
 <!--pages/email/index.wxml-->
 <view class="email_page">
-	<view class="top_banner" bindtap="clickMenu" data-a="a">
-		<bar-item icon="/img/email/write.svg" data-type="invitation" text="邀请回答" backgroundColor="#FF8D1A" />
-		<bar-item icon="/img/email/dynamic.svg" data-type="dynamic" text="动态" backgroundColor="#6BA1DD" />
-		<bar-item icon="/img/email/collection.svg" data-type="collection" text="收藏" backgroundColor="#F87053" />
-		<bar-item icon="/img/email/myquestion.svg" data-type="myquestion" text="我的提问" backgroundColor="#2DC4BA" />
-	</view>
+	<top-bar barDetail="{{topBar}}" bindchangeMenu="changeMenu" />
 
 	<view wx:if="{{currentType === 'invitation'}}">
 		<invitation-item />

@@ -36,6 +36,13 @@ Component({
        })
     },
 
+    //点击评论
+    handleComment(){
+      wx.redirectTo({
+        url: '/pages/index/pages/comment/index',
+      })
+    },
+
     //去举报
     gotoComplain(){
       wx.redirectTo({

@@ -35,4 +35,5 @@
 }
 .rank_introduce_content{
   padding: 0 25rpx;
+  margin-bottom: 50rpx;
 }

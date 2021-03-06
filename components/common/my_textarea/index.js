@@ -9,7 +9,7 @@ Component({
   properties: {
     "myPlaceholder": {
       type: String,
-      value: "简介简介简介简介简介简介"
+      value: ""
     }
   },
 
@@ -18,7 +18,8 @@ Component({
    */
   data: {
     currentWordsLen: "0", //记录当前字数
-    currentWord: ""
+    currentWord: "",
+    allowWords:140 //允许输入的字数
   },
 
   /**
@@ -29,19 +30,16 @@ Component({
     wordLimit(e) {
       const inputValue = e.detail.value;
       const len = inputValue.length;
-      if (len >= 140) {
+      if (len == this.data.allowWords) {
         $Toast({
-          content: '最多140字，不能再多啦',
+          content: `最多${this.data.allowWords}字，不能再多啦`,
           type: 'warning'
         });
-        return;
       }
       this.setData({
         currentWordsLen: len,
         currentWord:inputValue
       })
-     
-    
     },
 
     //用于父组件获取子组件输入框的值

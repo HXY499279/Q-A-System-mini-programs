@@ -2,13 +2,3 @@
 .email_page{
   padding:0 20rpx 30rpx;
 }
-
-.top_banner{
-  padding:20rpx 40rpx;
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  border-radius: 6rpx;
-  box-shadow: 0 10rpx 10rpx var(--background);
-  margin-bottom: 20rpx;
-}

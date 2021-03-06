@@ -1,7 +1,0 @@
-<!--components/email/top_banner_item/index.wxml-->
-<view class="top_banner_item">
-	<view class="item_img"  hover-class="item_click_class" style="background-color:{{backgroundColor}}">
-		<image class="item_icon" src="{{icon}}"></image>
-	</view>
-	<view class="item_text">{{text}}</view>
-</view>

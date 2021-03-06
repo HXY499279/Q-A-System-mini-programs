@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    imgUrls:['/img/bg.jpeg']
+    imgUrls:['/img/bg.jpeg','/img/bg.jpeg']
   },
 
   onLoad() {

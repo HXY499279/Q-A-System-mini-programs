@@ -6,7 +6,7 @@
 	</view>
 	<view class="userInfo_right">
 		<view class="userInfo_right_personalMsg">
-			<view>王鹏宇</view>
+			<view>诸葛亮</view>
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/identity.svg"></image>
 				<view>志愿者</view>
@@ -20,7 +20,7 @@
 				<view>初出茅庐</view>
 			</view>
 		</view>
-		<view class="userInfo_right_introduce">60个字重庆邮电重庆邮电大学重庆邮电大学重庆邮电大学重庆邮电大学重庆邮电重庆邮电大学重大学重庆邮电大学大学重庆邮电大学重庆邮电大学</view>
+		<view class="userInfo_right_introduce">这里是简介这里是简介这里是简介这里是简介</view>
 		<view class="user_track">
 			  <view class="user_track_item">
 					<view>10</view>

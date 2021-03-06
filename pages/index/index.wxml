@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="index_page">
 	<swiper>
-		<block wx:for="{{imgUrls}}">
+		<block wx:for="{{imgUrls}}" wx:key="item">
 			<swiper-item>
-				<image style="display:block;margin:0 auto;" src="{{item}}" mode="widthFix" width="355" height="150" />
+				<image style="display:block;margin:0 auto;" src="{{item}}" mode="widthFix" width="100%" />
 			</swiper-item>
 		</block>
 	</swiper>
@@ -18,6 +18,7 @@
 			<title icon="/img/identity/volunteer.svg" title="其他疑难" />
 			<image src="/img/common/show.svg"></image>
 		</view>
+		
 		<detail-item-box bindtap="togoQuestionDetail">
 			<view slot="title" class="title">
 				<view class="title_text">
