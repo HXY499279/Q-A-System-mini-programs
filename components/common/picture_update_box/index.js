@@ -20,7 +20,7 @@ Component({
    */
   data: {
     imgTempPath: [],
-    allowPicNum: 2 //允许上传的图片数量
+    allowPicNum: 1 //允许上传的图片数量
   },
 
   /**
@@ -78,6 +78,15 @@ Component({
       return {
         imgTempPath: this.data.imgTempPath
       }
+    },
+
+   /**
+    * 清除输入框的内容
+    */
+    clearInput(){
+      this.setData({
+        imgTempPath:[]
+      })
     }
   }
 })

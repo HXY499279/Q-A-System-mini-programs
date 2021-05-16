@@ -1,11 +1,13 @@
 <!--components/question/answer_list_item/index.wxml-->
-<view bindtap="gotoAnswerDetail">
-	<detail-item-box>
+<view>
+	<detail-item-box answer="{{answerDetail}}">
 		<view slot="ru_operate" class="operate">
-			<view>已采纳</view>
-			<view class="iconfont icon-jubao" bindtap="gotoComplain"></view>
-			<view class="iconfont icon-fenxiang"></view>
+			<view class="{{answerDetail.isAdopt?'adopted':''}}}">{{answerDetail.isAdopt?"已采纳":""}}</view>
+			<view class="iconfont icon-jubao" catchtap="gotoComplain"></view>
 		</view>
-		<view slot="bl_operate"> 0 赞同 0 评论</view>
+		<view slot="bl_operate" class="footer">
+			<view>{{answerDetail.agreeCount}} 赞同 {{answerDetail.commentCount}} 评论</view>
+			<view>{{answerDetail.answerTime}}</view>
+		</view>
 	</detail-item-box>
 </view>

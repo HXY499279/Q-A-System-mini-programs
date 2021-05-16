@@ -17,17 +17,19 @@
 	<slot name="comments"></slot>
 	<view class="question_content">
 		<view class="content_left">
-			<view>
-				<view class="question_titile">阿拉拉善良的客机飞抵空军副司令的空间手动阀手动阀十分
-					<slot name="category"></slot>
-				</view>
-				<view class="footer">
-					<view class="question_inform">0 收藏 0 回答</view>
-					<slot name="question_operate"></slot>
-				</view>
-
+			<view wx:if="{{!type}}" class="question_titile">
+			{{dataDetail.title}}
+				<slot name="category"></slot>
 			</view>
-
+			<view class="question_titile">
+			{{dataDetail.content}}
+				<slot name="category"></slot>
+			</view>
+			<view class="footer">
+				<view wx:if="{{!type}}" class="question_inform">{{dataDetail.collectionCount}} 收藏 {{dataDetail.answerCount}} 回答</view>
+				<view wx:else class="question_inform">{{dataDetail.agreeCount}} 赞同 {{dataDetail.commentCount}} 评论</view>
+				<slot name="question_operate"></slot>
+			</view>
 		</view>
 	</view>
 </view>

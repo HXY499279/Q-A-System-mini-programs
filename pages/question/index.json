@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "picture-text-box":"/components/common/picture_text_box/index",
-    "i-toast": "../../iview/toast/index"
+    "i-toast": "/iview/toast/index"
   },
   "navigationBarTitleText":"我要提问"
 }

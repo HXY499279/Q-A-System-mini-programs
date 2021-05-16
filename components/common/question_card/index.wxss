@@ -19,7 +19,7 @@
 }
 
 .content_left {
-  display: flex;
+  width: 100%;
 }
 
 .question_titile {

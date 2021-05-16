@@ -1,6 +1,6 @@
 <!--pages/personal/index.wxml-->
 <view class="personal_page">
-	<personal-card />
+	<personal-card userInfo="{{userInfo}}"/>
   <view class="operate">
     <item icon="/img/userInfo/rank.svg" type="排行" url="./pages/rank/index"/>
     <item icon="/img/userInfo/feedback.svg" type="反馈" url="./pages/feedback/index"/>

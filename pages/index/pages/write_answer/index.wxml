@@ -1,10 +1,10 @@
 <!--pages/index/pages/write_answer/index.wxml-->
 <view class="write_answer_page">
-	<question-detail-item />
-	<my-textarea myPlaceholder="详细的说明更有利于理解~" />
+	<question-detail-item questionDetailData = "{{questionDetailData}}"/>
+	<my-textarea myPlaceholder="详细的说明更有利于理解~" id="my-textarea"/>
 	<view class="update_title">有时候一张图片胜过千言万语</view>
-	<picture-update-box />
-	<button class="btn submit" hover-class="btn-hover" style="width:90vw">发布答案</button>
+	<picture-update-box id="picture-update-box"/>
+	<button class="btn submit" hover-class="btn-hover" style="width:90vw" bindtap="submitAnswer">发布答案</button>
 
 	<i-toast id="toast" />
 </view>

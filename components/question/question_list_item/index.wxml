@@ -1,13 +1,18 @@
 <!--components/question_list/question_list_item/index.wxml-->
-<view bindtap="gotoQuestionDetail">
-	<detail-item-box>
-		<view slot="title">苏联的军事科技反馈</view>
-		<view slot="state" class="state">
-			<view>已解决</view>
-			<view class="iconfont icon-jubao"></view>
-			<view class="iconfont icon-fenxiang"></view>
-			<!-- <view class="iconfont "></view> -->
+<view bindtap="gotoQuestionDetail" data-questionId="{{question.questionId}}">
+	<detail-item-box answer="{{answer}}">
+		<view slot="title" class="title">
+			<view>{{question.describes}}</view>
+			<view >
+				<view class="state">
+					<view class="{{question.state?'is_solute':'un_solute'}}">{{question.state?"已解决":"未解决"}}</view>
+					<view class="iconfont icon-jubao" catchtap="gotoReport"></view>
+				</view>
+			</view>
 		</view>
-    <view slot="bl_operate">1 收藏 3 回答</view>
+		<view slot="bl_operate" class="footer">
+		 <view>{{question.collectionCount}} 收藏 {{question.answerCount}} 回答</view>
+		 <view>{{question.publishTime}}</view>
+		 </view>
 	</detail-item-box>
 </view>

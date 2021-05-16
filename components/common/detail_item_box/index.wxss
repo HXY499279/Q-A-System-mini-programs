@@ -65,13 +65,10 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   line-height: 40rpx;
-  word-spacing: 2rpx;
+  letter-spacing: 2rpx;
 }
 
 .item_footer {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
   color: var(--grayWord);
   padding: 10rpx 0;
 }

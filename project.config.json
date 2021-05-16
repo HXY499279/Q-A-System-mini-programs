@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
@@ -164,10 +164,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "回答详情页",
+					"id": 14,
+					"name": "pages/index/pages/answer_detail/index",
 					"pathName": "pages/index/pages/answer_detail/index",
-					"query": "",
+					"query": "questionId=5",
 					"scene": null
 				},
 				{

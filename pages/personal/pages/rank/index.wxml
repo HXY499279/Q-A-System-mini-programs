@@ -2,27 +2,28 @@
 <view class="rank_page">
 	<view class='my_score'>
 		<view class="my_score_title">成长总积分</view>
-		<view class="my_score_num">999</view>
+		<view class="my_score_num">{{myInfo.score}}</view>
 		<view class="my_score_level">段位：名扬四海</view>
 	</view>
 	<view class="rank_title">
-		<view class="rank_title_type">
-			<title icon="/img/userInfo/rank.svg" title="全校总榜" />
-			<title title="志愿者榜" />
+		<view class="rank_title_left" bindtap="changeType">
+			<image class="rank_icon" src="/img/userInfo/rank.svg"></image>
+			<span class="rank_span {{type===0?'active_type':''}}" data-type="{{0}}">全校总榜</span>
+			<span class="rank_span {{type===1?'active_type':''}}" data-type="{{1}}">志愿者榜</span>
 		</view>
-		<view class="my_rank">NO.18</view>
+		<view class="my_rank">我的排名:{{myInfo.rank}}</view>
 	</view>
 	<view class="rank_list">
 		<!-- 传参第n名的图标（icon），第n名的信息（obj 名字 段位 总积分） -->
-		<rank-item icon='/img/rank/first.svg' />
-		<rank-item icon='/img/rank/second.svg' />
-		<rank-item icon='/img/rank/third.svg' />
-		<rank-item icon='/img/rank/fourth.svg' />
-		<rank-item icon='/img/rank/fifth.svg' />
-		<rank-item icon='/img/rank/sixth.svg' />
+		<rank-item icon='/img/rank/first.svg' userInfo="{{rankList[0]}}" />
+		<rank-item icon='/img/rank/second.svg' userInfo="{{rankList[1]}}" />
+		<rank-item icon='/img/rank/third.svg' userInfo="{{rankList[2]}}" />
+		<rank-item icon='/img/rank/fourth.svg' userInfo="{{rankList[3]}}" />
+		<rank-item icon='/img/rank/fifth.svg' userInfo="{{rankList[4]}}" />
+		<rank-item icon='/img/rank/sixth.svg' userInfo="{{rankList[5]}}" />
 	</view>
-  <view class="rank_introduce">
-      <title icon='/img/common/prompt.svg' title='排行榜说明'/>
-      <view class="rank_introduce_content">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</view>
-  </view>
+	<view class="rank_introduce">
+		<title icon='/img/common/prompt.svg' title='排行榜说明' />
+		<view class="rank_introduce_content">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</view>
+	</view>
 </view>

@@ -5,6 +5,7 @@ page {
   --background: #F0F0F0;
   --line: #F0F0F0;
   --grayWord: #999999;
+  --unsoluteColor: #F87053;
   font-size: 28rpx;
 }
 

@@ -1,5 +1,40 @@
 /* pages/index/pages/question_list/index.wxss */
+.search_box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 10rpx;
+}
+.search_box_left{
+  border:2rpx solid rgb(187, 184, 184);
+  box-shadow: 0 8rpx 8rpx var(--line);
+  border-radius: 5rpx;
+  padding: 5px;
+  display: flex;
+  flex:1;
+  margin-right: 10px;
+}
+.search_ipt{
+  flex: 1;
+}
+.search_icon{
+  width: 45rpx;
+  height: 45rpx;
+  padding: 0 10rpx 0 0;
+}
+.switch{
+  background-color:var(--theme);
+  border-color: var(--theme);
+}
 .question_list_page{
   font-size: var(--fontSize);
   padding: 25rpx;
+}
+.nothing_tips{
+  text-align: center;
+}
+.nothing_icon{
+  color: var(--grayWord);
+  width: 200rpx;
 }

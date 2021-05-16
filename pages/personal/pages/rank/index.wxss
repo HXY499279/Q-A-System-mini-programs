@@ -21,8 +21,20 @@
   justify-content: space-between;
   border-bottom: 2rpx solid var(--background);
 }
-.rank_title_type{
+.rank_title_left{
   display: flex;
+  align-items: center;
+}
+.rank_icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin:0 15rpx;
+}
+.rank_span{
+  padding: 0 10rpx;
+}
+.active_type{
+  color: var(--theme);
 }
 .rank_list{
   box-shadow: 0 8rpx 8rpx var(--background);

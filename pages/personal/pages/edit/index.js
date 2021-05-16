@@ -1,12 +1,11 @@
 // pages/personal/pages/edit/index.js
-import {
-  chooseImg
-} from '../../../../utils/api'
+import httpRequest from '../../../../utils/request/index'
+import { getStorageItem,chooseImg } from '../../../../utils/api'
+const { $Toast } = require('../../../../iview/base/index');
 
 Page({
 
   data: {
-    inputValue:"", //记录个人简介输入框的值
     imgTempPath:"" //记录头像临时地址
   },
 
@@ -20,47 +19,35 @@ Page({
    })
   },
 
-  
-  //子组件调用，获取子组件（输入框）的值
-  getInputValue(e){
-    this.setData({
-      inputValue:e.detail.inputValue
+  submit:function(){
+    const myTextArea = this.selectComponent("#my-textarea");
+    const {currentWord:introduction}= myTextArea.getValues();
+    const filePath = this.data.imgTempPath;
+    if(!introduction.trim() && !filePath){
+      $Toast({
+        content: '已经最新状态',
+        type: 'warning'
+      });
+      return
+    }
+
+    getStorageItem("accountId")
+    .then(accountId=>{
+      const data = {accountId,introduction} 
+      if(filePath) return httpRequest.editPersonal({data,filePath});
+      else return httpRequest.editPersonal({data})
+    })
+    .then(res=>{
+      if(!res.data.code) return Promise.reject();
+      $Toast({
+        content: '更新成功！',
+        type: 'success'
+      });
+      wx.navigateBack();
     })
   },
 
   onLoad: function (options) {
-
+    const {img,intro} = options;
   },
-
-  onReady: function () {
-
-  },
-
-
-  onShow: function () {
-
-  },
-
-
-  onHide: function () {
-
-  },
-
-
-  onUnload: function () {
-
-  },
-
-  onPullDownRefresh: function () {
-
-  },
-
-  onReachBottom: function () {
-
-  },
-
-
-  onShareAppMessage: function () {
-
-  }
 })

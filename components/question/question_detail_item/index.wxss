@@ -22,7 +22,12 @@
 .state_text{
   color: var(--theme);
 }
-
+.is_solute{
+  color: var(--theme);
+}
+.un_solute{
+  color: var(--unsoluteColor);
+}
 .iconfont {
   margin-left: 12rpx;
   font-size: 30rpx;

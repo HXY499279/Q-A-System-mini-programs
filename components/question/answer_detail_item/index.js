@@ -1,10 +1,16 @@
-// components/question/answer_detail_item/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    answerDetail:{
+      type:Object,
+      value:{}
+    },
+    questionerId:{
+      type:Number,
+      value:0
+    }
   },
 
   /**
@@ -22,31 +28,23 @@ Component({
 
     //点击采纳
     handleAdopt() {
-      const isAdopt = !this.data.isAdopt;
-      this.setData({
-        isAdopt
-      })
+      this.triggerEvent("onAdopt")
     },
 
     //点击赞同
     handleAgree() {
-       const isAgree = !this.data.isAgree;
-       this.setData({
-         isAgree
-       })
+      this.triggerEvent("onAgree")
     },
 
     //点击评论
     handleComment(){
-      wx.redirectTo({
-        url: '/pages/index/pages/comment/index',
-      })
+     this.triggerEvent("onComment")
     },
 
     //去举报
     gotoComplain(){
-      wx.redirectTo({
-        url: '/pages/index/pages/complain/index',
+      wx.navigateTo({
+        url: `/pages/index/pages/complain/index?type=1&param=${encodeURIComponent(JSON.stringify(this.properties.answerDetail))}`,
       })
     }
 

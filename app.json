@@ -14,6 +14,7 @@
     "pages/index/pages/question_detail/index",
     "pages/index/pages/answer_detail/index",
     "pages/index/pages/comment/index",
+    "pages/index/pages/complain/index",
     "pages/index/pages/write_answer/index",
     "pages/message/message_detail/index"
   ],

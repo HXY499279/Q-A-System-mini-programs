@@ -1,0 +1,14 @@
+<!--components/loading/index.wxml-->
+<view class="loading">
+  <view wx:if="{{ isLoading }}" class="spinner">
+    <view class="rect1 rect"></view>
+    <view class="rect2 rect"></view>
+    <view class="rect3 rect"></view>
+    <view class="rect4 rect"></view>
+    <view class="rect5 rect"></view>
+  </view>
+  <view class="error" wx:if="{{ isError }}">
+    <image class="error_img" src="/img/common/404.jpg"></image>
+    网络崩溃啦
+  </view>
+</view>

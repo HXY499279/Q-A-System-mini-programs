@@ -1,4 +1,4 @@
 <!--components/choose_category_item/index.wxml-->
-<category-item>
-	<view slot="operate" class="add" bindtap="chooseCategory">添加</view>
+<category-item categoryMsg="{{categoryMsg}}">
+	<view slot="operate" class="add" bindtap="chooseCategory" data-currentcategory="{{categoryMsg.subjectName}}" data-currentId="{{categoryMsg.subjectId}}">添加</view>
 </category-item>

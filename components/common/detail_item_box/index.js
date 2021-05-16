@@ -7,9 +7,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    userHead:{
-      type:String,
-      value:'/img/timg.jpg'
+    answer:{
+      type:Object,
+      value:null
     }
   },
 
@@ -17,7 +17,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    url:"",
   },
 
   /**
@@ -27,5 +27,12 @@ Component({
     handleImage(){
 
     }
+  },
+
+  //组件挂载时设置当前URL
+  attached(){
+    this.setData({
+      url:getApp().url.currentUrl+'/img/'
+    })
   }
 })

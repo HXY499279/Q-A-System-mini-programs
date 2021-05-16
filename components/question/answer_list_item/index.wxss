@@ -8,3 +8,10 @@
   color: gray;
   font-size: 32rpx;
 }
+.adopted{
+  color: var(--theme);
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,7 +1,12 @@
-<!--components/message/message_item/index.wxml-->
-<view bindtap="gotoMessageDetail">
-	<detail-item-box>
-		<view slot="title" class="title">双选会双选会双选十六点就发士大夫精神的富士康会双选会</view>
-		<view slot="bl_operate">3 阅读</view>
-	</detail-item-box>
+<view class="detail_item_box">
+	<view class="title">标题标题标题标题标题</view>
+	<view class="user_info">
+		<image src="/img/timg.jpg" class="user_head_img"></image>
+		<view>唐椰涵</view>
+	</view>
+	<view class="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
+	<view class="footer">
+		<view>3 阅读</view>
+		<view>2020-12-2 14:00</view>
+	</view>
 </view>

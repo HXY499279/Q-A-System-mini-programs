@@ -1,4 +1,5 @@
 // components/rank/rank_item/index.js
+
 Component({
   /**
    * 组件的属性列表
@@ -7,6 +8,10 @@ Component({
     "icon":{
       type:String,
       value:""
+    },
+    userInfo:{
+      type:Object,
+      value:{}
     }
   },
 
@@ -14,7 +19,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    url:""
   },
 
   /**
@@ -22,5 +27,10 @@ Component({
    */
   methods: {
 
+  },
+  attached(){
+    this.setData({
+      url:getApp().url.currentUrl+'/img/'
+    })
   }
 })

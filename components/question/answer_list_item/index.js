@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    answerDetail:{
+      type:Object,
+      value:{}
+    }
   },
 
   /**
@@ -21,15 +24,8 @@ Component({
     //去举报
     gotoComplain() {
       wx.navigateTo({
-        url: '/pages/index/pages/complain/index?type=answer',
+        url: `/pages/index/pages/complain/index?type=1&param=${encodeURIComponent(JSON.stringify(this.properties.answerDetail))}`,
       })
     },
-
-    //去问题详情页
-    gotoAnswerDetail() {
-      wx.navigateTo({
-        url: '/pages/index/pages/answer_detail/index',
-      })
-    }
   }
 })

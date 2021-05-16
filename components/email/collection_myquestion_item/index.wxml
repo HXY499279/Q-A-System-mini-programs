@@ -3,7 +3,7 @@
 	<detail-item-box>
 		<view class="title" slot="title">
 			<view class="text">
-				上选合适的开发建设链接发
+				这道题如何求导数？
 				<text class="category">高数</text>
 			</view>
 			<view class="state">已解决</view>

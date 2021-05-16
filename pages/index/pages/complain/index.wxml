@@ -1,9 +1,11 @@
 <!--pages/index/complain/index.wxml-->
 <view class="complain_page">
 	<view class="title">你将要举报的内容如下</view>
-	<question-card />
-	<picture-text-box />
-	<button class="btn" hover-class="btn-hover" style="width:90vw">立即举报</button>
-
+	<question-card dataDetail="{{dataDetail}}" type="{{type}}"/>
+	<view class="text_area">
+		<my-textarea myPlaceholder="请输入举报内容" id="my-textarea"/>
+		<pucture-update-box id="picture-update-box" />
+	</view>
+	<button class="btn" hover-class="btn-hover" style="width:90vw" bindtap="submitReport">立即举报</button>
 	<i-toast id="toast" />
 </view>

@@ -47,6 +47,15 @@ Component({
       return{
         currentWord:this.data.currentWord
       }
+    },
+  /**
+  * 清除输入框的内容
+  */
+ clearInput(){
+      this.setData({
+        currentWordsLen: 0,
+        currentWord: "",
+      })
     }
   }
 })

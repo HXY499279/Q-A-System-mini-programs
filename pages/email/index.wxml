@@ -4,8 +4,6 @@
 
 	<view wx:if="{{currentType === 'invitation'}}">
 		<invitation-item />
-		<invitation-item />
-		<invitation-item />
 	</view>
 
 	<view wx:elif="{{currentType === 'dynamic'}}">

@@ -1,66 +1,53 @@
 // pages/question/choose_ category/index.js
+import httpRequest from '../../../utils/request/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    //所有学科
+    categorys:[],
+    isLoading:true
   },
 
+  /**
+   * 页面数据
+   */
+  pageData:{
+    currentPage:1,
+    pageSize:7,
+    keyWord:'',
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.searchSubject();
   },
-
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 获取科目信息
    */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  searchSubject : function(keyWord){
+     wx.showToast({
+      icon: "loading",
+      title: "正在获取信息",
+      duration:10000
+      });
+    const {currentPage,pageSize} = this.pageData;
+    let param = keyWord ? {keyWord,currentPage,pageSize} : {currentPage,pageSize}
+    httpRequest.searchSubject(param)
+    .then(res=>{
+      const categorys = res.data.data.list;
+      this.setData({categorys});
+      wx.hideToast();
+    })
+    .catch(err=>{
+      wx.showToast({
+        icon: "error",
+        title: "请检查您的网络",
+        duration:2000
+        });
+    })
   }
 })

@@ -1,15 +1,16 @@
-// components/common/category_item/index.js
+// components/loading/index.js
 Component({
-  options: {
-    multipleSlots: true
-  },
   /**
    * 组件的属性列表
    */
   properties: {
-    categoryMsg:{
-      type:Object,
-      value:{}
+    isLoading: {
+      type: Boolean,
+      value: false
+    },
+    isError: {
+      type: Boolean,
+      value: false
     }
   },
 

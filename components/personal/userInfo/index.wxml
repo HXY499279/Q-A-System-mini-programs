@@ -1,15 +1,15 @@
 <view class="userInfo">
 	<view class="userInfo_left">
 		<image src="/img/tabBar/personal.png"></image>
-		<view class="personal_edit"><navigator url="/pages/personal/pages/edit/index">编辑资料</navigator></view>
-		<view>积分：999</view>
+		<view class="personal_edit"><navigator url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator></view>
+		<view>积分：{{userInfo.score}}</view>
 	</view>
 	<view class="userInfo_right">
 		<view class="userInfo_right_personalMsg">
-			<view>诸葛亮</view>
+			<view>{{userInfo.userName}}</view>
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/identity.svg"></image>
-				<view>志愿者</view>
+				<view>待修改</view>
 			</view>
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/degree.svg"></image>
@@ -20,27 +20,27 @@
 				<view>初出茅庐</view>
 			</view>
 		</view>
-		<view class="userInfo_right_introduce">这里是简介这里是简介这里是简介这里是简介</view>
+		<view class="userInfo_right_introduce">{{userInfo.introduce}}</view>
 		<view class="user_track">
 			  <view class="user_track_item">
-					<view>10</view>
+					<view>{{userInfo.questionCount}}</view>
 					<view>提问</view>
 				</view>
 				<view class="user_track_item">
-					<view>10</view>
+					<view>{{userInfo.answerCount}}</view>
 					<view>回答</view>
 				</view>
 				<view class="user_track_item">
-					<view>10</view>
+					<view>{{userInfo.collectionCount}}</view>
 					<view>收藏</view>
 				</view>
 				<view class="user_track_item">
-					<view>10</view>
-					<view>采纳</view>
+					<view>{{userInfo.agreeCount}}</view>
+					<view>赞同</view>
 				</view>
 				<view class="user_track_item">
-					<view>10</view>
-					<view>赞赏</view>
+					<view>{18}</view>
+					<view>采纳</view>
 				</view>
 				
     </view>

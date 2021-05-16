@@ -1,22 +1,27 @@
 <!--pages/index/pages/question_detail/index.wxml-->
 <view class="question_detail_page">
-	<question-card-item>
+	<question-card-item questionDetailData="{{questionDetailData}}">
 		<view class="footer" slot="footer">
-			<view class="collection">
-				<view class="iconfont icon-shoucang {{isCollection?'collectioned':''}}" bindtap="addIntoCollection"></view>
+			<view class="collection" bindtap="addIntoCollection">
+				<view class="iconfont icon-shoucang {{isCollected?'collectioned':''}}"></view>
 				<view>收藏问题，日后回顾</view>
 			</view>
 			<button class="btn" hover-class="btn-hover" style="width:90vw" bindtap="gotoWriteAnswer">我来回答</button>
 		</view>
 	</question-card-item>
 	<view class="answer_title">
-		<view>回答 2</view>
+		<view>回答</view>
 		<view class="answer_sort_type" bindtap="changeAnswerSortType">
-			<text data-type="hot" class=" type {{answerSortType == 'hot'?'active_type':'unactive_type'}} ">最热</text>
-			<text data-type="new" class="type {{answerSortType == 'new'?'active_type':'unactive_type'}}">最新</text>
+			<text data-type="{{1}}" class=" type {{answerSortType === 1?'active_type':'unactive_type'}} ">最热</text>
+			<text data-type="{{0}}" class="type {{answerSortType === 0 ?'active_type':'unactive_type'}}">最新</text>
 		</view>
 	</view>
-	<view>
-		<answer-list-item />
+	<view wx-if="{{answerList.length !== 0}}">
+		<block wx:for="{{answerList}}" wx:key="item">
+			<answer-list-item answerDetail="{{item}}" bindtap="gotoAnswerDetail" data-answerDetail="{{item}}"/>
+		</block>
+	</view>
+	<view wx:else class="nothing_tips">
+		<image src="/img/common/nothing.svg" class="nothing_icon"></image>
 	</view>
 </view>

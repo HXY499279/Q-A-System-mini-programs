@@ -35,13 +35,26 @@ Component({
   
     //用于父组件获取子组件的值
     getValues(){
-      const myTextArea = this.selectComponent("#my-textarea");
-      const picUpdateBox = this.selectComponent("#picture-update-box");
+      const myTextArea = this.selectComponent("#my_textarea");
+      const picUpdateBox = this.selectComponent("#picture_update_box");
       return{
         titleInput:this.data.titleInput,
         textAreat:myTextArea.getValues(),
         tempFilePath:picUpdateBox.getValues()
       }
+    },
+
+    /**
+    * 清除输入框的内容
+    */
+    clearInput(){
+      const myTextArea = this.selectComponent("#my_textarea");
+      const picUpdateBox = this.selectComponent("#picture_update_box");
+      myTextArea.clearInput();
+      picUpdateBox.clearInput();
+      this.setData({
+        titleInput:""
+      })
     }
   }
 })

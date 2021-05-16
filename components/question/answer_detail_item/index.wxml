@@ -3,35 +3,34 @@
 	<view class="head">
 		<view class="user_info">
 			<view class="user_head">
-				<image  class="user_head_img" src="/img/timg.jpg" mode='aspectFill'></image><text>易烊千玺</text>
+				<image  class="user_head_img" src="/img/timg.jpg" mode='aspectFill'></image><text>{{answerDetail.userName}}</text>
 			</view>
 			<view class="user_identity">
 				<image class="user_identity_icon" src="/img/identity/student.svg"></image><text>学生</text>
 			</view>
 		</view>
 		<view class="head_operate">
-			<view class="state">已采纳</view>
+			<view class="state">{{answerDetail.isAdopt?"已采纳":""}}</view>
 			<view class="iconfont icon-jubao" bindtap="gotoComplain"></view>
-			<view class="iconfont icon-fenxiang"></view>
 		</view>
 	</view>
 	<view class="content">
-		<view class="content_text">介绍了打击非法教室里的开发建设看来大家塑料袋放进阿拉斯加飞机覅数量的快捷方式劳动法</view>
-		<image class="content_img" mode='widthFix' src="/img/bg.jpeg"></image>
+		<view class="content_text">{{answerDetail.content}}</view>
+		<image wx:if="{{answerDetail.contentImg != -1}}" class="content_img" mode='widthFix' src="{{answerDetail.contentImg}}"></image>
 		<view class="content_footer">
-			<text> 5 赞同 5 评论</text>
-			<text>2020-11-11</text>
+			<text> {{answerDetail.agreeCount}} 赞同 {{answerDetail.commentCount}} 评论</text>
+			<text>{{answerDetail.answerTime}}</text>
 		</view>
 	</view>
 	<view class="footer">
 		<view class="footer_tips">看完回答，您可能还会进行以下操作</view>
 		<view class="operate">
-			<view class="operate_item" bindtap="handleAdopt">
-				<view class="iconfont icon-chuizi {{isAdopt?'adopted':''}}"></view>
+			<view class="operate_item" bindtap="handleAdopt" wx:if="{{questionerId === answerDetail.accountId}}">
+				<view class="iconfont icon-chuizi {{answerDetail.isAdopt?'adopted':''}}"></view>
 				<view>采纳</view>
 			</view>
 			<view  class="operate_item" bindtap="handleAgree">
-				<view class="iconfont icon-taoxin {{isAgree?'agreed':''}}"></view>
+				<view class="iconfont icon-taoxin {{answerDetail.isAgree?'agreed':''}}"></view>
 				<view>赞同</view>
 			</view>
 			<view  class="operate_item" bindtap="handleComment">

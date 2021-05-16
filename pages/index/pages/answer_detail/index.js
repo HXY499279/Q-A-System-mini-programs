@@ -1,61 +1,74 @@
 // pages/index/pages/answer_detail/index.js
+import {getStorageItem} from '../../../../utils/api'
+import httpRequest from '../../../../utils/request/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    answerDetail:{},
+    questionDetail:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const answerDetail = (JSON.parse(decodeURIComponent(options.answerDetail)));
+    const questionDetail = (JSON.parse(decodeURIComponent(options.questionDetail)));
+    this.setData({
+      answerDetail,
+      questionDetail
+    })
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 点击采纳
    */
-  onReady: function () {
-
+  onAdopt:function(){
+    let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
+    newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
+    this.setData({
+      answerDetail:newAnswerDetail
+    })
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 点击赞同
    */
-  onShow: function () {
+  onAgree:function(){
+    let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
+    newAnswerDetail.isAgree = newAnswerDetail.isAgree ? 0 : 1;
+    newAnswerDetail.isAgree ? newAnswerDetail.agreeCount++ :  newAnswerDetail.agreeCount--;
+    this.setData({
+      answerDetail:newAnswerDetail
+    })
 
+    getStorageItem("accountId")
+    .then(accountId=>{
+      const answerId = this.data.answerDetail.answerId;
+      const isAgree = this.data.answerDetail.isAgree
+      if( isAgree)  return httpRequest.agreeAnswer({answerId,accountId})
+      else return httpRequest.cancelAgreeAnswer({answerId,accountId})
+    })
+    .then(res=>{
+     if(!res.data.code) return Promise.reject();
+    })
+    .catch(err=>{})
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 点击评论
    */
-  onHide: function () {
-
+  onComment:function(){
+    console.log("parent-oncomment")
+    wx.navigateTo({
+      url: `/pages/index/pages/comment/index?answerId=${this.data.answerDetail.answerId}&answerName=${this.data.answerDetail.userName}`,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
 
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
 
   /**
    * 用户点击右上角分享

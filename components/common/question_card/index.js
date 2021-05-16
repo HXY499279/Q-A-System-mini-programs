@@ -7,15 +7,22 @@ Component({
     multipleSlots: true
   },
   properties: {
-
+    dataDetail:{
+      type:Object,
+      value:{}
+    },
+    type:{
+      type:Number,
+      value:0 //    /0是问题 1是回答
+    }
   },
 
   /**
    * 组件的初始数据
    */
-  data: {
+ data:{
 
-  },
+ },
 
   /**
    * 组件的方法列表

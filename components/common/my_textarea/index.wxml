@@ -6,6 +6,6 @@
 	父组件需要有ivew toast容器
  -->
 <view class="my_textarea_box">
-	<textarea class="introduce_area" bindinput="wordLimit" maxlength="{{allowWords}}" placeholder="{{myPlaceholder}}"></textarea>
+	<textarea class="introduce_area" bindinput="wordLimit" maxlength="{{allowWords}}" placeholder="{{myPlaceholder}}" value="{{currentWord}}"></textarea>
 	<text class="words_count">{{currentWordsLen}}/{{allowWords}}</text>
 </view>

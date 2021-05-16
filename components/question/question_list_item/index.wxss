@@ -1,11 +1,27 @@
 /* components/question_list/question_list_item/index.wxss */
 @import "/img/operate/iconfont.wxss";
-.state{
+.title{
   display: flex;
+  justify-content: space-between;
+}
+.state{
+  display: flex;  
   align-items: center;
+  white-space: nowrap;
+  padding-left: 8rpx;
+}
+.is_solute{
+  color:var(--theme)
+}
+.un_solute{
+  color:var(--unsoluteColor) ;
 }
 .iconfont{
   font-size:30rpx;
   margin-left:15rpx;
   color:gray;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
 }

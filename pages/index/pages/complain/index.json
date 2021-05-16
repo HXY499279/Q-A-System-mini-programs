@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "question-card":"/components/common/question_card/index",
-    "picture-text-box":"/components/common/picture_text_box/index",
+    "my-textarea":"/components/common/my_textarea/index",
+    "pucture-update-box":"/components/common/picture_update_box/index",
     "i-toast": "/iview/toast/index"
   }
 }

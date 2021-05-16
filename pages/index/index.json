@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "title":"/components/common/title/index",
-    "detail-item-box":"/components/common/detail_item_box/index"
+    "detail-item-box":"/components/common/detail_item_box/index",
+    "loading":"/components/common/loading/index",
+    "i-toast": "/iview/toast/index"
   }
 }

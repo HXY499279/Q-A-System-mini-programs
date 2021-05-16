@@ -5,7 +5,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    categoryMsg:{
+      type:Object,
+      value:{}
+    }
   },
 
   /**
@@ -20,10 +23,13 @@ Component({
    */
   methods: {
     //点击添加
-    chooseCategory(){
-      app.chooseCategory = "大学物理"
+    chooseCategory(e){
+      console.log(e)
+      const {currentcategory,currentid}= e.currentTarget.dataset;
+      app.chooseCategory = currentcategory;
+      app.chooseSubjectId = currentid;
       wx.navigateBack({
-        url: '/pages/question/index？'
+        url: '/pages/question/index'
       })
     }
   }
