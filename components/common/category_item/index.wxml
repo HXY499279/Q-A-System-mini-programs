@@ -1,14 +1,15 @@
 <!--components/common/category_item/index.wxml-->
 <view class="category_item_box" data-subjectId="{{categoryMsg.subjectId}}">
 	<view class="item_left">
-		<image  class="icon" src="{{'http://121.41.94.206:8080/img'+categoryMsg.iconPath}}"></image>
-		<text class="left_text">{{categoryMsg.college}}\n{{categoryMsg.subjectName}}</text>
+		<image  class="icon" src="{{url+categoryMsg.iconPath}}"></image>
+		<text class="text left_text_first">{{categoryMsg.college}}</text>
+		<text class="text left_text_second">{{categoryMsg.subjectName}}</text>
 	</view>
 	<view class="item_right">
 		<view>
 			<view>此科目已累计<text class="number_g">{{categoryMsg.questionCount}}</text>个问题</view>
 			<view>待解决<text class="number_y">{{categoryMsg.unresolvedQuestionCount}}</text> 今日新增<text class="number_y">{{categoryMsg.newQuestionCount}}</text></view>
-			<view>{{categoryMsg.subjectInfo}}</view>
+			<view class="intro_text">{{categoryMsg.subjectInfo}}</view>
 		</view>
     <slot name="operate"></slot>
 	</view>

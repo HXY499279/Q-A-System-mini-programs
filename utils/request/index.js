@@ -60,6 +60,15 @@ class httpRequest {
      * 获取反馈列表 
      */
     getFeedBackList = param => httpUtil({url:"/feedback/listFeedback",param})
+
+    /**
+     * 点赞反馈
+     */
+    agreeFeedback = param => httpUtil({url:"/feedback/agreeFeedback",param,method:'post',header:{"Content-Type":"application/x-www-form-urlencoded"}})
+     /**
+      * 取消点赞反馈
+      */
+     cancelAgreeFeedback = param =>httpUtil({url:"/feedback/cancelAgree",param,method:'post',header:{"Content-Type":"application/x-www-form-urlencoded"}})
   /**
    * 根据问题ID获取问题详情
    */
@@ -100,6 +109,36 @@ class httpRequest {
    * 取消赞同回答
    */
   cancelAgreeAnswer = param => httpUtil({url:'/answer/cancelAgree',method:"post",param,header:{"Content-Type":"application/x-www-form-urlencoded"}})
+
+  /**
+   * 发表评论
+   */
+  submitComment = param =>  httpUtil({url:'/comment/addComment',method:"post",param,header:{"Content-Type":"application/x-www-form-urlencoded"}})
+
+  /**
+   * 获取评论
+   */
+  getComment = param =>  httpUtil({url:'/comment/listComment',param})
+
+  /**
+   * 获得资讯列表
+   */
+  getNews = param =>httpUtil({url:'/news/listNews',param})
+
+  /**
+   * 获取动态
+   */
+  getDynamic = param =>httpUtil({url:'/email/showDynamic',param})
+
+  /**
+   * 查看被邀请
+   */
+  getInvitation = param =>httpUtil({url:'/email/showMyInvitation',param})
+
+  /**
+   * 查看个人收藏
+   */
+  getAboutMyQuestion = param => httpUtil({url:'/question/relatedQuestion',param})
 }
 
 export default new httpRequest();

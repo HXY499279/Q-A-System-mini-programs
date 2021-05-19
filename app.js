@@ -34,7 +34,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    isLogin:false
+    isLogin:false,
+    myAnswer:null
   },
   url:{
     currentUrl:"http://202.202.43.250:8080"

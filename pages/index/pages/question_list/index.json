@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "i-switch": "../../../../iview/switch/index",
-    "question-list-item":"/components/question/question_list_item/index"
+    "question-list-item":"/components/question/question_list_item/index",
+    "nothing":"/components/common/nothing/index"
   }
 }

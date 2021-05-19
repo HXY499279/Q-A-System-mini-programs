@@ -1,13 +1,16 @@
 <!--components/email/collection/index.wxml-->
 <view bindtap="gotoQuestionDetail">
-	<detail-item-box>
+	<detail-item-box answer="{{msg.answer}}">
 		<view class="title" slot="title">
 			<view class="text">
-				这道题如何求导数？
-				<text class="category">高数</text>
+				{{msg.question.title}}
+				<text class="category">{{msg.question.subjectName}}</text>
 			</view>
-			<view class="state">已解决</view>
+			<view class="state {{msg.question.state?'is_solute':'un_solute'}}">{{msg.question.state?'已解决':'未解决'}}</view>
 		</view>
-		<view slot="bl_operate">2收藏 5赞同</view>
+		<view slot="bl_operate" class="footer">
+		<view>{{msg.question.collectionCount}} 收藏 {{msg.question.answerCount}} 回答 </view>
+		<view>{{msg.question.publishTime}}</view>
+		</view>
 	</detail-item-box>
 </view>

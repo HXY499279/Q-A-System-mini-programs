@@ -22,7 +22,8 @@
   justify-content: space-between;
   padding: 10rpx 25rpx;
   background-color: white;
-  margin-top: 10rpx;
+  margin: 10rpx 0;
+  box-shadow: 0 2rpx 2rpx 2rpx var(--background);
   align-items: center;
 }
 .answer_sort_type{
@@ -40,11 +41,4 @@
 }
 .unactive_type{
   color: gray;
-}
-.nothing_tips{
-  text-align: center;
-}
-.nothing_icon{
-  color: var(--grayWord);
-  width: 200rpx;
 }

@@ -32,7 +32,7 @@ Component({
   //组件挂载时设置当前URL
   attached(){
     this.setData({
-      url:getApp().url.currentUrl+'/img/'
+      url:getApp().url.currentUrl+'/img'
     })
   }
 })

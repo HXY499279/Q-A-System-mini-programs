@@ -1,10 +1,15 @@
 // components/feedback/feedback_item/index.js
+import httpRequest from '../../../utils/request/index';
+import {getStorageItem} from '../../../utils/api'
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    feedback:{
+      type:Object,
+      value:{}
+    }
   },
 
   /**
@@ -23,6 +28,8 @@ Component({
       this.setData({
         isAgree
       })
+      const feedbackId = this.properties.feedback.feedbackId
+      this.triggerEvent("handleAgreeClick",{feedbackId}) 
     }
   }
 })

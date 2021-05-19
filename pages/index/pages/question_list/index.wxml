@@ -17,7 +17,5 @@
 			<question-list-item question="{{item.question}}" answer="{{item.answer}}" />
 		</block>
 	</view>
-	<view wx:else class="nothing_tips">
-			<image src="/img/common/nothing.svg" class="nothing_icon"></image>
-	</view>
+	<noting wx:else/>
 </view>

@@ -1,8 +1,10 @@
 <!--pages/index/pages/answer_detail/index.wxml-->
 <view class="answer_detail_page">
-	<qustion-detail-item questionDetailData="{{questionDetail}}"/>
+	<qustion-detail-item questionDetailData="{{questionDetail}}" />
 	<view class="title">回答</view>
-	<answer-detail questionerId="{{questionDetail.accountId}}" answerDetail="{{answerDetail}}" bindonAdopt="onAdopt" bindonAgree="onAgree" bindonComment="onComment"/>
-	<view class="title">评论</view>
-	<comment-item/>
+	<answer-detail questionerId="{{questionDetail.accountId}}" answerDetail="{{answerDetail}}" bindonAdopt="onAdopt" bindonAgree="onAgree" bindonComment="onComment" />
+	<view class="title">评论 {{commentList.length}}</view>
+	<view wx:for="{{commentList}}" key="item">
+		<comment-item comment="{{item}}"/>
+	</view>
 </view>

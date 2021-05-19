@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    msg:{
+      type:Object,
+      value:{}
+    }
   },
 
   /**
@@ -21,7 +24,7 @@ Component({
     //点击跳转至问题详情页面
     toQustionDetail(){
       wx.navigateTo({
-        url: '/pages/index/pages/question_detail/index'
+        url: `/pages/index/pages/question_detail/index?questionId=${this.properties.msg.emailContent.questionId}`
       })
     }
   }

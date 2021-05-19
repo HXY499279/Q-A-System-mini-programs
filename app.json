@@ -22,7 +22,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#30CB88",
     "navigationBarTitleText": "邮问必答学业辅导中心",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true
   },
   "tabBar": {
     "color": "#999999",

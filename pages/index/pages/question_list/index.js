@@ -17,7 +17,7 @@ Page({
     timer: null,
     currentPage: 1,
     pageSize: 5,
-    totalPages: 0,
+    totalPages: 1,
     totalRows: 0,
     keyWords: "",
   },
@@ -44,7 +44,13 @@ Page({
         const { list: questionList, pageInfo: { totalPages, totalRows } } = res.data.data;
         const newPageData = { totalPages, totalRows }
         mergeObj(this.pageData, newPageData)
-        this.setData({ questionList })
+        this.setData({ questionList :[...this.data.questionList,...questionList]})
+      })
+      .catch(err=>{
+        wx.showToast({
+          title: '网络忙 稍后试',
+          icon:'error'
+        })
       })
   },
 
@@ -54,6 +60,9 @@ Page({
   onChange: function (event) {
     const detail = event.detail;
     const newState = detail.value ? 1 : 0;
+
+    const newPageData = {totalPages:1,totalRows:0,currentPage:1};
+    mergeObj(this.pageData,newPageData);
     const { subjectId, currentPage, pageSize, keyWords } = this.pageData;
     const data = keyWords.trim()===""?
         ({subjectId, currentPage, pageSize,state: newState}):
@@ -65,7 +74,8 @@ Page({
   },
 
   searchInput: function (e) {
-    this.pageData.currentPage = 1;
+    const newPageData = {totalPages:1,totalRows:0,currentPage:1};
+    mergeObj(this.pageData,newPageData);
     const keyWords = e.detail.value;
     this.pageData.keyWords = keyWords;
     let data = {};
@@ -88,44 +98,12 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.pageData.totalPages>this.pageData.currentPage){
+      this.pageData.currentPage++;
+      this.setQuestionList();
+    }
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

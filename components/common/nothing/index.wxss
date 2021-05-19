@@ -1,0 +1,7 @@
+.nothing_tips{
+  text-align: center;
+}
+.nothing_icon{
+  color: var(--grayWord);
+  width: 200rpx;
+}

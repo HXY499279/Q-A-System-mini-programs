@@ -17,6 +17,7 @@ Page({
 
   onLoad() {
     this.getUrl();
+    wx.setStorageSync('accountId', 1664781)
     httpRequest.listSubjectByCollege({college:"经济管理学院"})
     .then(res=>{
       const {code,data} = res.data

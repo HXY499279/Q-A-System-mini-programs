@@ -1,6 +1,6 @@
 // pages/index/pages/question_detail/index.js
 import {
-  getStorageItem
+  getStorageItem,mergeObj
 } from '../../../../utils/api'
 const app = getApp();
 import httpRequest from '../../../../utils/request/index'
@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    answerSortType: 0, //0 最新； 1 最热
+    answerSortType: 1, //0 最新； 1 最热
     isCollected: false,
     answerList: [],
     questionDetailData: {}
@@ -18,20 +18,14 @@ Page({
 
   pageData:{
     questionId:undefined,
-    currentPage:1,
-    pageSize:6,
+    currentHotPage:1,
+    currentNewPage:1,
+    pageSize:4,
     totalPages:1,
-    totalRows:0
+    totalRows:0,
+    hotAnswerList:[],
+    newAnswerList:[]
   },
-
-  //选择回答的排序方式
-  changeAnswerSortType(e) {
-    const answerSortType = e.target.dataset.type;
-    this.setData({
-      answerSortType
-    })
-  },
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -43,6 +37,56 @@ Page({
     this.getAnswerList();
   },
 
+  /**
+   * 生命周期函数 页面出现的时候判断是否有刚刚自己写的回答，解决页面渲染不及时的bug
+   */
+  onShow:function(){
+    const myAnswer = app.globalData.myAnswer;
+    if(myAnswer){
+      const {totalPages,currentHotPage} = this.pageData;
+      //如果是最热回答的最后一页，把刚写的回答push到最后
+      if(totalPages === currentHotPage ) this.pageData.hotAnswerList.push(myAnswer);
+      //如果在最新选项，把刚写的回答unshift到第一个
+      this.pageData.newAnswerList.unshift(myAnswer);
+
+      !this.data.answerSortType ? 
+      (this.setData({
+        answerList: this.pageData.newAnswerList
+      })) :  (totalPages === currentHotPage ?
+        (this.setData({
+          answerList: this.pageData.hotAnswerList
+        })) :""
+      )  
+      }
+    app.globalData.myAnswer = null;
+  },
+
+  /*
+   *选择回答的排序方式
+   */
+  changeAnswerSortType(e) {
+    const answerSortType = e.target.dataset.type;
+    if(answerSortType === 1 && this.pageData.hotAnswerList.length!==0){
+      this.setData({
+        answerSortType,
+        answerList:this.pageData.hotAnswerList
+      })
+    }
+    else if(answerSortType === 0 && this.pageData.newAnswerList.length!==0){
+      this.setData({
+       answerSortType,
+       answerList:this.pageData.newAnswerList
+       })
+    }
+    else{
+      this.setData({
+        answerList:[],
+        answerSortType
+      },()=>{
+        this.getAnswerList();
+      })
+    }
+  },
   /**
    * 获取问题详情
    */
@@ -63,6 +107,12 @@ Page({
           questionDetailData: res.data.data
         })
       })
+      .catch(err=>{
+        wx.showToast({
+          title: '网络忙 稍后试',
+          type:'error'
+        })
+      })
   },
 
   /**
@@ -71,33 +121,49 @@ Page({
   getAnswerList:function(){
     getStorageItem("accountId")
     .then(accountId=>{
-      const {currentPage,pageSize,questionId} = this.pageData;
+      const {currentHotPage,currentNewPage,pageSize,questionId} = this.pageData;
       const sortOrder = this.data.answerSortType;
+      const currentPage = this.data.answerSortType ? currentHotPage : currentNewPage;
       const data = {accountId,currentPage,pageSize,questionId,sortOrder};
       return httpRequest.getAnswerList(data)
     })
     .then(res=>{
       if(!res.data.code) return Promise.reject();
-      const answerList = [...this.data.answerList,...res.data.data.list]
-      const {currentPage,pageSize,totalPages,totalRows} = res.data.data.pageInfo;
+      if(this.data.answerSortType === 0) {
+        this.pageData.newAnswerList = [...this.pageData.newAnswerList,...res.data.data.list]
+      }
+      else if(this.data.answerSortType === 1){
+        this.pageData.hotAnswerList = [...this.pageData.hotAnswerList,...res.data.data.list]
+      }
+     
+      const {pageSize,totalPages,totalRows} = res.data.data.pageInfo;
+      const newData = {pageSize,totalPages, totalRows}
+      mergeObj(this.pageData,newData);
+
        this.setData({
-        answerList,
-        currentPage,
-        pageSize,
-        totalPages,
-        totalRows
+        answerList : this.data.answerSortType ? this.pageData.hotAnswerList : this.pageData.newAnswerList
        })
+    })
+    .catch(err=>{
+      wx.showToast({
+        title: '网络忙',
+        icon:'error'
+      })
     })
   },
 
-  //去写回答
+  /*
+   *去写回答
+   */
   gotoWriteAnswer :function() {
     wx.navigateTo({
       url: `/pages/index/pages/write_answer/index?questionDetailData=${encodeURIComponent(JSON.stringify(this.data.questionDetailData))}`,
     })
   },
 
-  //收藏/取消收藏
+  /*
+   *收藏/取消收藏
+   */
   addIntoCollection:function() {
     getStorageItem("accountId")
       .then(res => {
@@ -129,6 +195,7 @@ Page({
       url: `/pages/index/pages/answer_detail/index?answerDetail=${encodeURIComponent(JSON.stringify(answerDetail))}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}`,
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -141,16 +208,38 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.pageData.currentHotPage = 1;
+    this.pageData.currentNewPage = 1;
+    this.pageData.hotAnswerList = [];
+    this.pageData.newAnswerList = [];
+    this.getAnswerList();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    const {currentHotPage,currentNewPage,totalPages} = this.pageData;
+    const {answerSortType}= this.data;
+    if(answerSortType===1 && currentHotPage<totalPages){
+      this.pageData.currentHotPage++;
+      this.getAnswerList();
+    }
+    else if(answerSortType===0 && currentNewPage<totalPages){
+      this.pageData.currentNewPage++;
+      this.getAnswerList();
+    }
   },
 
+  onPullDownRefresh:function(){
+    this.pageData.hotAnswerList = [];
+    this.pageData.newAnswerList = [];
+    this.pageData.currentPage = 1 ;
+    this.setData({answerList:[]},()=>{
+      this.getAnswerList();
+      wx.stopPullDownRefresh();
+    })
+  },
   /**
    * 用户点击右上角分享
    */

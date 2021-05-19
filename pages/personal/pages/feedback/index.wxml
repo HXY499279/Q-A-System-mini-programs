@@ -6,7 +6,10 @@
 	</view>
 	<view class="feedback_item">
 		<title icon="/img/feedback/feedback.svg" title="最新反馈" />
-		<feedback-item />
+		<block wx:for="{{feedBackList}}" wx:key="item"> 
+			<feedback-item feedback="{{item}}" bindhandleAgreeClick="handleAgreeClick"/>
+		</block>
 	</view>
+	<i-divider content="加载已完成"></i-divider>
 	<i-toast id="toast" />
 </view>

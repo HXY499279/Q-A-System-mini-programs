@@ -18,10 +18,9 @@
 	</view>
 	<view wx-if="{{answerList.length !== 0}}">
 		<block wx:for="{{answerList}}" wx:key="item">
-			<answer-list-item answerDetail="{{item}}" bindtap="gotoAnswerDetail" data-answerDetail="{{item}}"/>
+			<answer-list-item answerDetail="{{item}}" bindtap="gotoAnswerDetail" data-answerDetail="{{item}}" />
 		</block>
 	</view>
-	<view wx:else class="nothing_tips">
-		<image src="/img/common/nothing.svg" class="nothing_icon"></image>
-	</view>
+	<nothing wx:else/>
+	<i-divider content="加载已完成"></i-divider>
 </view>

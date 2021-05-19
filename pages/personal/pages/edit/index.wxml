@@ -1,7 +1,7 @@
 <!--pages/personal/pages/edit/index.wxml-->
 <view class="edit_page">
   <view class="user_img_area">
-    <image class="user_img_box" src="{{imgTempPath}}" bindtap="changeHeadImg"></image>
+    <image class="user_img_box" src="{{imgTempPath?imgTempPath:currentImg}}" bindtap="changeHeadImg"></image>
     <view class="change_img" bindtap="changeHeadImg">点击更换头像</view>
   </view>
   <title icon="/img/userInfo/introduce_icon.svg" title="个人简介"/>

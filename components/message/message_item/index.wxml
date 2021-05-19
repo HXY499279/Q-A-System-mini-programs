@@ -1,12 +1,12 @@
 <view class="detail_item_box">
-	<view class="title">标题标题标题标题标题</view>
+	<view class="title">{{msg.title}}</view>
 	<view class="user_info">
-		<image src="/img/timg.jpg" class="user_head_img"></image>
-		<view>唐椰涵</view>
+		<image src="{{url+msg.adminImg}}" class="user_head_img"></image>
+		<view>{{msg.adminName}}</view>
 	</view>
-	<view class="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</view>
+	<view class="content">{{msg.content}}</view>
 	<view class="footer">
-		<view>3 阅读</view>
-		<view>2020-12-2 14:00</view>
+		<view>{{msg.readCount}} 阅读</view>
+		<view>{{msg.publishTime}}</view>
 	</view>
 </view>

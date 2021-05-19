@@ -6,11 +6,24 @@ const { $Toast } = require('../../../../iview/base/index');
 Page({
 
   data: {
-    imgTempPath:"" //记录头像临时地址
+    imgTempPath:"", //记录头像临时地址
+    currentImg:"",
+    intro:""
   },
 
+  onLoad: function (options) {
+    getStorageItem("userInfo")
+    .then(userInfo=>{
+      this.setData({
+        currentImg:getApp().url.currentUrl+'/img'+userInfo.imgPath,
+        intro:userInfo.introduce
+      })
+    })
+  },
+
+
   //点击更换头像
-  changeHeadImg(){
+  changeHeadImg:function(){
     chooseImg(1)
    .then(res=>{
      this.setData({
@@ -21,33 +34,47 @@ Page({
 
   submit:function(){
     const myTextArea = this.selectComponent("#my-textarea");
-    const {currentWord:introduction}= myTextArea.getValues();
+    let {currentWord:introduction}= myTextArea.getValues();
     const filePath = this.data.imgTempPath;
     if(!introduction.trim() && !filePath){
-      $Toast({
-        content: '已经最新状态',
-        type: 'warning'
-      });
+     wx.showToast({
+       title: '已是最新状态',
+       icon:'error',
+       duration:1500,
+       mask:true
+     })
       return
     }
 
+    wx.showToast({
+      title: '保存中',
+      icon:'loading',
+      duration:10000,
+      mask:true
+    })
+
     getStorageItem("accountId")
     .then(accountId=>{
+      introduction = introduction ? introduction:this.data.intro;
       const data = {accountId,introduction} 
       if(filePath) return httpRequest.editPersonal({data,filePath});
       else return httpRequest.editPersonal({data})
     })
     .then(res=>{
       if(!res.data.code) return Promise.reject();
+      wx.hideToast();
       $Toast({
         content: '更新成功！',
         type: 'success'
       });
       wx.navigateBack();
     })
-  },
-
-  onLoad: function (options) {
-    const {img,intro} = options;
-  },
+    .catch(err=>{
+      wx.hideToast();
+      $Toast({
+        content: '网络繁忙',
+        type: 'error'
+      });
+    })
+  }
 })

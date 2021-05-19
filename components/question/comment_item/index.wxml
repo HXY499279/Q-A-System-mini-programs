@@ -1,8 +1,11 @@
 <!--components/question/comment/index.wxml-->
 <view>
-	<detail-item-box>
-		<view slot="ru_operate">
-			<view class="iconfont icon-jubao"></view>
+	<detail-item-box answer="{{comment}}">
+		<!-- <view slot="ru_operate">
+			<view class="iconfont icon-jubao" bindtap="gotoReport"></view>
+		</view> -->
+		<view slot="bl_operate" class="footer">
+		{{comment.commentTime}}
 		</view>
 	</detail-item-box>
 </view>

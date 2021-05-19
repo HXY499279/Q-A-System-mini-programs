@@ -1,6 +1,6 @@
 <view class="userInfo">
 	<view class="userInfo_left">
-		<image src="/img/tabBar/personal.png"></image>
+		<image src="{{url+userInfo.imgPath}}" ></image>
 		<view class="personal_edit"><navigator url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator></view>
 		<view>积分：{{userInfo.score}}</view>
 	</view>
@@ -11,10 +11,10 @@
 				<image src="/img/userInfo/identity.svg"></image>
 				<view>待修改</view>
 			</view>
-			<view class="userInfo_right_personalMsg_item">
+			<!-- <view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/degree.svg"></image>
 				<view>本科</view>
-			</view>
+			</view> -->
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/level.svg"></image>
 				<view>初出茅庐</view>
@@ -39,7 +39,7 @@
 					<view>赞同</view>
 				</view>
 				<view class="user_track_item">
-					<view>{18}</view>
+					<view>{{userInfo.solveCount}}</view>
 					<view>采纳</view>
 				</view>
 				

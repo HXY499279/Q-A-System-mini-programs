@@ -1,6 +1,7 @@
 // pages/index/pages/write_answer/index.js
 import httpRequest from '../../../../utils/request/index';
 import {getStorageItem} from '../../../../utils/api'
+import {$Toast} from '../../../../iview/base/index'
 const app = getApp();
 Page({
 
@@ -23,9 +24,9 @@ Page({
   submitAnswer(){
     const { content,img } = this.getValues();
 
-    if (!content) {
+    if (!content && img.length===0) {
       $Toast({
-        content: '请输入回答内容',
+        content: '请输入回答',
         type: 'warning'
       });
       return;
@@ -51,6 +52,7 @@ Page({
             title: "发布成功",
             duration:1500
       });
+      app.globalData.myAnswer = res.data.data;
       setTimeout(()=>{
         wx.navigateBack()
       },1500)
@@ -62,11 +64,6 @@ Page({
         duration:1500
       })
     })
-
-  // app.aa = 1;
-  // wx.navigateTo({
-  //   url: '/pages/index/pages/question_detail/index'
-  // })
   },
 
   /**

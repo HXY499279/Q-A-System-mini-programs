@@ -26,10 +26,28 @@ Page({
       return  httpRequest.getAccountById({accountId})
     })
     .then(res=>{
-      if(!res.data.code) return Promise.reject()
+      if(!res.data.code) return Promise.reject();
+      wx.setStorageSync('userInfo', res.data.data)
       this.setData({
         userInfo:res.data.data
       })
+    })
+    .catch(err=>{
+      try{
+         getStorageItem("userInfo")
+         .then(userInfo=>{
+           this.setData({
+             userInfo
+           })
+         })
+      }
+      catch(err){
+        wx.showToast({
+          title: '当前网络忙',
+          icon:'error',
+          duration:1500
+        })
+      }
     })
   },
   /**

@@ -1,5 +1,5 @@
 // pages/index/pages/answer_detail/index.js
-import {getStorageItem} from '../../../../utils/api'
+import {getStorageItem,mergeObj} from '../../../../utils/api'
 import httpRequest from '../../../../utils/request/index'
 Page({
 
@@ -8,9 +8,17 @@ Page({
    */
   data: {
     answerDetail:{},
-    questionDetail:{}
+    questionDetail:{},
+    commentList:[]
   },
-
+  pageData:{
+    comment:{
+      currentPage:1,
+      pageSize:6,
+      totalPages:1,
+      totalRows:0
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -21,8 +29,27 @@ Page({
       answerDetail,
       questionDetail
     })
+    this.getComment()
   },
 
+  /**
+   * 获取评论
+   */
+  getComment:function(){
+    const data = {
+      answerId:this.data.answerDetail.answerId,
+      currentPage:this.pageData.comment.currentPage,
+      pageSize:this.pageData.comment.pageSize
+    }
+    httpRequest.getComment(data)
+    .then(res=>{
+      const {currentPage,pageSize,totalPages,totalRows} = res.data.data.pageInfo;
+      mergeObj(this.pageData.comment,{currentPage,pageSize,totalPages,totalRows})
+      this.setData({
+        commentList:res.data.data.list
+      })
+    })
+  },
   /**
    * 点击采纳
    */

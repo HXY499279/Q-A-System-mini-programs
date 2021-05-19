@@ -4,6 +4,7 @@
   padding-left: 10rpx;
   display: flex;
   align-items: center;
+  justify-content: flex-end; 
 }
 .agree{
   color: rgb(255, 141, 26);
@@ -11,4 +12,7 @@
 
 .disagree{
   color: gray;
+}
+.iconfont{
+  padding-right: 10rpx ;
 }

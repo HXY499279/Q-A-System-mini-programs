@@ -13,7 +13,7 @@ Page({
 
   pageData:{
     currentPage:1,
-    pageSize:6,
+    pageSize:4,
     totalPages: 1,
     totalRows: 0
   },
@@ -48,7 +48,8 @@ Page({
     wx.showToast({
       icon: "loading",
       title: "正在提交反馈",
-      duration:10000
+      duration:10000,
+      mask:true
     });
     getStorageItem("accountId")
     .then(accountId=>{
@@ -61,9 +62,15 @@ Page({
       this.clearInput();
       wx.showToast({
         icon: "success",
-        title: "反馈成功！",
-        duration:1500,
-        success:()=> wx.navigateBack()
+        title: "感谢您的反馈！",
+        duration:1500
+      })
+    })
+    .catch(err=>{
+      wx.hideToast();
+      $Toast({
+        content: "网络繁忙",
+        type: 'error'
       });
     })
     
@@ -75,10 +82,35 @@ Page({
     const data = {currentPage,pageSize}
     httpRequest.getFeedBackList(data)
     .then(res=>{
-      console.log(res)
+      if(res.data.code !== 1) return Promise.reject();
+      this.pageData.totalPages = res.data.data.pageInfo.totalPages;
+      this.pageData.totalRows = res.data.data.pageInfo.totalRows;
+      this.setData({
+        feedBackList:[...this.data.feedBackList,...res.data.data.list]
+      })
     })
-    .catch(err=>{
-      console.log("+================")
-    })
-  }
+    .catch(err=>{})
+  },
+
+  handleAgreeClick:function(e){
+    const feedbackId = e.detail.feedbackId ;
+    // getStorageItem("accountId")
+    //   .then(accountId=>{
+    //     const data = {accountId , feedbackId:this.properties.feedback.feedbackId}
+    //     if(isAgree) return httpRequest.agreeFeedback(data)
+    //     else return httpRequest.cancelAgreeFeedback(data)
+    //   })
+    //   .then(res=>{
+    //     if(res.data.code!==1) return Promise.reject();
+    //     this.properties.feedback.feedbackId++;
+    //   })
+  },
+
+  onReachBottom: function () {
+    const {currentPage,totalPages} = this.pageData;
+    if(currentPage<totalPages){
+      this.pageData.currentPage++ ;
+      this.getFeedBackList();
+    }
+  },
 })

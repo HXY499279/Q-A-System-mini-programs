@@ -25,12 +25,12 @@
 		</view>
 		<view class="item_content">
 			<view class="content_words">{{answer.content}}</view>
-			<view class="content_img" wx:if="{{anser.content&&answer.contentImg!=-1}}">
+			<view class="content_img" wx:if="{{anwser.content&&answer.contentImg!=-1}}">
 				<image mode='aspectFill' bindtap="handleImage" src="{{url+answer.contentImg}}"></image>
 			</view>
 		</view>
 	</view>
-	<view wx:else>该问题暂时还没有回答，期待您的回答~</view>
+	<view wx:else class="nothing">该问题暂时还没有回答，期待您的回答~</view>
 	<view class="item_footer">
 		<slot name="bl_operate"></slot>
 	</view>

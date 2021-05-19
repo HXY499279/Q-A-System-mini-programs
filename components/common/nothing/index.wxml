@@ -1,0 +1,3 @@
+	<view  class="nothing_tips">
+		<image src="/img/common/nothing.svg" class="nothing_icon"></image>
+	</view>

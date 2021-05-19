@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "question-card-item":"/components/question/question_detail_item/index",
-    "answer-list-item":"/components/question/answer_list_item/index"
+    "answer-list-item":"/components/question/answer_list_item/index",
+    "i-divider": "/iview/divider/index",
+    "nothing":"/components/common/nothing/index"
   }
 }

@@ -42,7 +42,7 @@ const upLoadFile = function ({
   return new Promise((resolve, reject) => {
     wx.uploadFile({
       filePath,
-      name: 'file',
+      name: 'img',
       url: 'http://121.41.94.206:8080' + url,
       formData: data,
       timeout: 2500,

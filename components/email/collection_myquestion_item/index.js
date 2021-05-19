@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    msg:{
+      type:Object,
+      value:{}
+    }
   },
 
   /**
@@ -20,8 +23,8 @@ Component({
   methods: {
     //跳转至问题详情页
     gotoQuestionDetail(){
-      wx.redirectTo({
-        url: '/pages/index/pages/question_detail/index',
+      wx.navigateTo({
+        url: `/pages/index/pages/question_detail/index?questionId=${this.properties.msg.question.questionId}`,
       })
     }
   }

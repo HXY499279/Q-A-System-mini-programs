@@ -4,3 +4,7 @@
   color: gray;
   font-size: 32rpx;
 }
+.footer{
+  display: flex;
+  flex-direction: row-reverse;
+}

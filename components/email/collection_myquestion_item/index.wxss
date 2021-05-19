@@ -13,7 +13,16 @@
   justify-content: space-between;
 }
 .state{
-  color: var(--theme);
   font-size: var(fontSize);
   white-space: nowrap;
+}
+.is_solute{
+  color: var(--theme);
+}
+.un_solute{
+  color: var(--unsoluteColor);
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
 }

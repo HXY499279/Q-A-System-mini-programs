@@ -9,10 +9,16 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding:0 35rpx 0 0;
+  padding:0 10rpx 0 0;
   border-right: 4rpx solid var(--line);
+  width: 150rpx;
 }
-.left_text::first-line{
+.text{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.left_text_first{
   font-size: 22rpx;
   color: var(--theme);
 }
@@ -41,4 +47,12 @@
   font-size: 35rpx;
   color: orange;
   padding: 0 10rpx;
+}
+.intro_text{
+  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }

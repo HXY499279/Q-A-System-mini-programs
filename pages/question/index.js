@@ -57,6 +57,7 @@ Page({
         else{
           wx.hideToast();
           this.clearInput();
+          this.data.currentCategory = ''
           $Toast({
             content: '发布成功',
             type: 'success'

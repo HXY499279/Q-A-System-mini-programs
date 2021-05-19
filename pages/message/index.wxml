@@ -1,8 +1,11 @@
 <!--pages/message/index.wxml-->
 <view class="message_page">
 	<search searchPlaceholder="搜索相关资讯" />
-	<view class="message_list">
-		<message-item />
-		<message-item />
+	<view class="message_list" wx:if="{{messageList.length!==0}}">
+		<block wx:for="{{messageList}}" wx:key="item">
+			<message-item msg="{{item}}" />
+		</block>
 	</view>
+	<nothing wx:else/>
+	<i-divider content="加载已完成"></i-divider>
 </view>
