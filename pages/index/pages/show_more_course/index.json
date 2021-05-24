@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "category-item":"/components/common/category_item/index",
+    "nothing":"/components/common/nothing/index",
+    "i-divider": "/iview/divider/index"
+  }
+}

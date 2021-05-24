@@ -1,7 +1,6 @@
 <!--components/common/title/index.wxml-->
 <!-- 传参 title 的图标(icon)和 (title) -->
 <view class="title_box">
-
 	<image wx:if="{{icon}}" class="title_box_icon" src="{{icon}}"></image>
 	<view class="title_box_title">{{title}}</view>
 </view>

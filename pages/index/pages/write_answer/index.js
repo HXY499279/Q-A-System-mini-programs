@@ -35,7 +35,8 @@ Page({
     wx.showToast({
       icon: "loading",
       title: "正在上传",
-      duration:10000
+      duration:10000,
+      mask:true
     });
 
     getStorageItem("accountId")
@@ -46,13 +47,16 @@ Page({
       else return  httpRequest.submitAnswer({data,filePath:img[0]});
     })
     .then(res=>{
-      if(!res.data.code) return Promise.reject();
+      if(res.statusCode!==200) return Promise.reject();
+      this.clearInput()
       wx.showToast({
             icon: "success",
             title: "发布成功",
             duration:1500
       });
-      app.globalData.myAnswer = res.data.data;
+      let pages = getCurrentPages();
+      let beforePage = pages[pages.length - 2];
+      beforePage.initAnswerList();
       setTimeout(()=>{
         wx.navigateBack()
       },1500)
@@ -77,5 +81,12 @@ Page({
       img: picUpdateBox.getValues().imgTempPath
     }
   },
+
+  clearInput:function(){
+    const myTextArea = this.selectComponent("#my-textarea");
+    const picUpdateBox = this.selectComponent("#picture-update-box");
+    myTextArea.clearInput();
+    picUpdateBox.clearInput();
+  }
   
 })

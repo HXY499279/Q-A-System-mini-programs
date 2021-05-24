@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "search":"/components/common/search/index",
-    "choose-category-item":"/components/add_question/choose_category_item/index"
+    "choose-category-item":"/components/add_question/choose_category_item/index",
+    "nothing":"/components/common/nothing/index"
   },
   "navigationBarTitleText":"选择类别"
 }

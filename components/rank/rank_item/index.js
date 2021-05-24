@@ -26,7 +26,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    gotoPersonalIndex(){
+      const accountId = this.properties.userInfo.accountId
+      if(accountId){
+        wx.navigateTo({
+          url: `/pages/index/pages/other_index/index?accountId=${accountId}`,
+        })
+      }
+    }
   },
   attached(){
     this.setData({

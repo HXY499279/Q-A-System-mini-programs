@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    feedBackList:[]
+    feedbackList:[]
   },
 
   pageData:{
@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getFeedBackList();
+    this.getfeedbackList();
   },
 
   getValues:function(){
@@ -77,40 +77,56 @@ Page({
 
   },
 
-  getFeedBackList:function(){
-    const {currentPage,pageSize}  = this.pageData;
-    const data = {currentPage,pageSize}
-    httpRequest.getFeedBackList(data)
+  getfeedbackList:function(){
+    getStorageItem("accountId")
+    .then(accountId=>{
+      const {currentPage,pageSize}  = this.pageData;
+      const data = {currentPage,pageSize}
+      return httpRequest.getFeedbackList(data)
+    })
     .then(res=>{
       if(res.data.code !== 1) return Promise.reject();
       this.pageData.totalPages = res.data.data.pageInfo.totalPages;
       this.pageData.totalRows = res.data.data.pageInfo.totalRows;
       this.setData({
-        feedBackList:[...this.data.feedBackList,...res.data.data.list]
+        feedbackList:[...this.data.feedbackList,...res.data.data.list]
       })
     })
-    .catch(err=>{})
+    .catch(err=>{
+      wx.showToast({
+        title: '你发现了bug!',
+        type:'error'
+      })
+    })
   },
 
   handleAgreeClick:function(e){
-    const feedbackId = e.detail.feedbackId ;
-    // getStorageItem("accountId")
-    //   .then(accountId=>{
-    //     const data = {accountId , feedbackId:this.properties.feedback.feedbackId}
-    //     if(isAgree) return httpRequest.agreeFeedback(data)
-    //     else return httpRequest.cancelAgreeFeedback(data)
-    //   })
-    //   .then(res=>{
-    //     if(res.data.code!==1) return Promise.reject();
-    //     this.properties.feedback.feedbackId++;
-    //   })
+    const {feedbackId,index} = e.detail ;
+    let newFeedbackList = this.data.feedbackList.slice();
+    const isAgreeNow = !newFeedbackList[index].isAgree
+    newFeedbackList[index].isAgree = isAgreeNow;
+    isAgreeNow ? newFeedbackList[index].agreeCount++ : newFeedbackList[index].agreeCount--
+    this.setData({
+      feedbackList:newFeedbackList
+    })
+
+    getStorageItem("accountId")
+      .then(accountId=>{
+        const data = {accountId , feedbackId}
+        if(isAgreeNow) return httpRequest.agreeFeedback(data)
+        else return httpRequest.cancelAgreeFeedback(data)
+      })
+      .then(res=>{
+        if(res.data.code!==1) return Promise.reject();
+      })
+      .catch(err=>{})
   },
 
   onReachBottom: function () {
     const {currentPage,totalPages} = this.pageData;
     if(currentPage<totalPages){
       this.pageData.currentPage++ ;
-      this.getFeedBackList();
+      this.getfeedbackList();
     }
   },
 })

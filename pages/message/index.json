@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "search":"/components/common/search/index",
     "message-item":"/components/message/message_item/index",
     "i-divider": "/iview/divider/index",
     "nothing":"/components/common/nothing/index"

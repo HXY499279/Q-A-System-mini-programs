@@ -11,14 +11,20 @@ Page({
   data: {
     type: 0, //	0是总榜 1是志愿者
     rankList: [],
-    myInfo: {}
+    myInfo: {},
+    url:'',
+    imgMsg:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      url : getApp().url.currentUrl+'/img'
+    })
     this.getRank();
+    this.getBgImg();
   },
 
   /**
@@ -40,6 +46,17 @@ Page({
       })
       this.setData({
         myInfo: res.data.data.myData
+      })
+    })
+  },
+
+  getBgImg:function(){
+    httpRequest.getImgs({type:3})
+    .then(res=>{
+      if(res.data.code !==1) return Promise.reject();
+      console.log(res)
+      this.setData({
+        imgMsg:res.data.data[0]
       })
     })
   },

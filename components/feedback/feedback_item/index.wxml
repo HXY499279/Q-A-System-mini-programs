@@ -1,9 +1,25 @@
 <!--components/feedback/feedback_item/index.wxml-->
-<view>
-	<detail-item-box answer="{{feedback}}">
-		<view slot="bl_operate" class="agree_box">
-			<view class="iconfont icon-dianzan {{isAgree ?'agree':'disagree'}}" bindtap="handleAgree"></view>
-			<text>{{feedback.agreeCount}}</text>
+<view class="feedback_content">
+	<view class="basic_inform">
+		<view class="user_infor">
+			<view class="user_head" bindtap="gotoPersonalIndex">
+				<image class="user_head_img" src="{{url+feedback.userImg}}"></image>
+				<text>{{feedback.userName}}</text>
+			</view>
+			<view class="user_identity">
+				<image class="user_identity_icon" src="/img/identity/student.svg"></image>
+				<text class="user_identity_text">{{answer.role == 3 ? "学生":answer.role == 2?"志愿者":"老师"}}</text>
+			</view>
 		</view>
-	</detail-item-box>
+	</view>
+	<view class="item_content">
+		<view class="content_words">{{feedback.content}}</view>
+		<view class="content_img" wx:if="{{feedback.contentImg && feedback.contentImg != -1 }}">
+			<image mode='aspectFill' bindtap="previewPic" src="{{url+feedback.contentImg}}" class="img" data-src="{{feedback.contentImg}}"></image>
+		</view>
+	</view>
+	<view class="agree_box">
+		<view class="iconfont icon-dianzan {{feedback.isAgree ?'agree':'disagree'}}" bindtap="handleAgree"></view>
+		<text>{{feedback.agreeCount}}</text>
+	</view>
 </view>

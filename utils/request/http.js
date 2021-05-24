@@ -14,7 +14,7 @@ const httpUtil = function ({url,param,method,header} = {}) {
       data: param,
       timeout: 10000,
       success: function (res) {
-       if(res.data.code) resolve(res);
+       if(res.statusCode === 200 && res.data.code) resolve(res);
        else  reject(res)
       },
       fail: function (err) {

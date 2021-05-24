@@ -3,14 +3,14 @@
 	<detail-item-box answer="{{msg.answer}}">
 		<view class="title" slot="title">
 			<view class="text">
-				{{msg.question.title}}
 				<text class="category">{{msg.question.subjectName}}</text>
+				{{msg.question.title}}
 			</view>
 			<view class="state {{msg.question.state?'is_solute':'un_solute'}}">{{msg.question.state?'已解决':'未解决'}}</view>
 		</view>
 		<view slot="bl_operate" class="footer">
-		<view>{{msg.question.collectionCount}} 收藏 {{msg.question.answerCount}} 回答 </view>
-		<view>{{msg.question.publishTime}}</view>
+			<view>{{msg.question.collectionCount}} 收藏 {{msg.question.answerCount}} 回答 </view>
+			<view>{{msg.question.publishTime}}</view>
 		</view>
 	</detail-item-box>
 </view>

@@ -1,4 +1,18 @@
 /* pages/message/index.wxss */
+.search_box{
+  display: flex;
+  padding: 10rpx;
+  border:2rpx solid rgb(187, 184, 184);
+  border-radius: 5rpx;
+  box-shadow: 0 8rpx 8rpx var(--line);
+  align-items: center;
+  background-color: white;
+}
+.search_icon{
+  width: 45rpx;
+  height: 45rpx;
+  padding: 0 10rpx 0 0;
+}
 .message_page{
   padding: 25rpx;
 }

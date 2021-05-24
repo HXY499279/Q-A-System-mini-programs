@@ -34,21 +34,16 @@ const getStorageItem = function (kay) {
  * @param {string} file 文件的地址、临时地址
  * @param {object} data  数据
  */
-const upLoadFile = function ({
-  filePath,
-  data,
-  url
-}) {
+const upLoadFile = function ({filePath,data,url}) {
   return new Promise((resolve, reject) => {
     wx.uploadFile({
-      filePath,
+      filePath:filePath,
       name: 'img',
-      url: 'http://121.41.94.206:8080' + url,
+      url: getApp().url.currentUrl + url,
       formData: data,
       timeout: 2500,
       success:res => {
-        console.log(res)
-        if(res.data.code) resolve(res);
+        if(res.statusCode === 200 ) resolve(res);
         else  reject(res)
        },
       fail: res =>  reject(res)

@@ -1,7 +1,8 @@
 <view class="userInfo">
 	<view class="userInfo_left">
-		<image src="{{url+userInfo.imgPath}}" ></image>
-		<view class="personal_edit"><navigator url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator></view>
+		<image wx:if="{{url && userInfo.imgPath}}" src="{{url+userInfo.imgPath}}" ></image>
+		<image wx:else src="{{url+userInfo.imgPath}}" ></image>
+		<view class="personal_edit"><navigator class="navigator" url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator></view>
 		<view>积分：{{userInfo.score}}</view>
 	</view>
 	<view class="userInfo_right">

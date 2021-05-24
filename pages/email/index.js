@@ -50,9 +50,22 @@ Page({
     myquestionCurrentPage:1
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getDynamic();
+  },
+
+  onShow:function(){
+    //消除红点
+    wx.removeTabBarBadge({
+      index:3
+    })
+  },
   changeItem:function(e){
     const { type } = e.currentTarget.dataset;
-    this.pageData.currenType = type;
+    this.pageData.currentType = type;
     switch(type){
       case "dynamic":
         if(this.data.dynamicList.length===0){
@@ -70,7 +83,7 @@ Page({
         }
         break;
       case "myquestion":
-        if(this.data.collectionList.length===0){
+        if(this.data.myquestionList.length===0){
           this.getMyqustion();
         }
         break;
@@ -79,17 +92,11 @@ Page({
       currentType:type
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getDynamic();
-  },
-
+  
   getDynamic:function(){
     getStorageItem("accountId")
     .then(accountId=>{
-      const data = {type:1,accountId,currentPage:this.pageData.dynamicCurrentPages,pageSize:this.pageData.pageSize}
+      const data = {type:1,accountId,currentPage:this.pageData.dynamicCurrentPage,pageSize:this.pageData.pageSize}
       return httpRequest.getDynamic(data)
     })
     .then(res=>{
@@ -105,7 +112,7 @@ Page({
   getInvitation:function(){
     getStorageItem("accountId")
     .then(accountId=>{
-      const data = {accountId,currentPage:this.pageData.invitationCurrentPages,pageSize:this.pageData.pageSize}
+      const data = {accountId,currentPage:this.pageData.invitationCurrentPage,pageSize:this.pageData.pageSize}
       return httpRequest.getInvitation(data)
     })
     .then(res=>{
@@ -161,7 +168,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    const type = this.pageData.currenType;
+    const type = this.data.currentType;
     switch(type){
       case "dynamic":
         if(this.pageData.dynamicCurrentPage < this.pageData.dynamicTotalPages){

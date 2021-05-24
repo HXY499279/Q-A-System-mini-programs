@@ -53,14 +53,19 @@ Page({
         else return httpRequest.submitQuestion({ filePath: imgTempPath[0], data })
       })
       .then(res => {
-        if(!res.data.data) return Promise.reject(res)
+        if(res.statusCode!==200) return Promise.reject(res)
         else{
+          app.subjectId = undefined,
+          app.chooseCategory = '',
           wx.hideToast();
           this.clearInput();
-          this.data.currentCategory = ''
+          this.setData({
+            currentCategory:''
+          })
           $Toast({
             content: '发布成功',
-            type: 'success'
+            type: 'success',
+            duration:2500
           });
         }
       })

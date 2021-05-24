@@ -1,6 +1,7 @@
 // pages/index/pages/answer_detail/index.js
 import {getStorageItem,mergeObj} from '../../../../utils/api'
 import httpRequest from '../../../../utils/request/index'
+import httpUtil from '../../../../utils/request/http';
 Page({
 
   /**
@@ -14,7 +15,7 @@ Page({
   pageData:{
     comment:{
       currentPage:1,
-      pageSize:6,
+      pageSize:3,
       totalPages:1,
       totalRows:0
     }
@@ -46,10 +47,11 @@ Page({
       const {currentPage,pageSize,totalPages,totalRows} = res.data.data.pageInfo;
       mergeObj(this.pageData.comment,{currentPage,pageSize,totalPages,totalRows})
       this.setData({
-        commentList:res.data.data.list
+        commentList:[...this.data.commentList,...res.data.data.list]
       })
     })
   },
+  
   /**
    * 点击采纳
    */
@@ -59,6 +61,19 @@ Page({
     this.setData({
       answerDetail:newAnswerDetail
     })
+    getStorageItem('accountId')
+    .then(accountId=>{
+      const data = {
+        questionId:this.data.questionDetail.questionId,
+        answerId:this.data.answerDetail.answerId,
+        accountId
+      }
+      return httpRequest.acceptAnswer(data)
+    })
+    .then(res=>{
+      if(res.data.code !== 1) return Promise.reject();
+    })
+    .catch(err=>{})
   },
 
   /**
@@ -89,12 +104,17 @@ Page({
    * 点击评论
    */
   onComment:function(){
-    console.log("parent-oncomment")
     wx.navigateTo({
       url: `/pages/index/pages/comment/index?answerId=${this.data.answerDetail.answerId}&answerName=${this.data.answerDetail.userName}`,
     })
   },
 
+  onReachBottom:function(){
+    if(this.pageData.comment.currentPage<this.pageData.comment.totalPages){
+      this.pageData.comment.currentPage++;
+      this.getComment()
+    }
+  },
 
 
   /**

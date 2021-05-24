@@ -4,7 +4,15 @@
   display: flex;
   justify-content: space-between;
 }
+.title_describes{
+  -webkit-line-clamp: 1;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .state{
+  min-width: 132rpx;
   display: flex;  
   align-items: center;
   white-space: nowrap;

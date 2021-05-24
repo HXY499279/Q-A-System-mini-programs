@@ -18,16 +18,16 @@
 	<view class="question_content">
 		<view class="content_left">
 			<view wx:if="{{!type}}" class="question_titile">
-			{{dataDetail.title}}
 				<slot name="category"></slot>
+				{{dataDetail.title}}
 			</view>
 			<view class="question_titile">
-			{{dataDetail.content}}
+				{{dataDetail.content}}
 				<slot name="category"></slot>
 			</view>
 			<view class="footer">
 				<view wx:if="{{!type}}" class="question_inform">{{dataDetail.collectionCount}} 收藏 {{dataDetail.answerCount}} 回答</view>
-				<view wx:else class="question_inform">{{dataDetail.agreeCount}} 赞同 {{dataDetail.commentCount}} 评论</view>
+				<view wx:elif="{{type === 1}}" class="question_inform">{{dataDetail.agreeCount}} 赞同 {{dataDetail.commentCount}} 评论</view>
 				<slot name="question_operate"></slot>
 			</view>
 		</view>

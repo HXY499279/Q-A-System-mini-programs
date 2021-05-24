@@ -61,15 +61,20 @@ Page({
       else return httpRequest.editPersonal({data})
     })
     .then(res=>{
-      if(!res.data.code) return Promise.reject();
+      if(res.statusCode!== 200) return Promise.reject();
       wx.hideToast();
       $Toast({
         content: '更新成功！',
         type: 'success'
       });
+      //返回上一个页面并刷新
+      let pages = getCurrentPages();
+      let beforePage = pages[pages.length - 2];
+      beforePage.getUserInfo();
       wx.navigateBack();
     })
     .catch(err=>{
+      console.log(err)
       wx.hideToast();
       $Toast({
         content: '网络繁忙',

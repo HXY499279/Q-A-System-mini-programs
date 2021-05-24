@@ -1,20 +1,26 @@
 <!--pages/message/message_detail/index.wxml-->
 <view class="message_detail_page">
-	<view class='title'>几十块的经费法律上的房间数量</view>
+	<view class='title'>{{newsDetail.title}}</view>
 	<view class="head">
 		<view class="user_info">
 			<view class="user_head">
-				<image class="user_head_img" src="/img/timg.jpg" mode='aspectFill'></image><text>易烊千玺</text>
+				<image class="user_head_img" wx:if="{{url && newsDetail.adminImg && newsDetail.adminImg!= -1}}" src="{{url+newsDetail.adminImg}}" mode='aspectFill'></image>
+				<image class="user_head_img" wx:if="{{ newsDetail.adminImg && newsDetail.adminImg}}"></image>
+				<text>{{newsDetail.adminName}}</text>
+				
 			</view>
 			<view class="user_identity">
-				<image class="user_identity_icon" src="/img/identity/student.svg"></image><text>学生</text>
+				<image class="user_identity_icon" src="/img/identity/teacher.svg"></image><text>管理员</text>
 			</view>
 		</view>
-		<view class="head_date">2020-11-11 11：11</view>
+		<view class="head_date">{{newsDetail.publishTime}}</view>
 	</view>
 	<view class="content">
-		<view class="content_text">介绍了打击非法教室里的开介绍了打击非法教室里的开发建设看来大家塑料袋放进阿拉斯加飞机覅数量的快捷方式劳动法发建设看来大家塑料袋放进阿拉斯加飞机覅数量的快捷方式劳动法</view>
-		<image class="content_img" mode='widthFix' src="/img/bg.jpeg"></image>
-		<view class="content_footer"> 5 阅读</view>
+		<view class="content_text">{{newsDetail.content}}</view>
+		<view wx:if="{{newsDetail.imgPath && newsDetail.imgPath != -1 }}" class="img_container">
+			<image class="content_img" mode='widthFix' wx:if="{{url}}" src="{{url+newsDetail.imgPath}}" data-src="{{newsDetail.imgPath}}" bindtap="previewPic"></image>
+			<image class="content_img" mode='widthFix' wx:else ></image>
+		</view>
+		<view class="content_footer"> {{newsDetail.readCount}} 阅读</view>
 	</view>
 </view>

@@ -1,5 +1,0 @@
-<!--components/common/search/index.wxml-->
-<view class="search_box">
-	<image src="/img/common/search.svg" class="search_icon"></image>
-	<input type="text" placeholder="{{searchPlaceholder}}" />
-</view>

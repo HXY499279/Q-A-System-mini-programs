@@ -14,7 +14,9 @@ Page({
     currentPage:1,
     pageSize:6,
     totalPages:1,
-    totalRows:0
+    totalRows:0,
+    timer:null,
+    keyWords:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -22,6 +24,41 @@ Page({
   onLoad: function (options) {
     const data = {pageSize:this.pageData.pageSize,currentPage:this.pageData.currentPage}
     this.setNewsList(data);
+  },
+
+  searchInput:function(e){
+      if(this.pageData.timer) {
+        clearTimeout(this.pageData.timer);
+        this.pageData.timer = null;
+      }
+  
+      let newTimer = setTimeout(()=>{
+        const newPageData = {totalPages:1,totalRows:0,currentPage:1};
+        mergeObj(this.pageData,newPageData);
+  
+        const keyWords = e.detail.value;
+        let data = {};
+        this.pageData.keyWords = keyWords;
+  
+        if(keyWords.trim() === ""){
+          data = {
+            currentPage:this.pageData.currentPage,
+            pageSize:this.pageData.pageSize,
+          }
+        }
+  
+        else{
+          data = {
+            currentPage:this.pageData.currentPage,
+            pageSize:this.pageData.pageSize,
+            keyWords
+          }
+        }
+        this.setData({
+          messageList:[]
+        },this.setNewsList(data))
+      },300);
+      this.pageData.timer = newTimer;
   },
 
   setNewsList: function(data){
@@ -38,11 +75,28 @@ Page({
 
   onReachBottom:function(){
     if(this.pageData.totalPages>this.pageData.currentPage){
-      this.pageData.currentPage++;
-      this.setNewsList();
+      this.pageData.currentPage++ ;
+      let data = {};
+      if(this.pageData.keyWords){
+        data = {
+          currentPage:this.pageData.currentPage,
+          pageSize:this.pageData.pageSize,
+          keyWords:this.pageData.keyWords
+        }
+      }else{
+        data = {
+          currentPage:this.pageData.currentPage,
+          pageSize:this.pageData.pageSize,
+        }
+      }
+      this.setNewsList(data)
     }
+  },
+
+  gotoMsgDetail:function(e){
+    const newsId = e.currentTarget.dataset.newsid;
+    wx.navigateTo({
+      url: `/pages/message/message_detail/index?newsId=${newsId}`,
+    })
   }
-
-
-
 })

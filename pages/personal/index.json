@@ -3,5 +3,8 @@
     "personal-card":"/components/personal/userInfo/index",
     "item":"/components/personal/item/index"
   },
-  "navigationBarTitleText":"个人中心"
+  "navigationBarTitleText":"个人中心",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle": "dark"
+
 }

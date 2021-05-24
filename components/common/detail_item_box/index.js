@@ -24,8 +24,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    handleImage(){
-
+    gotoPersonalIndex(){
+      if(this.properties.answer.accountId){
+        wx.navigateTo({
+          url: `/pages/index/pages/other_index/index?accountId=${this.properties.answer.accountId}`,
+        })
+      }
     }
   },
 

@@ -19,7 +19,7 @@
 .personal_edit{
   padding: 15rpx;
 }
-.personal_edit>navigator{
+.navigator{
   display: inline;
   border: 2rpx solid var(--theme);
   color: var(--theme);

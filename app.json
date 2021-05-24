@@ -16,14 +16,15 @@
     "pages/index/pages/comment/index",
     "pages/index/pages/complain/index",
     "pages/index/pages/write_answer/index",
-    "pages/message/message_detail/index"
+    "pages/message/message_detail/index",
+    "pages/index/pages/show_more_course/index",
+    "pages/index/pages/other_index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#30CB88",
     "navigationBarTitleText": "邮问必答学业辅导中心",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999999",

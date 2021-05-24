@@ -1,7 +1,9 @@
 <!--components/common/category_item/index.wxml-->
 <view class="category_item_box" data-subjectId="{{categoryMsg.subjectId}}">
 	<view class="item_left">
-		<image  class="icon" src="{{url+categoryMsg.iconPath}}"></image>
+		<image  class="icon" wx:if="{{url}}" src="{{url+categoryMsg.iconPath}}"></image>
+		<image  class="icon" wx:else></image>
+
 		<text class="text left_text_first">{{categoryMsg.college}}</text>
 		<text class="text left_text_second">{{categoryMsg.subjectName}}</text>
 	</view>

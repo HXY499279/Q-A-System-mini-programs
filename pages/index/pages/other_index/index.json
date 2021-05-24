@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "title":"/components/common/title/index",
+    "dynamic-item":"/components/email/dynamic_item/index"
+  }
+}

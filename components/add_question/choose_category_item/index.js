@@ -24,7 +24,6 @@ Component({
   methods: {
     //点击添加
     chooseCategory(e){
-      console.log(e)
       const {currentcategory,currentid}= e.currentTarget.dataset;
       app.chooseCategory = currentcategory;
       app.chooseSubjectId = currentid;

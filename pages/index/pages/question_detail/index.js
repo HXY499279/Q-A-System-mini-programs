@@ -23,6 +23,7 @@ Page({
     pageSize:4,
     totalPages:1,
     totalRows:0,
+    shouldUnshiftIntoNewList:false,
     hotAnswerList:[],
     newAnswerList:[]
   },
@@ -38,27 +39,17 @@ Page({
   },
 
   /**
-   * 生命周期函数 页面出现的时候判断是否有刚刚自己写的回答，解决页面渲染不及时的bug
+   * 从写回答页面跳转回来重新加载数据
    */
-  onShow:function(){
-    const myAnswer = app.globalData.myAnswer;
-    if(myAnswer){
-      const {totalPages,currentHotPage} = this.pageData;
-      //如果是最热回答的最后一页，把刚写的回答push到最后
-      if(totalPages === currentHotPage ) this.pageData.hotAnswerList.push(myAnswer);
-      //如果在最新选项，把刚写的回答unshift到第一个
-      this.pageData.newAnswerList.unshift(myAnswer);
-
-      !this.data.answerSortType ? 
-      (this.setData({
-        answerList: this.pageData.newAnswerList
-      })) :  (totalPages === currentHotPage ?
-        (this.setData({
-          answerList: this.pageData.hotAnswerList
-        })) :""
-      )  
-      }
-    app.globalData.myAnswer = null;
+  initAnswerList:function(){
+    this.pageData.currentHotPage = 1;
+    this.pageData.currentNewPage = 1;
+    this.pageData.hotAnswerList = [];
+    this.pageData.newAnswerList = [];
+    this.pageData.totalPages = 1;
+    this.setData({
+      answerList:[]
+    },this.getAnswerList())
   },
 
   /*
@@ -66,6 +57,7 @@ Page({
    */
   changeAnswerSortType(e) {
     const answerSortType = e.target.dataset.type;
+    if(answerSortType !==0 && answerSortType!==1) return;
     if(answerSortType === 1 && this.pageData.hotAnswerList.length!==0){
       this.setData({
         answerSortType,
@@ -79,6 +71,7 @@ Page({
        })
     }
     else{
+      answerSortType === 1 ? this.pageData.shouldUnshiftIntoNewList = true : ''
       this.setData({
         answerList:[],
         answerSortType
@@ -232,13 +225,8 @@ Page({
   },
 
   onPullDownRefresh:function(){
-    this.pageData.hotAnswerList = [];
-    this.pageData.newAnswerList = [];
-    this.pageData.currentPage = 1 ;
-    this.setData({answerList:[]},()=>{
-      this.getAnswerList();
+      this.initAnswerList()
       wx.stopPullDownRefresh();
-    })
   },
   /**
    * 用户点击右上角分享

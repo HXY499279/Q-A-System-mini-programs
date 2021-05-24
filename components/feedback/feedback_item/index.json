@@ -1,6 +1,4 @@
 {
   "component": true,
-  "usingComponents": {
-    "detail-item-box":"/components/common/detail_item_box/index"
-  }
+  "usingComponents": {}
 }

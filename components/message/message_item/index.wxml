@@ -1,7 +1,8 @@
 <view class="detail_item_box">
 	<view class="title">{{msg.title}}</view>
 	<view class="user_info">
-		<image src="{{url+msg.adminImg}}" class="user_head_img"></image>
+		<image wx:if="{{url}}" src="{{url+msg.adminImg}}" class="user_head_img"></image>
+		<image wx:else  class="user_head_img"></image>
 		<view>{{msg.adminName}}</view>
 	</view>
 	<view class="content">{{msg.content}}</view>

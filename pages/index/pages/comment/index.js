@@ -51,6 +51,9 @@ Page({
         mask:true,
         duration:1500
       });
+      let pages = getCurrentPages();
+      let beforePage = pages[pages.length - 2];
+      beforePage.getComment();
       setTimeout(()=>wx.navigateBack(),1500)
     })
   },

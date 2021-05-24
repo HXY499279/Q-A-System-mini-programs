@@ -1,9 +1,14 @@
 <!--pages/personal/pages/rank/index.wxml-->
 <view class="rank_page">
 	<view class='my_score'>
-		<view class="my_score_title">成长总积分</view>
-		<view class="my_score_num">{{myInfo.score}}</view>
-		<view class="my_score_level">段位：名扬四海</view>
+		<image wx:if="{{imgMsg}}" src="{{url+imgMsg.url}}" class="bg_img" mode="aspectFill"></image>
+		<view class="bg_text_container">
+			<view class="bg_text">
+				<view class="my_score_title">成长总积分</view>
+				<view class="my_score_num">{{myInfo.score}}</view>
+				<view class="my_score_level">段位：名扬四海</view>
+			</view>
+		</view>
 	</view>
 	<view class="rank_title">
 		<view class="rank_title_left" bindtap="changeType">

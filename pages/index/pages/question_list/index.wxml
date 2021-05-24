@@ -18,4 +18,5 @@
 		</block>
 	</view>
 	<noting wx:else/>
+	<i-divider content="加载已完成"></i-divider>
 </view>

@@ -8,6 +8,7 @@
   height: 100rpx;
   border-radius: 50%;
   margin-right: 20rpx;
+  background-color: var(--background);
 }
 .head_name{
   color: var(--grayWord);

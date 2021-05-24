@@ -2,7 +2,7 @@
 <view class="rank_item_box">
 	<view class="rank_item_left">
 		<image class="rank_item_icon" src="{{icon}}"></image>
-		<view class="user_msg">
+		<view class="user_msg" bindtap="gotoPersonalIndex">
 			<image class="user_mag_img" src="{{url+userInfo.userImg}}"></image>
 			<text> {{userInfo.userName}} \n 尊贵铂金</text>
 		</view>

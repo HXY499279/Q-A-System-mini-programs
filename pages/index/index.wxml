@@ -4,36 +4,54 @@
 		<loading isLoading="{{isLoading}}" isError="{{isError}}" />
 	</view>
 	<view wx:else>
-		<swiper>
+		<swiper class="swiper">
 			<block wx:for="{{imgUrls}}" wx:key="item">
 				<swiper-item>
-					<image style="display:block;margin:0 auto;padding:0;width:100%" src="{{item}}" />
+					<image style="display:block;margin:0 auto;padding:0;width:100%" src="{{item}}" class="img" />
 				</swiper-item>
 			</block>
 		</swiper>
 		<view class="box">
 			<title icon="/img/identity/volunteer.svg" title="基础课程" />
-			<div class="course">
-				<div class="course">
+			<block wx:if="{{basicCourses.length!==0}}">
+				<view class="course">
 					<block wx:for="{{basicCourses}}" wx:key="subjectId">
-						<div class="course_item" data-id="{{item.subjectId}}" bindtap="gotoQuestionList(123)">
+						<view class="course_item" data-id="{{item.subjectId}}" bindtap="gotoQuestionList(123)">
 							<image src="{{url+item.imgPath}}" class="course_item_img"></image>
 							<span class="course_item_text">{{item.subjectName}}</span>
-						</div>
+						</view>
 					</block>
-				</div>
-			</div>
+					<view class="course_item" bindtap="showMore" data-type="basic">
+						<image src="/img/more.svg" class="course_item_more_img"></image>
+						<span class="course_item_text">更多</span>
+					</view>
+				</view>
+			</block>
 		</view>
 		<view class="box">
-			<title icon="/img/identity/volunteer.svg" title="专业课程" />
-			<div class="course">
-				<block wx:for="{{professionalCourses}}" wx:key="subjectId">
-					<div class="course_item" data-id="{{item.subjectId}}" bindtap="gotoQuestionList">
-						<image src="{{url+item.imgPath}}" class="course_item_img"></image>
-						<span class="course_item_text">{{item.subjectName}}</span>
-					</div>
-				</block>
-			</div>
+			<view class="title_box">
+				<view class="title_left">
+					<image class="title_box_icon" src="/img/identity/volunteer.svg"></image>
+					<view class="title_box_title">专业课程</view>
+				</view>
+				<view>
+					当前：{{currentCollege}}
+				</view>
+			</view>
+			<block wx:if="{{professionalCourses.length!==0}}">
+				<view class="course">
+					<block wx:for="{{professionalCourses}}" wx:key="subjectId">
+						<view class="course_item" data-id="{{item.subjectId}}" bindtap="gotoQuestionList">
+							<image src="{{url+item.imgPath}}" class="course_item_img"></image>
+							<span class="course_item_text">{{item.subjectName}}</span>
+						</view>
+					</block>
+					<view class="course_item" bindtap="showMore" data-type="professional">
+						<image src="/img/more.svg" class="course_item_more_img"></image>
+						<span class="course_item_text">更多</span>
+					</view>
+				</view>
+			</block>
 		</view>
 		<view class="box">
 			<view class="other_question_title" bindtap="gotoQuestionList">

@@ -1,0 +1,15 @@
+<view class="choose_category_page">
+	<view class="search_box">
+		<image src="/img/common/search.svg" class="search_icon"></image>
+		<input type="text" placeholder="请输入学科" bindinput="searchInput" />
+	</view>
+	<view wx:if="{{couseList.length!==0}}">
+		<block wx:for="{{couseList}}" wx:key="item">
+			<category-item categoryMsg="{{item}}" data-subjectid="{{item.subjectId}}"  bindtap="gotoQuestionList">
+				<image slot="operate" src="/img/common/show.svg" class="show" ></image>
+			</category-item>
+		</block>
+	</view>
+	<nothing wx:else />
+	<i-divider content="加载已完成"></i-divider>
+</view>

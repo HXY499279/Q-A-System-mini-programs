@@ -4,6 +4,7 @@
     "title":"/components/common/title/index",
     "feedback-item":"/components/feedback/feedback_item/index",
     "i-toast": "/iview/toast/index",
-    "i-divider": "/iview/divider/index"
+    "i-divider": "/iview/divider/index",
+    "nothing":"/components/common/nothing/index"
   }
 }

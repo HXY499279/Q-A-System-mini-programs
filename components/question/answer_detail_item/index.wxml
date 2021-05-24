@@ -1,9 +1,11 @@
 <!--components/question/answer_detail_item/index.wxml-->
 <view class="answer_detail_item">
 	<view class="head">
-		<view class="user_info">
+		<view class="user_info" bindtap="gotoPersonalIndex">
 			<view class="user_head">
-				<image  class="user_head_img" src="/img/timg.jpg" mode='aspectFill'></image><text>{{answerDetail.userName}}</text>
+				<image wx:if="{{url}}" class="user_head_img" src="{{url+answerDetail.userImg}}" mode='aspectFill'></image>
+				<image wx:else class="user_head_img"></image>
+				<text>{{answerDetail.userName}}</text>
 			</view>
 			<view class="user_identity">
 				<image class="user_identity_icon" src="/img/identity/student.svg"></image><text>学生</text>
@@ -16,7 +18,8 @@
 	</view>
 	<view class="content">
 		<view class="content_text">{{answerDetail.content}}</view>
-		<image wx:if="{{answerDetail.contentImg != -1}}" class="content_img" mode='widthFix' src="{{answerDetail.contentImg}}"></image>
+		<image wx:if="{{answerDetail.contentImg && answerDetail.contentImg != -1 && url}}" class="content_img" mode='widthFix' src="{{url+answerDetail.contentImg}}" data-src="{{answerDetail.contentImg}}" bindtap="previewPic"></image>
+		<image wx:elif="{{answerDetail.contentImg && answerDetail.contentImg != -1 }}" class="content_img" mode='widthFix' ></image>
 		<view class="content_footer">
 			<text> {{answerDetail.agreeCount}} 赞同 {{answerDetail.commentCount}} 评论</text>
 			<text>{{answerDetail.answerTime}}</text>
@@ -29,11 +32,11 @@
 				<view class="iconfont icon-chuizi {{answerDetail.isAdopt?'adopted':''}}"></view>
 				<view>采纳</view>
 			</view>
-			<view  class="operate_item" bindtap="handleAgree">
+			<view class="operate_item" bindtap="handleAgree">
 				<view class="iconfont icon-taoxin {{answerDetail.isAgree?'agreed':''}}"></view>
 				<view>赞同</view>
 			</view>
-			<view  class="operate_item" bindtap="handleComment">
+			<view class="operate_item" bindtap="handleComment">
 				<view class="iconfont icon-message"></view>
 				<view>评论</view>
 			</view>

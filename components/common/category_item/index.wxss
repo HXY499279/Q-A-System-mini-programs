@@ -23,13 +23,13 @@
   color: var(--theme);
 }
 .icon{
-  width: 80rpx;
-  height: 80rpx;
-  padding: 8rpx;
+  width: 96rpx;
+  height: 96rpx;
   border: 2rpx solid var(--theme);
   border-radius: 20rpx;
   margin:0 auto;
   margin-bottom: 10rpx;
+  background-color: var(--background);
 }
 .item_right{
   display: flex;

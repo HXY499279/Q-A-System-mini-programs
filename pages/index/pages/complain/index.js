@@ -13,7 +13,7 @@ Page({
    */
   data: {
     dataDetail: {},
-    type:0 //0是问题 1是回答
+    type:0 //0是问题 1是回答 2是评论
   },
 
   /**
@@ -21,7 +21,7 @@ Page({
    */
   onLoad: function (options) {
     const dataDetail = JSON.parse(decodeURIComponent(options.param));
-    const type = options.type;
+    const type = Number(options.type);
     this.setData({
       dataDetail,
       type
@@ -32,10 +32,7 @@ Page({
    * 举报
    */
   submitReport: function () {
-    const {
-      content,
-      img
-    } = this.getValues();
+    const { content,img } = this.getValues();
     if (!content) {
       $Toast({
         content: '请输入举报内容',
@@ -46,35 +43,51 @@ Page({
     wx.showToast({
         icon: "loading",
         title: "正在上传",
-        duration:10000
+        duration:10000,
+        mask:true
       });
 
       getStorageItem("accountId")
       .then(accountId => {
-        const questionId = this.data.questionDetail.questionId;
-        const param = {
-          accountId,
-          questionId,
-          content
+        let param;
+        this.data.type === 0 ? 
+        param = {accountId,content,questionId:this.data.dataDetail.questionId}:
+        this.data.type === 1 ?
+          param = {accountId,content,answerId:this.data.dataDetail.answerId}:
+          param = {accountId,content,answerId:this.data.dataDetail.commentId}
+        
+        switch (this.data.type){
+          case 0:  //0 代表举报问题
+            if (img.length === 0) return httpRequest.reportQuestion({data: param})
+            return httpRequest.reportQuestion({ filePath: img[0],data: param})    
+            break;
+          case 1:  //1代表举报回答
+          if (img.length === 0) return httpRequest.reportAnswer({data: param})
+          return httpRequest.reportAnswer({ filePath: img[0],data: param})    
+            break;
+          case 2: //2 代表评论
+          if (img.length === 0) return httpRequest.reportComment({data: param})
+          return httpRequest.reportComment({ filePath: img[0],data: param})    
+          break;
         }
-        if (img.length === 0) return httpRequest.reportQuestion({data: param})
-        return httpRequest.reportQuestion({ filePath: img[0],data: param})
       })
       .then(res => {
-        if (!res.data.code) Promise.reject();
+        console.log(res)
+        if (res.statusCode !== 200) return Promise.reject();
         else {
+          this.clearInput();
           wx.showToast({
             icon: "success",
-            title: "反馈成功",
+            title: "感谢您的反馈！",
             duration:1500
           })
-          this.clearInput();
+          setTimeout(()=>{wx.navigateBack()},1500)
         }
       })
       .catch(err=>{
         wx.showToast({
           icon: "error",
-          title: "请检查您的网络",
+          title: "网络繁忙",
           duration:1500
         })
       })

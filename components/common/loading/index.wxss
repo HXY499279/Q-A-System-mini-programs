@@ -5,6 +5,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 1000;
 }
 
 .spinner {
@@ -16,7 +17,7 @@
 }
 
 .spinner .rect {
-  background-color:var((--theme));
+  background-color:var(--theme);
   height: 100%;
   width: 6px;
   display: inline-block;
