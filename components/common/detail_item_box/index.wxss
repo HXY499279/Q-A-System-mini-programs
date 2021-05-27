@@ -51,11 +51,13 @@
 
 .content_img {
   display: flex;
+  justify-content: center;
 }
 
-.img{
-  margin-right: 10rpx;
+.img {
+  margin: 0 auto;
   height: 200rpx;
+  width: 100%;
 }
 
 .content_words {
@@ -68,9 +70,11 @@
   line-height: 40rpx;
   letter-spacing: 2rpx;
 }
-.nothing{
+
+.nothing {
   padding: 10rpx 0;
 }
+
 .item_footer {
   color: var(--grayWord);
   padding: 10rpx 0;

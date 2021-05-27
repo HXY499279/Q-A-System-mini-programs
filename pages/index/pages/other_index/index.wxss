@@ -53,7 +53,7 @@
   flex-direction: column;
 }
 .personal_intro{
-  margin:10rpx 0;
+  margin:10rpx 15rpx;
   border-radius: 10rpx;
   background-color: white;
   padding:0 20rpx 30rpx 20rpx;
@@ -63,4 +63,6 @@
 }
 .dynamic{
   padding: 0 15rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius:10rpx
 }

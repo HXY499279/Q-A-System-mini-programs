@@ -7,6 +7,8 @@
 	category:问题类别
 	question_operate:操作（写回答）
  -->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+
 <view class="question_card">
 	<view class="head">
 		<view class="head_left">
@@ -19,11 +21,10 @@
 		<view class="content_left">
 			<view wx:if="{{!type}}" class="question_titile">
 				<slot name="category"></slot>
-				{{dataDetail.title}}
+				{{util.format(dataDetail.title)}}
 			</view>
-			<view class="question_titile">
-				{{dataDetail.content}}
-				<slot name="category"></slot>
+			<view wx:else class="question_titile">
+				<text  decode="true" class="question_titile_text">{{util.format(dataDetail.content)}}</text>
 			</view>
 			<view class="footer">
 				<view wx:if="{{!type}}" class="question_inform">{{dataDetail.collectionCount}} 收藏 {{dataDetail.answerCount}} 回答</view>

@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    messageList:[]
+    messageList:[],
+    currentPage:0,
+    totalPages:1
   },
 
   pageData:{
@@ -65,10 +67,11 @@ Page({
     httpRequest.getNews(data)
     .then(res=>{
       if(res.data.code !== 1) return Promise.reject();
-      const {currentPage,pageSize,totalPages,totalRows} = res.data.data.pageInfo;
-      mergeObj(this.pageData,{currentPage,pageSize,totalPages,totalRows})
+      mergeObj(this.pageData, res.data.data.pageInfo)
       this.setData({
-        messageList:[...this.data.messageList,...res.data.data.list]
+        messageList:[...this.data.messageList,...res.data.data.list],
+        totalPages:res.data.data.pageInfo.totalPages,
+        currentPage:res.data.data.pageInfo.currentPage
       })
     })
   },
@@ -98,5 +101,12 @@ Page({
     wx.navigateTo({
       url: `/pages/message/message_detail/index?newsId=${newsId}`,
     })
+  },
+
+  onPullDownRefresh:function(){
+    this.pageData.currentPage = 1;
+    const data = {pageSize:this.pageData.pageSize,currentPage:this.pageData.currentPage}
+    this.setNewsList(data)
+    wx.stopPullDownRefresh();
   }
 })

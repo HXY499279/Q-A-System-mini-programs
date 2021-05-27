@@ -11,9 +11,8 @@ const app = getApp();
 
 Page({
   data: {
-    currentCategory: ""
+    currentCategory: "",
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -30,6 +29,7 @@ Page({
    */
   handleClick: function () {
     const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
+
     const subjectId = app.chooseSubjectId;
     if (!title || !describes) {
       $Toast({
@@ -62,10 +62,10 @@ Page({
           this.setData({
             currentCategory:''
           })
-          $Toast({
-            content: '发布成功',
-            type: 'success',
-            duration:2500
+          wx.showToast({
+            title: '发布成功',
+            icon: 'success',
+            duration:1500
           });
         }
       })
@@ -100,7 +100,13 @@ Page({
   app.chooseCategory = "";
   const input = this.selectComponent("#picture_text_box");
   input.clearInput();
-
 },
+
+  /**
+   * 隐藏页面时提示框消失
+   */
+  onHide:function(){
+    wx.hideToast()
+  },
 
 })

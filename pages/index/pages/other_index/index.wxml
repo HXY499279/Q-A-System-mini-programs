@@ -1,17 +1,19 @@
+<wxs src="../../../../utils/filter.wxs" module="util"></wxs>
+
 <view class="container">
 	<view class='personal_card'>
 		<view class="personal_info">
-			<image src="{{url+personalInfo.imgPath}}" class="personal_img"></image>
+			<image src="{{url+personalInfo.imgPath}}" bindtap="previewPic" data-src="{{personalInfo.imgPath}}" class="personal_img"></image>
 			<view class="personal_name">{{personalInfo.userName}}</view>
 			<view class="userInfo_detail">
 				<view class="userInfo_item">
-					<image src="/img/userInfo/identity.svg" class="icon"></image>
-					<view>待修改</view>
+					<image class="icon" src="{{personalInfo.role == 3 ? '/img/identity/student.svg':personalInfo.role == 2 ? '/img/identity/volunteer.svg':personalInfo.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+					<text class="user_identity_text">{{personalInfo.role == 3 ? "学生":personalInfo.role == 2 ? "志愿者":personalInfo.role == 4 ? "管理员":"老师"}}</text>
 				</view>
-				<view class="userInfo_item">
+				<!-- <view class="userInfo_item">
 					<image src="/img/userInfo/degree.svg" class="icon"></image>
 					<view>本科</view>
-				</view>
+				</view> -->
 				<view class="userInfo_item">
 					<image src="/img/userInfo/level.svg" class="icon"></image>
 					<view>初出茅庐</view>
@@ -43,13 +45,14 @@
 	</view>
 	<view class="personal_intro">
 		<title icon="/img/identity/introduce.svg" title="个人简介" />
-		<view class="introduce_text">{{personalInfo.introduce}}</view>
+		<view class="introduce_text">
+		<text decode="true">{{util.format(personalInfo.introduce)}}</text></view>
 	</view>
-  <view class="dynamic">
-    <title icon="/img/identity/dynamic.svg" title="最新动态" />
+	<view class="dynamic">
+		<title icon="/img/identity/dynamic.svg" title="最新动态" />
 		<block wx:for="{{dynamicList}}" wx:key="item">
-			<dynamic-item msg="{{item}}"/>
+			<dynamic-item msg="{{item}}" />
 		</block>
-  </view>
-  
+	</view>
+
 </view>

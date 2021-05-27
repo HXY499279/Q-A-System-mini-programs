@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    couseList:[]
+    couseList:[],
+    totalPages:1,
+    currentPage:0
   },
 
   pageData:{
@@ -36,25 +38,21 @@ Page({
   },
 
   getCourse:function(data){
-    wx.showToast({
-      title: '加载中',
-      icon:'loading',
-      duration:10000
-    })
     httpRequest.getCouseList(data)
     .then(res=>{
       if(res.data.code!==1) return Promise.resolve();
-      wx.hideToast();
-      this.setData({
-        couseList:[...this.data.couseList,...res.data.data.list]
-      })
       mergeObj(this.pageData,res.data.data.pageInfo)
+      this.setData({
+        couseList:[...this.data.couseList,...res.data.data.list],
+        currentPage:this.pageData.currentPage,
+        totalPages:this.pageData.totalPages
+      })
     })
     .catch(err=>{
       wx.showToast({
-        title: '网络忙（有bug)',
+        title: '获取列表失败',
         type:'error',
-        duration:2000
+        duration:1500
       })
     })
   },
@@ -92,9 +90,9 @@ Page({
   },
 
   gotoQuestionList:function(e){
-    const subjectId = e.currentTarget.dataset.subjectid;
+    const { subjectid:subjectId,name:subjectName } = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/index/pages/question_list/index?subjectId=${subjectId}`,
+      url: `/pages/index/pages/question_list/index?subjectId=${subjectId}&subjectName=${subjectName}`,
     })
   },
 

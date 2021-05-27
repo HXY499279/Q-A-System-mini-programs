@@ -2,7 +2,6 @@
 .question_card {
   padding: 25rpx;
   background-color: white;
-  line-height: 50rpx;
   box-shadow: 0 8rpx 8rpx var(--background);
   margin-bottom: 10rpx;
 }
@@ -23,13 +22,17 @@
 }
 
 .question_titile {
-  font-size: 35rpx;
   margin-bottom: 10rpx;
+  font-size: 35rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.question_titile_text{
+  font-size: 35rpx;
 }
 
 .question_inform {

@@ -36,7 +36,8 @@ Page({
       title: '发布中',
       icon:"loading",
       mask:true,
-      duration:10000
+      duration:10000,
+      mask:true
     })
     getStorageItem("accountId")
     .then(accountId=>{
@@ -49,7 +50,7 @@ Page({
         title: '发布成功',
         icon:"success",
         mask:true,
-        duration:1500
+        duration:1000
       });
       let pages = getCurrentPages();
       let beforePage = pages[pages.length - 2];

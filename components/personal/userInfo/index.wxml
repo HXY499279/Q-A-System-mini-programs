@@ -1,16 +1,19 @@
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view class="userInfo">
 	<view class="userInfo_left">
-		<image wx:if="{{url && userInfo.imgPath}}" src="{{url+userInfo.imgPath}}" ></image>
-		<image wx:else src="{{url+userInfo.imgPath}}" ></image>
-		<view class="personal_edit"><navigator class="navigator" url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator></view>
+		<image wx:if="{{url && userInfo.imgPath}}" bindtap="previewPic" data-src="{{userInfo.imgPath}}" src="{{url+userInfo.imgPath}}"></image>
+		<image wx:else src="{{url+userInfo.imgPath}}"></image>
+		<view class="personal_edit">
+			<navigator class="navigator" url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator>
+		</view>
 		<view>积分：{{userInfo.score}}</view>
 	</view>
 	<view class="userInfo_right">
 		<view class="userInfo_right_personalMsg">
 			<view>{{userInfo.userName}}</view>
 			<view class="userInfo_right_personalMsg_item">
-				<image src="/img/userInfo/identity.svg"></image>
-				<view>待修改</view>
+				<image class="user_identity_icon" src="{{userInfo.role == 3 ? '/img/identity/student.svg':userInfo.role == 2 ? '/img/identity/volunteer.svg':userInfo.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+				<text class="user_identity_text">{{userInfo.role == 3 ? "学生":userInfo.role == 2 ? "志愿者":userInfo.role == 4 ? "管理员":"老师"}}</text>
 			</view>
 			<!-- <view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/degree.svg"></image>
@@ -21,29 +24,29 @@
 				<view>初出茅庐</view>
 			</view>
 		</view>
-		<view class="userInfo_right_introduce">{{userInfo.introduce}}</view>
+		<view class="userInfo_right_introduce"><text decode="true">{{util.format(userInfo.introduce)}}</text></view>
 		<view class="user_track">
-			  <view class="user_track_item">
-					<view>{{userInfo.questionCount}}</view>
-					<view>提问</view>
-				</view>
-				<view class="user_track_item">
-					<view>{{userInfo.answerCount}}</view>
-					<view>回答</view>
-				</view>
-				<view class="user_track_item">
-					<view>{{userInfo.collectionCount}}</view>
-					<view>收藏</view>
-				</view>
-				<view class="user_track_item">
-					<view>{{userInfo.agreeCount}}</view>
-					<view>赞同</view>
-				</view>
-				<view class="user_track_item">
-					<view>{{userInfo.solveCount}}</view>
-					<view>采纳</view>
-				</view>
-				
-    </view>
+			<view class="user_track_item">
+				<view>{{userInfo.questionCount}}</view>
+				<view>提问</view>
+			</view>
+			<view class="user_track_item">
+				<view>{{userInfo.answerCount}}</view>
+				<view>回答</view>
+			</view>
+			<view class="user_track_item">
+				<view>{{userInfo.collectionCount}}</view>
+				<view>收藏</view>
+			</view>
+			<view class="user_track_item">
+				<view>{{userInfo.agreeCount}}</view>
+				<view>赞同</view>
+			</view>
+			<view class="user_track_item">
+				<view>{{userInfo.solveCount}}</view>
+				<view>采纳</view>
+			</view>
+
+		</view>
 	</view>
 </view>

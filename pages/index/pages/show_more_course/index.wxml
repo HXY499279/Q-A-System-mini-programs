@@ -5,11 +5,11 @@
 	</view>
 	<view wx:if="{{couseList.length!==0}}">
 		<block wx:for="{{couseList}}" wx:key="item">
-			<category-item categoryMsg="{{item}}" data-subjectid="{{item.subjectId}}"  bindtap="gotoQuestionList">
+			<category-item categoryMsg="{{item}}" data-subjectid="{{item.subjectId}}" data-name="{{item.subjectName}}"  bindtap="gotoQuestionList">
 				<image slot="operate" src="/img/common/show.svg" class="show" ></image>
 			</category-item>
 		</block>
 	</view>
 	<nothing wx:else />
-	<i-divider content="加载已完成"></i-divider>
+	<i-load-more loading="{{ totalPages>currentPage}}" />
 </view>

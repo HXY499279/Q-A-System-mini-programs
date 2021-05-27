@@ -1,7 +1,6 @@
 // components/common/my_textarea/index.js
-const {
-  $Toast
-} = require('../../../iview/base/index');
+const { $Toast } = require('../../../iview/base/index');
+import {handleInput} from '../../../utils/api' 
 Component({
   /**
    * 组件的属性列表
@@ -26,8 +25,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    //字数统计字数限制
-    wordLimit(e) {
+    //输入触发 字数校验
+    textareaInput(e) {
       const inputValue = e.detail.value;
       const len = inputValue.length;
       if (len == this.data.allowWords) {
@@ -44,8 +43,9 @@ Component({
 
     //用于父组件获取子组件输入框的值
     getValues(){
+      const handleWord = handleInput(this.data.currentWord)
       return{
-        currentWord:this.data.currentWord
+        currentWord:handleWord
       }
     },
   /**

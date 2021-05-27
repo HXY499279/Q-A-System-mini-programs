@@ -12,7 +12,10 @@ class httpRequest {
    * 查询得到课程详细信息
    */
   getCouseList = (param) => httpUtil({ url: '/subject/search', param })
-
+  /**
+   * 获取所有学院
+   */
+  getAllCollege = (param) => httpUtil({url:'/subject/listAllCollege'})
   /** 
    * 获取图片
    */
@@ -132,6 +135,10 @@ class httpRequest {
    */
   getAnswerList = param => httpUtil({ url: '/answer/listAnswer', param })
 
+  /**
+   * 获取回答详情 
+   */
+  getAnswerDetail = param => httpUtil({url:'/answer/getAnswerById',param})
   /**
    * 采纳回答
    */

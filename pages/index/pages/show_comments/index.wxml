@@ -1,0 +1,10 @@
+<!--pages/index/pages/show_comments/index.wxml-->
+<view class="comments_box">
+	<view class="title">全部评论<text class="back" bindtap="back">×</text></view>
+	<view class="comments_list">
+		<block wx:for="{{commentList}}" wx:key="item">
+			<comment-item comment="{{item}}" />
+		</block>
+    <i-load-more loading="{{ currentPage < totalPages }}" />
+	</view>
+</view>

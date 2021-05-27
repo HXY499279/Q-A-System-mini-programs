@@ -9,7 +9,8 @@ Page({
   data: {
     //所有学科
     categorys:[],
-    isLoading:true
+    currentPage:0,
+    totalPages:1
   },
 
   /**
@@ -35,22 +36,20 @@ Page({
    * 获取科目信息
    */
   searchSubject : function(data){
-     wx.showToast({
-      icon: "loading",
-      title: "正在获取信息",
-      duration:10000
-      });
     httpRequest.searchSubject(data)
     .then(res=>{
       const categorys = res.data.data.list;
       mergeObj(this.pageData,res.data.data.pageInfo)
-      this.setData({categorys});
-      wx.hideToast();
+      this.setData({
+        categorys : [...this.data.categorys,...categorys],
+        currentPage : this.pageData.currentPage,
+        totalPages : this.pageData.totalPages
+      });
     })
     .catch(err=>{
       wx.showToast({
         icon: "error",
-        title: "请检查您的网络",
+        title: "获取课程失败",
         duration:2000
         });
     })
@@ -81,7 +80,7 @@ searchInput:function(e){
       this.pageData.timer = newTimer;
   },
 
-  onPullDownRefresh:function(){
+  onReachBottom:function(){
     if(this.pageData.currentPage < this.pageData.totalPages){
       this.pageData.currentPage++;
       let data = {};

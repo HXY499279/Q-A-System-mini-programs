@@ -18,5 +18,5 @@
 		</block>
 	</view>
 	<noting wx:else/>
-	<i-divider content="加载已完成"></i-divider>
+	<i-load-more loading="{{ currentPage<totalPages }}" />
 </view>

@@ -1,4 +1,6 @@
 <!--components/question/answer_detail_item/index.wxml-->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+
 <view class="answer_detail_item">
 	<view class="head">
 		<view class="user_info" bindtap="gotoPersonalIndex">
@@ -8,7 +10,8 @@
 				<text>{{answerDetail.userName}}</text>
 			</view>
 			<view class="user_identity">
-				<image class="user_identity_icon" src="/img/identity/student.svg"></image><text>学生</text>
+				<image class="user_identity_icon" src="{{answerDetail.role == 3 ? '/img/identity/student.svg':answerDetail.role == 2 ? '/img/identity/volunteer.svg':answerDetail.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+				<text class="user_identity_text">{{answerDetail.role == 3 ? "学生":answerDetail.role == 2 ? "志愿者":answerDetail.role == 4 ? "管理员":"老师"}}</text>
 			</view>
 		</view>
 		<view class="head_operate">
@@ -17,9 +20,11 @@
 		</view>
 	</view>
 	<view class="content">
-		<view class="content_text">{{answerDetail.content}}</view>
-		<image wx:if="{{answerDetail.contentImg && answerDetail.contentImg != -1 && url}}" class="content_img" mode='widthFix' src="{{url+answerDetail.contentImg}}" data-src="{{answerDetail.contentImg}}" bindtap="previewPic"></image>
-		<image wx:elif="{{answerDetail.contentImg && answerDetail.contentImg != -1 }}" class="content_img" mode='widthFix' ></image>
+		<view class="content_msg">
+			<view><text decode="true" class="content_text">{{util.format(answerDetail.content)}}</text></view>
+			<image wx:if="{{answerDetail.contentImg && answerDetail.contentImg != -1 && url}}" class="content_img" mode='widthFix' src="{{url+answerDetail.contentImg}}" data-src="{{answerDetail.contentImg}}" bindtap="previewPic"></image>
+			<image wx:elif="{{answerDetail.contentImg && answerDetail.contentImg != -1 }}" class="content_img_gray" mode='widthFix'></image>
+		</view>
 		<view class="content_footer">
 			<text> {{answerDetail.agreeCount}} 赞同 {{answerDetail.commentCount}} 评论</text>
 			<text>{{answerDetail.answerTime}}</text>

@@ -59,7 +59,7 @@ Page({
       beforePage.initAnswerList();
       setTimeout(()=>{
         wx.navigateBack()
-      },1500)
+      },1000)
     })
     .catch(err=>{
       wx.showToast({

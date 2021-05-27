@@ -1,11 +1,11 @@
 <!--pages/question/index.wxml-->
+<wxs src="../../utils/filter.wxs" module="util"></wxs>
 <view class="add_question_page">
-	<view class="add">
-		<navigator url="./choose_ category/index">请添加问题类别</navigator>
+	<view>  
+		<navigator url="./choose_ category/index" class="add">请添加问题类别</navigator>
 	</view>
 	<view class="choosed_category" wx:if="{{currentCategory}}">{{currentCategory}}<text class="delete" bindtap="delCurrentCategory">✕</text></view>
 	<picture-text-box id="picture_text_box" />
 	<button class="btn" hover-class="btn-hover" style="width:90vw" bindtap="handleClick">发布问题</button>
-	
 	<i-toast id="toast" />
 </view>

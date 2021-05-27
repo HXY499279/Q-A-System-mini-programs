@@ -1,13 +1,13 @@
 <!--pages/message/message_detail/index.wxml-->
+<wxs src='../../../utils/filter.wxs' module="util"></wxs>
 <view class="message_detail_page">
 	<view class='title'>{{newsDetail.title}}</view>
 	<view class="head">
 		<view class="user_info">
 			<view class="user_head">
 				<image class="user_head_img" wx:if="{{url && newsDetail.adminImg && newsDetail.adminImg!= -1}}" src="{{url+newsDetail.adminImg}}" mode='aspectFill'></image>
-				<image class="user_head_img" wx:if="{{ newsDetail.adminImg && newsDetail.adminImg}}"></image>
-				<text>{{newsDetail.adminName}}</text>
-				
+				<image class="user_head_img" wx:elif="{{ newsDetail.adminImg && newsDetail.adminImg}}"></image>
+				<text>{{newsDetail.adminName}}</text>	
 			</view>
 			<view class="user_identity">
 				<image class="user_identity_icon" src="/img/identity/teacher.svg"></image><text>管理员</text>
@@ -16,7 +16,7 @@
 		<view class="head_date">{{newsDetail.publishTime}}</view>
 	</view>
 	<view class="content">
-		<view class="content_text">{{newsDetail.content}}</view>
+		<view><text decode="true" class="content_text">{{util.format(newsDetail.content)}}</text></view>
 		<view wx:if="{{newsDetail.imgPath && newsDetail.imgPath != -1 }}" class="img_container">
 			<image class="content_img" mode='widthFix' wx:if="{{url}}" src="{{url+newsDetail.imgPath}}" data-src="{{newsDetail.imgPath}}" bindtap="previewPic"></image>
 			<image class="content_img" mode='widthFix' wx:else ></image>

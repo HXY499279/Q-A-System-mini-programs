@@ -9,6 +9,8 @@ Page({
   data: {
     state: 0,
     questionList: [],
+    totalPages:1,
+    currentPage:0
   },
 
   //该页面的全局变量
@@ -25,12 +27,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { subjectId } = options;
+    const { subjectId , subjectName} = options;
     const { state } = this.data;
     const { currentPage, pageSize } = this.pageData;
     const data = {
       subjectId, state, currentPage, pageSize
     };
+    wx.setNavigationBarTitle({
+      title: subjectName 
+    })
     this.pageData.subjectId = subjectId;
     this.setQuestionList(data);
   },
@@ -44,7 +49,11 @@ Page({
         const { list: questionList, pageInfo: { totalPages, totalRows } } = res.data.data;
         const newPageData = { totalPages, totalRows }
         mergeObj(this.pageData, newPageData)
-        this.setData({ questionList: [...this.data.questionList, ...questionList] })
+        this.setData({ 
+          questionList: [...this.data.questionList, ...questionList],
+          currentPage:this.pageData.currentPage,
+          totalPages:this.pageData.totalPages
+        })
       })
       .catch(err => {
         wx.showToast({

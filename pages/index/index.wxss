@@ -3,43 +3,37 @@
   background-color: var(--background);
   width: 100%;
   min-height: 100vh;
+  position: relative;
 }
 .swiper{
-  height: 35vh;
+  height: 32vh;
 }
 .img{
- width: 100%;
+ /* width: 100%; */
  height: 100%;
 }
 .box{
   background-color: white;
-  margin:15rpx 0;
+  margin:0 0 15rpx 0;
   border-radius: 6rpx;
   padding: 0 20rpx;
 }
 .title_box{
   background-color: white;
-  padding: 25rpx 15rpx;
   display: flex;
   text-align: center;
   align-items: center;
   letter-spacing: 2rpx;
   justify-content: space-between;
 }
-.title_left{
+.current_college{
   display: flex;
-}
-.title_box_icon{
-  width:38rpx;
-  height: 38rpx;
-  margin-right: 15rpx;
-}
-.title_box_title{
-  font-size: 30rpx;
+  align-items: center;
 }
 .course{
   padding:0 20rpx;
-  display:flex;
+  display:grid;
+  grid-template-columns: repeat(5,20%);
 }
 .course_item{
   display: flex;
@@ -74,7 +68,7 @@
   align-items: center;
   border-bottom: 3rpx solid var(--line);
 }
-.other_question_title>image{
+.show{
   width: 30rpx;
   height: 30rpx;
   padding:0 10rpx;
@@ -86,4 +80,42 @@
 .title_state{
   color: var(--theme);
   white-space: nowrap;
+}
+.choose_college_mask{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow-y:hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: .5;
+}
+.choose_college{
+  opacity: 1;
+  position: fixed;
+  background-color: white;
+  width: 75vw;
+  height: 60vh;
+  border-radius: 30rpx;
+  left: 12.5vw;
+  top: 20vh;
+  overflow: scroll;
+  z-index: 999;
+  box-shadow: 8rpx 8rpx 16rpx var(--background);
+}
+.choose_college_title{
+  text-align: center;
+  padding: 20rpx;
+}   
+.college_item{
+  display: flex;
+  justify-content: space-between;
+  padding:15rpx  20rpx;
+  border-bottom: 1rpx solid var(--line);
+}
+.add_college{
+  color:var(--grayWord)
 }

@@ -79,9 +79,15 @@ const mergeObj = function () {
   return target
 }
 
+const handleInput = function(string){
+  return string.replace(/\n/g,"\\n").replace(/[ ]/g,"&nbsp;")
+}
+
+
 module.exports = {
   chooseImg,
   getStorageItem,
   upLoadFile,
-  mergeObj
+  mergeObj,
+  handleInput
 }

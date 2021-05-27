@@ -19,7 +19,6 @@
 			</block>
 		</view>
 		<nothing wx:else />
-		<i-divider content="加载已完成"></i-divider>
 	</view>
 
 
@@ -30,7 +29,6 @@
 			</block>
 		</view>
 		<nothing wx:else />
-		<i-divider content="加载已完成"></i-divider>
 	</view>
 
 
@@ -41,7 +39,6 @@
 			</block>
 		</view>
 		<nothing wx:else />
-		<i-divider content="加载已完成"></i-divider>
 	</view>
 
 	<view wx:elif="{{currentType === 'myquestion'}}">
@@ -51,6 +48,6 @@
 			</block>
 		</view>
 		<nothing wx:else />
-		<i-divider content="加载已完成"></i-divider>
 	</view>
+	<i-load-more loading="{{ totalPages > currentPage }}" />
 </view>

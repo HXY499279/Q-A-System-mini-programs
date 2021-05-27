@@ -1,5 +1,5 @@
 // pages/personal/pages/feedback/index.js
-import {getStorageItem} from '../../../../utils/api'
+import {getStorageItem,mergeObj} from '../../../../utils/api'
 import httpRequest from '../../../../utils/request/index'
 const {$Toast} = require('../../../../iview/base/index');
 Page({
@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    feedbackList:[]
+    feedbackList:[],
+    currentPage:0,
+    totalPages:1
   },
 
   pageData:{
@@ -38,7 +40,7 @@ Page({
   handleSubmit:function(){
     const {tempFilePath:{imgTempPath},textAreat:{currentWord},titleInput} = this.getValues();
     const content = titleInput+currentWord;
-    if(!content && imgTempPath.length===0){
+    if(!content.trim() && imgTempPath.length===0){
       $Toast({
         content: "请输入内容或图片",
         type: 'warning'
@@ -58,12 +60,12 @@ Page({
       else return httpRequest.submitFeedback({filePath:imgTempPath[0],data})
     })
     .then(res=>{
-      if(!res.data.code) return Promise.reject();
+      if(res.statusCode!==200) return Promise.reject(res)
       this.clearInput();
       wx.showToast({
         icon: "success",
         title: "感谢您的反馈！",
-        duration:1500
+        duration:1000
       })
     })
     .catch(err=>{
@@ -86,10 +88,13 @@ Page({
     })
     .then(res=>{
       if(res.data.code !== 1) return Promise.reject();
+      mergeObj(this.pageData,res.data.data.pageInfo)
       this.pageData.totalPages = res.data.data.pageInfo.totalPages;
       this.pageData.totalRows = res.data.data.pageInfo.totalRows;
       this.setData({
-        feedbackList:[...this.data.feedbackList,...res.data.data.list]
+        feedbackList:[...this.data.feedbackList,...res.data.data.list],
+        currentPage:this.pageData.currentPage,
+        totalPages:this.pageData.totalPages
       })
     })
     .catch(err=>{

@@ -7,8 +7,8 @@
 				<text>{{feedback.userName}}</text>
 			</view>
 			<view class="user_identity">
-				<image class="user_identity_icon" src="/img/identity/student.svg"></image>
-				<text class="user_identity_text">{{answer.role == 3 ? "学生":answer.role == 2?"志愿者":"老师"}}</text>
+				<image class="user_identity_icon" src="{{feedback.role == 3 ? '/img/identity/student.svg':feedback.role == 2 ? '/img/identity/volunteer.svg':feedback.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+				<text class="user_identity_text">{{feedback.role == 3 ? "学生":feedback.role == 2 ? "志愿者":feedback.role == 4 ? "管理员":"老师"}}</text>
 			</view>
 		</view>
 	</view>

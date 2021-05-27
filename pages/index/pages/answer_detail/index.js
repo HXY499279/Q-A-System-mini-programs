@@ -1,7 +1,7 @@
 // pages/index/pages/answer_detail/index.js
 import {getStorageItem,mergeObj} from '../../../../utils/api'
 import httpRequest from '../../../../utils/request/index'
-import httpUtil from '../../../../utils/request/http';
+import {$Toast} from '../../../../iview/base/index'
 Page({
 
   /**
@@ -13,32 +13,66 @@ Page({
     commentList:[]
   },
   pageData:{
+    answerId:undefined,
+    answer:{
+      currentPage:1,
+      pageSize:1,
+      totalPages:1,
+      totalRows:0,
+      answerSortType:0,
+      questionId:0
+    },
     comment:{
       currentPage:1,
-      pageSize:3,
+      pageSize:2,
       totalPages:1,
-      totalRows:0
+      totalRows:0,
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const answerDetail = (JSON.parse(decodeURIComponent(options.answerDetail)));
     const questionDetail = (JSON.parse(decodeURIComponent(options.questionDetail)));
+    const { currentIndex,totalRows,sortOrder,questionId,answerId} = options;
+    mergeObj(this.pageData.answer,{currentPage:currentIndex*1+1,totalRows,sortOrder,questionId});
+    this.pageData.answerId = answerId;
+    console.log(this.pageData.answer)
     this.setData({
-      answerDetail,
       questionDetail
     })
-    this.getComment()
+    this.getComment();
+    this.getAnswerDetail()
   },
 
   /**
+   * 得到回答详情
+   */
+  getAnswerDetail:function(){
+    getStorageItem("accountId")
+    .then(accountId=>{
+      const data = {accountId,answerId:this.pageData.answerId}
+      return httpRequest.getAnswerDetail(data)
+    })
+    .then(res=>{
+      if(res.data.code !== 1) return Promise.reject();
+      this.setData({
+        answerDetail:res.data.data
+      })
+    })
+    .catch(err=>{
+      wx.showToast({
+        title: '网络忙',
+        icon:"error"
+      })
+    })
+  }, 
+   /**
    * 获取评论
    */
   getComment:function(){
     const data = {
-      answerId:this.data.answerDetail.answerId,
+      answerId:this.pageData.answerId,
       currentPage:this.pageData.comment.currentPage,
       pageSize:this.pageData.comment.pageSize
     }
@@ -57,9 +91,12 @@ Page({
    */
   onAdopt:function(){
     let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
+    let newQuestionDetail =  JSON.parse(JSON.stringify(this.data.questionDetail));
     newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
+    newQuestionDetail.state = newQuestionDetail.state?0:1;
     this.setData({
-      answerDetail:newAnswerDetail
+      answerDetail:newAnswerDetail,
+      questionDetail:newQuestionDetail
     })
     getStorageItem('accountId')
     .then(accountId=>{
@@ -109,13 +146,46 @@ Page({
     })
   },
 
-  onReachBottom:function(){
-    if(this.pageData.comment.currentPage<this.pageData.comment.totalPages){
-      this.pageData.comment.currentPage++;
-      this.getComment()
-    }
+  /**
+   * 去评论页面
+   */
+  showComments:function(){
+    wx.navigateTo({
+      url: `/pages/index/pages/show_comments/index?answerId=${this.data.answerDetail.answerId}`,
+    })
   },
 
+  showNext:function(){
+    if(this.pageData.answer.totalRows>this.pageData.answer.currentPage){
+      this.pageData.answer.currentPage++;
+      const {answerSortType,currentPage,pageSize,questionId,totalRows} = this.pageData.answer;
+       getStorageItem("accountId")
+      .then(accountId=>{
+        const data = {accountId,currentPage,pageSize,questionId,sortOrder:answerSortType};
+        return httpRequest.getAnswerList(data)
+      })
+      .then(res=>{
+        console.log(res);
+        if(res.data.code!==1) return Promise.reject();
+        const nextAnswerId = res.data.data.list[0].answerId;
+        const questionDetail = this.data.questionDetail;
+        wx.redirectTo({
+          url: `/pages/index/pages/answer_detail/index?answerId=${nextAnswerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentPage}&totalRows=${totalRows}&sortOrder=${answerSortType}&questionId=${questionDetail.questionId}`
+        })
+      })
+     .catch(err=>{
+       console.log(err)
+       wx.showToast({
+         title: '网络忙',
+         icon:'error'
+       })
+     })
+     }else{
+      $Toast({
+        content: '已经是最后啦'
+    });
+     }
+  } ,
 
   /**
    * 用户点击右上角分享

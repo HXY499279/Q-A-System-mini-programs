@@ -3,6 +3,7 @@
   padding: 25rpx 25rpx 25rpx 80rpx;
   color: var(--theme);
   position: relative;
+  font-size: 38rpx;
 }
 .add::before{
   content: "+";
@@ -21,9 +22,6 @@
   line-height: 38rpx;
   background-color: var(--theme);
   border-radius: 50%;
-}
-.add>navigator{
-  font-size: 38rpx;
 }
 
 .choosed_category{

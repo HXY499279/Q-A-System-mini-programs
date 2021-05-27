@@ -13,7 +13,9 @@ Page({
     answerSortType: 1, //0 最新； 1 最热
     isCollected: false,
     answerList: [],
-    questionDetailData: {}
+    questionDetailData: {},
+    currentPage:0,
+    totalPages:1
   },
 
   pageData:{
@@ -23,7 +25,6 @@ Page({
     pageSize:4,
     totalPages:1,
     totalRows:0,
-    shouldUnshiftIntoNewList:false,
     hotAnswerList:[],
     newAnswerList:[]
   },
@@ -61,25 +62,28 @@ Page({
     if(answerSortType === 1 && this.pageData.hotAnswerList.length!==0){
       this.setData({
         answerSortType,
-        answerList:this.pageData.hotAnswerList
+        answerList:this.pageData.hotAnswerList,
+        currentPage:this.pageData.currentHotPage
       })
     }
     else if(answerSortType === 0 && this.pageData.newAnswerList.length!==0){
       this.setData({
        answerSortType,
-       answerList:this.pageData.newAnswerList
+       answerList:this.pageData.newAnswerList,
+       currentPage:this.pageData.currentNewPage
        })
     }
     else{
-      answerSortType === 1 ? this.pageData.shouldUnshiftIntoNewList = true : ''
       this.setData({
         answerList:[],
-        answerSortType
+        answerSortType,
+        currentPage:0
       },()=>{
         this.getAnswerList();
       })
     }
   },
+
   /**
    * 获取问题详情
    */
@@ -122,24 +126,28 @@ Page({
     })
     .then(res=>{
       if(!res.data.code) return Promise.reject();
+      mergeObj(this.pageData,res.data.data.pageInfo);
       if(this.data.answerSortType === 0) {
-        this.pageData.newAnswerList = [...this.pageData.newAnswerList,...res.data.data.list]
+        this.pageData.newAnswerList = [...this.pageData.newAnswerList,...res.data.data.list];
+        this.setData({
+          currentPage:this.pageData.currentNewPage,
+          totalPages:this.pageData.totalPages
+        })
       }
       else if(this.data.answerSortType === 1){
         this.pageData.hotAnswerList = [...this.pageData.hotAnswerList,...res.data.data.list]
+        this.setData({
+          currentPage:this.pageData.currentHotPage,
+          totalPages:this.pageData.totalPages
+        })
       }
-     
-      const {pageSize,totalPages,totalRows} = res.data.data.pageInfo;
-      const newData = {pageSize,totalPages, totalRows}
-      mergeObj(this.pageData,newData);
-
        this.setData({
         answerList : this.data.answerSortType ? this.pageData.hotAnswerList : this.pageData.newAnswerList
        })
     })
     .catch(err=>{
       wx.showToast({
-        title: '网络忙',
+        title: '回答列表err',
         icon:'error'
       })
     })
@@ -182,20 +190,13 @@ Page({
    * 跳转回答详情页面
    */
   gotoAnswerDetail:function(e) {
-    const answerDetail = e.currentTarget.dataset.answerdetail;
+    const answerId = e.currentTarget.dataset.answerid;
+    const currentIndex = e.currentTarget.dataset.index
     const questionDetail = this.data.questionDetailData;
     wx.navigateTo({
-      url: `/pages/index/pages/answer_detail/index?answerDetail=${encodeURIComponent(JSON.stringify(answerDetail))}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}`,
+      url: `/pages/index/pages/answer_detail/index?answerId=${answerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentIndex}&totalRows=${this.pageData.totalRows}&sortOrder=${this.data.answerSortType}&questionId=${this.data.questionDetailData.questionId}`,
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

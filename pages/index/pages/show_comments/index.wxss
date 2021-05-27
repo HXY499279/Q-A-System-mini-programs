@@ -1,0 +1,22 @@
+/* .comments_box{
+  width: ;
+} */
+.title{
+  position: relative;
+  text-align: center;
+  padding: 20rpx;
+  line-height: 40rpx;
+}
+.back{
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20rpx;
+  top: 20rpx;
+  background-color:var(--background) ;
+  border-radius: 50%;
+}

@@ -40,6 +40,9 @@
 
 .content_img {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15rpx;
 }
 
 .img {
@@ -47,6 +50,7 @@
   margin-right: 10rpx;
   margin-top:10rpx;
   background-color: var(--background);
+  margin: 0 auto;
 }
 .content_footer{
   margin-top: 20rpx;

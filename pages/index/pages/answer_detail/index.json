@@ -2,6 +2,7 @@
   "usingComponents": {
     "qustion-detail-item":"/components/question/question_detail_item/index",
     "answer-detail":"/components/question/answer_detail_item/index",
-    "comment-item":"/components/question/comment_item/index"
+    "comment-item":"/components/question/comment_item/index",
+    "i-toast":"/iview/toast/index"
   }
 }

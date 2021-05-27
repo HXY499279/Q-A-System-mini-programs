@@ -9,5 +9,5 @@
 			<message-item msg="{{item}}" data-newsid="{{item.newsId}}" bindtap="gotoMsgDetail" />
 		</block>
 	</view>
-	<i-divider content="加载已完成"></i-divider>
+	<i-load-more loading="{{ currentPage < totalPages }}" />
 </view>

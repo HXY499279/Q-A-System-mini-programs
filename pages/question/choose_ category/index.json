@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "choose-category-item":"/components/add_question/choose_category_item/index",
-    "nothing":"/components/common/nothing/index"
+    "nothing":"/components/common/nothing/index",
+    "i-load-more": "/iview/load-more/index"
   },
   "navigationBarTitleText":"选择类别"
 }

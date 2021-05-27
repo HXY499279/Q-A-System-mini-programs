@@ -1,3 +1,4 @@
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view class="detail_item_box">
 	<view class="title">{{msg.title}}</view>
 	<view class="user_info">
@@ -5,7 +6,7 @@
 		<image wx:else  class="user_head_img"></image>
 		<view>{{msg.adminName}}</view>
 	</view>
-	<view class="content">{{msg.content}}</view>
+	<view><text class="content" decode="true">{{util.format(msg.content)}}</text></view>
 	<view class="footer">
 		<view>{{msg.readCount}} 阅读</view>
 		<view>{{msg.publishTime}}</view>

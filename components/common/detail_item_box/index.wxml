@@ -5,6 +5,8 @@
 	ru_operate:右上角的操作（分享、举报）
 	bl_operate：左下角的信息（赞、收藏等）
  -->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+
 <view class="detail_item_box">
 	<view class="title">
 		<slot name="title"></slot>
@@ -18,17 +20,17 @@
 					<text>{{answer.userName}}</text>
 				</view>
 				<view class="user_identity">
-					<image class="user_identity_icon" src="/img/identity/student.svg"></image>
-					<text class="user_identity_text">{{answer.role == 3 ? "学生":answer.role == 2?"志愿者":"老师"}}</text>
+					<image class="user_identity_icon" src="{{answer.role == 3 ? '/img/identity/student.svg':answer.role == 2 ? '/img/identity/volunteer.svg':answer.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+					<text class="user_identity_text">{{answer.role == 3 ? "学生":answer.role == 2 ? "志愿者":answer.role == 4 ? "管理员":"老师"}}</text>
 				</view>
 			</view>
 			<slot name="ru_operate"></slot>
 		</view>
 		<view class="item_content">
-			<view class="content_words">{{answer.content}}</view>
+			<text class="content_words" decode="true">{{util.format(answer.content)}}</text>
 			<view class="content_img" wx:if="{{answer.contentImg && answer.contentImg != -1 }}">
-				<image wx:if="{{url}}" mode='aspectFill' class="img"  src="{{url+answer.contentImg}}"></image>
-				<image wx:else mode='aspectFill' class="img" ></image>
+				<image  wx:if="{{url}}" mode='aspectFill' class="img"  src="{{url+answer.contentImg}}"></image>
+				<image  wx:else mode='aspectFill' class="img" ></image>
 			</view>
 		</view>
 	</view>

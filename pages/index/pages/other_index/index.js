@@ -78,6 +78,13 @@ Page({
       this.getDynamic(data)
     }
   },
+  previewPic:function(e) {
+    const src = e.currentTarget.dataset.src; //获取data-src
+    wx.previewImage({
+      current: this.data.url+src, // 当前显示图片的http链接
+      urls: [this.data.url+src] // 需要预览的图片http链接列表
+    })
+  },
   /**
    * 用户点击右上角分享
    */

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "comment-item":"/components/question/comment_item/index",
+    "i-load-more": "/iview/load-more/index"
+  }
+}

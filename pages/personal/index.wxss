@@ -1,10 +1,11 @@
 /* pages/personal/index.wxss */
 .personal_page{
-  background-color: var(--background);
+  min-height: clac(100vh - 12rpx);
   padding: 6rpx;
 }
 .operate{
   background-color: white;
   margin-top: 10rpx;
   border-radius: 5rpx;
+  box-shadow: 0 8rpx 8rpx var(--background);
 }

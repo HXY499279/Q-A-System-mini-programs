@@ -1,4 +1,5 @@
 <!--components/question/question_card_item/index.wxml-->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view class="question_detail_item">
 	<view class="head">
 		<view class="title">{{questionDetailData.title}}</view>
@@ -8,7 +9,7 @@
 		</view>
 	</view>
 	<view class="content">
-		<view>{{questionDetailData.describes}}</view>
+		<view><text decode="true">{{util.format(questionDetailData.describes)}}</text></view>
 		<view class="content_img">
 			<image wx:if="{{questionDetailData.imgPath && questionDetailData.imgPath!=-1 && url}}"  class="img" src="{{url+questionDetailData.imgPath}}" mode='aspectFill' bindtap="previewPic" data-src="{{questionDetailData.imgPath}}"></image>
 			<image wx:elif="{{questionDetailData.imgPath && questionDetailData.imgPath!=-1}}" class="img"></image>

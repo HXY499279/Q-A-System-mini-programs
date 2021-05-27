@@ -13,6 +13,6 @@
 		</view>
 		<nothing wx:else />
 	</view>
-	<i-divider content="加载已完成"></i-divider>
+	<i-load-more loading="{{ totalPages > currentPage }}" />
 	<i-toast id="toast" />
 </view>

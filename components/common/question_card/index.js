@@ -13,7 +13,7 @@ Component({
     },
     type:{
       type:Number,
-      value:0 //    /0是问题 1是回答
+      value:0 //    0是问题 1是回答 2是评论
     }
   },
 

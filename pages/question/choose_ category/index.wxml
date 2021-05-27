@@ -10,4 +10,5 @@
 		</block>
 	</view>
 	<nothing wx:else />
+	<i-load-more loading="{{ currentPage < totalPages }}" />
 </view>

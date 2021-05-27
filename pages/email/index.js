@@ -1,6 +1,8 @@
 // pages/email/index.js
 import httpRequest from '../../utils/request/index'
-import {getStorageItem} from '../../utils/api'
+import {
+  getStorageItem,mergeObj
+} from '../../utils/api'
 Page({
 
   /**
@@ -8,46 +10,47 @@ Page({
    */
   data: {
     currentType: "dynamic",
-    dynamicList:[],
-    invitationList:[],
-    collectionList:[],
-    myquestionList:[],
+    dynamicList: [],
+    invitationList: [],
+    collectionList: [],
+    myquestionList: [],
+    totalPages:1,
+    currentPage:0,
     //邮件模块上面的导航栏
     topBar: [{
-        "icon": "/img/email/dynamic.svg",
-        "type": "dynamic",
-        "text": "动态",
-        "backgroundColor": "#6BA1DD",
-      }, {
-        "icon": "/img/email/write.svg",
-        "type": "invitation",
-        "text": "邀请回答",
-        "backgroundColor": "#FF8D1A",
-      },{
-        "icon": "/img/email/collection.svg",
-        "type": "collection",
-        "text": "收藏",
-        "backgroundColor": "#F87053",
-      }, {
-        "icon": "/img/email/myquestion.svg",
-        "type": "myquestion",
-        "text": "我的提问",
-        "backgroundColor": "#2DC4BA",
-      }
-    ]
+      "icon": "/img/email/dynamic.svg",
+      "type": "dynamic",
+      "text": "动态",
+      "backgroundColor": "#6BA1DD",
+    }, {
+      "icon": "/img/email/write.svg",
+      "type": "invitation",
+      "text": "邀请回答",
+      "backgroundColor": "#FF8D1A",
+    }, {
+      "icon": "/img/email/collection.svg",
+      "type": "collection",
+      "text": "收藏",
+      "backgroundColor": "#F87053",
+    }, {
+      "icon": "/img/email/myquestion.svg",
+      "type": "myquestion",
+      "text": "我的提问",
+      "backgroundColor": "#2DC4BA",
+    }]
   },
 
-  pageData:{
-    currentType:"dynamic",
-    pageSize:5,
-    dynamicTotalPages:1,
-    dynamicCurrentPage:1,
-    invitationTotalPages:1,
-    invitationCurrentPage:1,
-    collectionTotalPages:1,
-    collectionCurrentPage:1,
-    myqustionTotalPages:1,
-    myquestionCurrentPage:1
+  pageData: {
+    currentType: "dynamic",
+    pageSize: 5,
+    dynamicTotalPages: 1,
+    dynamicCurrentPage: 1,
+    invitationTotalPages: 1,
+    invitationCurrentPage: 1,
+    collectionTotalPages: 1,
+    collectionCurrentPage: 1,
+    myqustionTotalPages: 1,
+    myquestionCurrentPage: 1
   },
 
   /**
@@ -57,111 +60,132 @@ Page({
     this.getDynamic();
   },
 
-  onShow:function(){
+  onShow: function () {
     //消除红点
     wx.removeTabBarBadge({
-      index:3
+      index: 3
     })
   },
-  changeItem:function(e){
+
+  changeItem: function (e) {
     const { type } = e.currentTarget.dataset;
     this.pageData.currentType = type;
-    switch(type){
+    switch (type) {
       case "dynamic":
-        if(this.data.dynamicList.length===0){
+        if (this.data.dynamicList.length === 0) {
           this.getDynamic();
         }
         break;
       case "invitation":
-        if(this.data.invitationList.length===0){
+        if (this.data.invitationList.length === 0) {
           this.getInvitation();
         }
         break;
       case "collection":
-        if(this.data.collectionList.length===0){
+        if (this.data.collectionList.length === 0) {
           this.getCollection();
         }
         break;
       case "myquestion":
-        if(this.data.myquestionList.length===0){
+        if (this.data.myquestionList.length === 0) {
           this.getMyqustion();
         }
         break;
     }
     this.setData({
-      currentType:type
+      currentType: type
     })
   },
-  
-  getDynamic:function(){
+
+  getDynamic: function () {
     getStorageItem("accountId")
-    .then(accountId=>{
-      const data = {type:1,accountId,currentPage:this.pageData.dynamicCurrentPage,pageSize:this.pageData.pageSize}
-      return httpRequest.getDynamic(data)
-    })
-    .then(res=>{
-      if(res.data.code!==1) return Promise.reject();
-      this.pageData.dynamicTotalPages = res.data.data.pageInfo.totalPages;
-      this.setData({
-        dynamicList:[...this.data.dynamicList,...res.data.data.list]
+      .then(accountId => {
+        const data = {
+          type: 1,
+          accountId,
+          currentPage: this.pageData.dynamicCurrentPage,
+          pageSize: this.pageData.pageSize
+        }
+        return httpRequest.getDynamic(data)
       })
-    })
-    .catch(err=>{})
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject();
+        this.pageData.dynamicTotalPages = res.data.data.pageInfo.totalPages;
+        this.setData({
+          dynamicList: [...this.data.dynamicList, ...res.data.data.list],
+          totalPages:this.pageData.dynamicTotalPages,
+          currentPage:this.pageData.dynamicCurrentPage
+        })
+      })
+      .catch(err => {})
   },
 
-  getInvitation:function(){
+  getInvitation: function () {
     getStorageItem("accountId")
-    .then(accountId=>{
-      const data = {accountId,currentPage:this.pageData.invitationCurrentPage,pageSize:this.pageData.pageSize}
-      return httpRequest.getInvitation(data)
-    })
-    .then(res=>{
-      if(res.data.code !==1) return Promise.reject();
-      this.pageData.invitationTotalPages = res.data.data.pageInfo.totalPages;
-      this.setData({
-        invitationList:res.data.data.list
+      .then(accountId => {
+        const data = {
+          accountId,
+          currentPage: this.pageData.invitationCurrentPage,
+          pageSize: this.pageData.pageSize
+        }
+        return httpRequest.getInvitation(data)
       })
-    })
-    .catch(err=>{})
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject();
+        this.pageData.invitationTotalPages = res.data.data.pageInfo.totalPages;
+        this.setData({
+          invitationList: res.data.data.list,
+          totalPages:this.pageData.invitationTotalPages,
+          currentPage:this.pageData.invitationCurrentPage
+        })
+      })
+      .catch(err => {})
   },
 
-  getCollection:function(){
+  getCollection: function () {
     getStorageItem("accountId")
-    .then(accountId=>{
-      const data = {relatedType:2,accountId,currentPage:this.pageData.collectionCurrentPage,pageSize:this.pageData.pageSize}
-      return httpRequest.getAboutMyQuestion(data)
-    })
-    .then(res=>{
-      if(res.data.code !== 1) return Promise.reject();
-      this.pageData.collectionTotalPages = res.data.data.pageInfo.totalPages;
-      this.setData({
-        collectionList:[...this.data.collectionList,...res.data.data.list]
+      .then(accountId => {
+        const data = {
+          relatedType: 2,
+          accountId,
+          currentPage: this.pageData.collectionCurrentPage,
+          pageSize: this.pageData.pageSize
+        }
+        return httpRequest.getAboutMyQuestion(data)
       })
-    })
-    .catch(err=>{})
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject();
+        this.pageData.collectionTotalPages = res.data.data.pageInfo.totalPages;
+        this.setData({
+          collectionList: [...this.data.collectionList, ...res.data.data.list],
+          totalPages:this.pageData.collectionTotalPages,
+          currentPage:this.pageData.collectionCurrentPage
+        })
+      })
+      .catch(err => {})
   },
 
-  getMyqustion:function(){
+  getMyqustion: function () {
     getStorageItem("accountId")
-    .then(accountId=>{
-      const data = {relatedType:1,accountId,currentPage:this.pageData.myquestionCurrentPage,pageSize:this.pageData.pageSize}
-      return httpRequest.getAboutMyQuestion(data)
-    })
-    .then(res=>{
-      if(res.data.code !== 1) return Promise.reject();
-      this.pageData.myqustionTotalPages = res.data.data.pageInfo.totalPages;
-      this.setData({
-        myquestionList:[...this.data.myquestionList,...res.data.data.list]
+      .then(accountId => {
+        const data = {
+          relatedType: 1,
+          accountId,
+          currentPage: this.pageData.myquestionCurrentPage,
+          pageSize: this.pageData.pageSize
+        }
+        return httpRequest.getAboutMyQuestion(data)
       })
-    })
-    .catch(err=>{})
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject();
+        this.pageData.myqustionTotalPages = res.data.data.pageInfo.totalPages;
+        this.setData({
+          myquestionList: [...this.data.myquestionList, ...res.data.data.list],
+          totalPages:this.pageData.myqustionTotalPages,
+          currentPage:this.pageData.myquestionCurrentPage
+        })
+      })
+      .catch(err => {})
   },
 
   /**
@@ -169,31 +193,68 @@ Page({
    */
   onReachBottom: function () {
     const type = this.data.currentType;
-    switch(type){
+    switch (type) {
       case "dynamic":
-        if(this.pageData.dynamicCurrentPage < this.pageData.dynamicTotalPages){
+        if (this.pageData.dynamicCurrentPage < this.pageData.dynamicTotalPages) {
           this.pageData.dynamicCurrentPage++;
           this.getDynamic();
         }
         break;
       case "invitation":
-        if(this.pageData.invitationCurrentPages < this.pageData.invitationTotalPages){
+        if (this.pageData.invitationCurrentPages < this.pageData.invitationTotalPages) {
           this.pageData.invitationCurrentPages++;
           this.getInvitation();
         }
         break;
       case "collection":
-        if(this.pageData.collectionCurrentPage < this.pageData.collectionTotalPages){
+        if (this.pageData.collectionCurrentPage < this.pageData.collectionTotalPages) {
           this.pageData.collectionCurrentPage++;
           this.getCollection();
         }
         break;
       case "myquestion":
-        if(this.pageData.myquestionCurrentPage < this.pageData.myqustionTotalPages){
+        if (this.pageData.myquestionCurrentPage < this.pageData.myqustionTotalPages) {
           this.pageData.myquestionCurrentPage++;
           this.getMyqustion();
         }
         break;
     }
   },
+
+  onPullDownRefresh: function () {
+    const type = this.data.currentType;
+    const data = {
+      dynamicTotalPages: 1,
+      dynamicCurrentPage: 1,
+      invitationTotalPages: 1,
+      invitationCurrentPage: 1,
+      collectionTotalPages: 1,
+      collectionCurrentPage: 1,
+      myqustionTotalPages: 1,
+      myquestionCurrentPage: 1
+    }
+    this.setData({
+      dynamicList: [],
+      invitationList: [],
+      collectionList: [],
+      myquestionList: []
+    },()=>{
+    mergeObj(this.pageData,data);
+   switch (type) {
+      case "dynamic":
+          this.getDynamic();
+        break;
+      case "invitation":
+          this.getInvitation();
+        break;
+      case "collection":
+          this.getCollection();
+        break;
+      case "myquestion":
+          this.getMyqustion();
+        break;
+    }
+    })   
+    wx.stopPullDownRefresh()
+  }
 })

@@ -18,7 +18,8 @@
     "pages/index/pages/write_answer/index",
     "pages/message/message_detail/index",
     "pages/index/pages/show_more_course/index",
-    "pages/index/pages/other_index/index"
+    "pages/index/pages/other_index/index",
+    "pages/index/pages/show_comments/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
