@@ -33,7 +33,7 @@
 	<view class="footer">
 		<view class="footer_tips">看完回答，您可能还会进行以下操作</view>
 		<view class="operate">
-			<view class="operate_item" bindtap="handleAdopt" wx:if="{{questionerId === answerDetail.accountId}}">
+			<view class="operate_item" bindtap="handleAdopt" wx:if="{{questionerId === answerDetail.accountId && !answerDetail.isAdopt}}">
 				<view class="iconfont icon-chuizi {{answerDetail.isAdopt?'adopted':''}}"></view>
 				<view>采纳</view>
 			</view>

@@ -1,7 +1,7 @@
 // pages/index/pages/write_answer/index.js
 import httpRequest from '../../../../utils/request/index';
-import {getStorageItem} from '../../../../utils/api'
-import {$Toast} from '../../../../iview/base/index'
+import { getStorageItem } from '../../../../utils/api'
+import { $Toast } from '../../../../iview/base/index'
 const app = getApp();
 Page({
 
@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    questionDetailData:{}
+    questionDetailData: {}
   },
 
   /**
@@ -17,14 +17,14 @@ Page({
    */
   onLoad: function (options) {
     const questionDetailData = JSON.parse(decodeURIComponent(options.questionDetailData));
-    this.setData({questionDetailData})
+    this.setData({ questionDetailData })
   },
 
   //发布回答
-  submitAnswer(){
-    const { content,img } = this.getValues();
+  submitAnswer() {
+    const { content, img } = this.getValues();
 
-    if (!content && img.length===0) {
+    if (!content && img.length === 0) {
       $Toast({
         content: '请输入回答',
         type: 'warning'
@@ -35,39 +35,44 @@ Page({
     wx.showToast({
       icon: "loading",
       title: "正在上传",
-      duration:10000,
-      mask:true
+      duration: 10000,
+      mask: true
     });
 
     getStorageItem("accountId")
-    .then(accountId=>{
-      const questionId = this.data.questionDetailData.questionId;
-      const data = {questionId,accountId,content}
-      if(img.length === 0) return httpRequest.submitAnswer({data});
-      else return  httpRequest.submitAnswer({data,filePath:img[0]});
-    })
-    .then(res=>{
-      if(res.statusCode!==200) return Promise.reject();
-      this.clearInput()
-      wx.showToast({
-            icon: "success",
-            title: "发布成功",
-            duration:1500
-      });
-      let pages = getCurrentPages();
-      let beforePage = pages[pages.length - 2];
-      beforePage.initAnswerList();
-      setTimeout(()=>{
-        wx.navigateBack()
-      },1000)
-    })
-    .catch(err=>{
-      wx.showToast({
-        icon: "error",
-        title: "网络忙 稍后试试",
-        duration:1500
+      .then(accountId => {
+        const questionId = this.data.questionDetailData.questionId;
+        const data = { questionId, accountId, content }
+        if (img.length === 0) return httpRequest.submitAnswer({ data });
+        else return httpRequest.submitAnswer({ data, filePath: img[0] });
       })
-    })
+      .then(res => {
+        if (res.statusCode !== 200) return Promise.reject();
+        this.clearInput();
+
+        let userInfo = wx.getStorageSync('userInfo');
+        userInfo.answerCount++;
+        wx.setStorageSync('userInfo', userInfo);
+
+        wx.showToast({
+          icon: "success",
+          title: "发布成功",
+          duration: 1500
+        });
+        let pages = getCurrentPages();
+        let beforePage = pages[pages.length - 2];
+        beforePage.initAnswerList();
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1000)
+      })
+      .catch(err => {
+        wx.showToast({
+          icon: "error",
+          title: "网络忙 稍后试试",
+          duration: 1500
+        })
+      })
   },
 
   /**
@@ -82,11 +87,11 @@ Page({
     }
   },
 
-  clearInput:function(){
+  clearInput: function () {
     const myTextArea = this.selectComponent("#my-textarea");
     const picUpdateBox = this.selectComponent("#picture-update-box");
     myTextArea.clearInput();
     picUpdateBox.clearInput();
   }
-  
+
 })

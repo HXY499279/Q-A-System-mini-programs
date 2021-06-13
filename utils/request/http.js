@@ -1,5 +1,5 @@
 //测试地址
-const baseUrl = 'http://202.202.43.250:8080'
+const baseUrl = 'https://xscqa.cqupt.edu.cn/question/'
 
 const httpUtil = function ({url,param,method,header} = {}) {
   return new Promise((resolve, reject) => {

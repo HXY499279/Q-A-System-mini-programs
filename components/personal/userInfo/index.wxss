@@ -12,10 +12,18 @@
   width: 30%;
   text-align: center;
 }
-.userInfo_left>image{
+
+.user_head{
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
+  background-color: var(--background);
+}
+.name{
+  max-width: 200rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .personal_edit{
   padding: 15rpx;

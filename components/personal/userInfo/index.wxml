@@ -1,19 +1,19 @@
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view class="userInfo">
 	<view class="userInfo_left">
-		<image wx:if="{{url && userInfo.imgPath}}" bindtap="previewPic" data-src="{{userInfo.imgPath}}" src="{{url+userInfo.imgPath}}"></image>
-		<image wx:else src="{{url+userInfo.imgPath}}"></image>
+		<image wx:if="{{url && userInfo.imgPath}}" class="user_head" bindtap="previewPic" data-src="{{userInfo.imgPath}}" src="{{url+userInfo.imgPath}}"></image>
+		<image wx:else class="user_head" src="{{url+userInfo.imgPath}}"></image>
 		<view class="personal_edit">
-			<navigator class="navigator" url="{{'/pages/personal/pages/edit/index?img='+userInfo.imgPath+'&intro='+userInfo.introduce}}">编辑资料</navigator>
+			<view class="navigator" bindtap="gotoEdit">编辑资料</view>
 		</view>
 		<view>积分：{{userInfo.score}}</view>
 	</view>
 	<view class="userInfo_right">
 		<view class="userInfo_right_personalMsg">
-			<view>{{userInfo.userName}}</view>
+			<view class="name">{{userInfo.userName?userInfo.userName:"未登录"}}</view>
 			<view class="userInfo_right_personalMsg_item">
 				<image class="user_identity_icon" src="{{userInfo.role == 3 ? '/img/identity/student.svg':userInfo.role == 2 ? '/img/identity/volunteer.svg':userInfo.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
-				<text class="user_identity_text">{{userInfo.role == 3 ? "学生":userInfo.role == 2 ? "志愿者":userInfo.role == 4 ? "管理员":"老师"}}</text>
+				<text class="user_identity_text">{{userInfo.role == 1 ? "教师":userInfo.role == 2 ? "志愿者":userInfo.role == 4 ? "管理员":"学生"}}</text>
 			</view>
 			<!-- <view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/degree.svg"></image>
@@ -21,7 +21,7 @@
 			</view> -->
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/level.svg"></image>
-				<view>初出茅庐</view>
+				<view>{{userInfo.score>200?"大显身手":userInfo.score>100?"游刃有余":userInfo.score>30?"小有成就":"初出茅庐"}}</view>
 			</view>
 		</view>
 		<view class="userInfo_right_introduce"><text decode="true">{{util.format(userInfo.introduce)}}</text></view>

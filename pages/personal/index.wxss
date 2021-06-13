@@ -9,3 +9,6 @@
   border-radius: 5rpx;
   box-shadow: 0 8rpx 8rpx var(--background);
 }
+.btn{
+  margin-top: 200rpx;
+}

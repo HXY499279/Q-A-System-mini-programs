@@ -3,6 +3,14 @@ import { upLoadFile } from '../api'
 
 class httpRequest {
   /**
+   * 登录
+   */
+  login = (param) =>httpUtil({url:"/casLogin",param})
+  /** 
+   * 获取绑定的用户信息
+  */
+  getBindUserInfo = (param) =>httpUtil({url:"/account/getAccountByUniqueId",param})
+  /**
    * 根据用户学院获取课程信息
    * @param {object} param url,data,method,head
    */

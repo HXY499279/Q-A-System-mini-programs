@@ -58,19 +58,19 @@
 				</block>
 			</view>
 			<view class="box">
-				<view class="other_question_title" bindtap="gotoQuestionList">
+				<view class="other_question_title" data-id="{{1}}" data-name="其他疑难" bindtap="gotoQuestionList">
 					<title icon="/img/identity/volunteer.svg" title="其他疑难" />
 					<image src="/img/common/show.svg" class="show"></image>
 				</view>
 
-				<detail-item-box bindtap="togoQuestionDetail">
+				<detail-item-box wx:if="{{otherDetail.question}}" bindtap="togoQuestionDetail" answer="{{otherDetail.answer}}">
 					<view slot="title" class="title">
 						<view class="title_text">
-							怎样才能成功保研？觉得开导开导开导开导看
+							{{otherDetail.question.title}}
 						</view>
-						<view class="title_state">已解决</view>
+						<view class="title_state {{otherDetail.question.state?'is_solute':'un_solute'}}">{{otherDetail.question.state?"已解决":"未解决"}}</view>
 					</view>
-					<view slot="bl_operate">1 赞同 1 收藏 </view>
+					<view slot="bl_operate">{{otherDetail.question.collectionCount}} 收藏 {{otherDetail.question.answerCount}} 回答 </view>
 				</detail-item-box>
 			</view>
 		</view>

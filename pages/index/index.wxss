@@ -81,6 +81,12 @@
   color: var(--theme);
   white-space: nowrap;
 }
+.is_solute{
+  color: var(--theme);
+}
+.un_solute{
+  color:var(--unsoluteColor);
+}
 .choose_college_mask{
   position: fixed;
   width: 100vw;

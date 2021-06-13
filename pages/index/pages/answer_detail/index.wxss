@@ -22,14 +22,25 @@
 }
 .next_botton{
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   right: 0;
   top:60vh;
-  background-color: rgb(206, 201, 201);
-  opacity:.5;
-  height: 50rpx;
-  line-height: 50rpx;
-  border-top-left-radius: 25rpx;
-  border-bottom-left-radius: 25rpx; 
-  padding: 0 10rpx;
-
+  background-color: white;
+  opacity:.8;
+  width:100rpx;
+  height:100rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+  box-shadow: 0 5rpx 15rpx -5rpx rgba(0,0,0,.5);
+}
+.next_icon{
+  width:30rpx;
+  height:30rpx
+}
+.next_text{
+  font-size: 22rpx;
 }

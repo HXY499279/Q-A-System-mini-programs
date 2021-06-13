@@ -1,7 +1,7 @@
 // pages/email/index.js
 import httpRequest from '../../utils/request/index'
 import {
-  getStorageItem,mergeObj
+  getStorageItem, mergeObj
 } from '../../utils/api'
 Page({
 
@@ -9,13 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: false,
     currentType: "dynamic",
     dynamicList: [],
     invitationList: [],
     collectionList: [],
     myquestionList: [],
-    totalPages:1,
-    currentPage:0,
+    totalPages: 1,
+    currentPage: 0,
     //邮件模块上面的导航栏
     topBar: [{
       "icon": "/img/email/dynamic.svg",
@@ -57,14 +58,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getDynamic();
-  },
+    const accountId = wx.getStorageSync('accountId')
+    if (accountId) {
+      this.setData({
+        isLogin: true
+      })
+      this.getDynamic();
+    } else {
+      wx.showToast({
+        title: '请登录',
+        icon: 'none'
+      })
+      this.setData({
+        totalPages: 0
+      })
 
-  onShow: function () {
-    //消除红点
-    wx.removeTabBarBadge({
-      index: 3
-    })
+    }
   },
 
   changeItem: function (e) {
@@ -98,6 +107,7 @@ Page({
   },
 
   getDynamic: function () {
+    if (!this.data.isLogin) return;
     getStorageItem("accountId")
       .then(accountId => {
         const data = {
@@ -113,14 +123,15 @@ Page({
         this.pageData.dynamicTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           dynamicList: [...this.data.dynamicList, ...res.data.data.list],
-          totalPages:this.pageData.dynamicTotalPages,
-          currentPage:this.pageData.dynamicCurrentPage
+          totalPages: this.pageData.dynamicTotalPages,
+          currentPage: this.pageData.dynamicCurrentPage
         })
       })
-      .catch(err => {})
+      .catch(err => { })
   },
 
   getInvitation: function () {
+    if (!this.data.isLogin) return;
     getStorageItem("accountId")
       .then(accountId => {
         const data = {
@@ -135,14 +146,15 @@ Page({
         this.pageData.invitationTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           invitationList: res.data.data.list,
-          totalPages:this.pageData.invitationTotalPages,
-          currentPage:this.pageData.invitationCurrentPage
+          totalPages: this.pageData.invitationTotalPages,
+          currentPage: this.pageData.invitationCurrentPage
         })
       })
-      .catch(err => {})
+      .catch(err => { })
   },
 
   getCollection: function () {
+    if (!this.data.isLogin) return;
     getStorageItem("accountId")
       .then(accountId => {
         const data = {
@@ -158,14 +170,15 @@ Page({
         this.pageData.collectionTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           collectionList: [...this.data.collectionList, ...res.data.data.list],
-          totalPages:this.pageData.collectionTotalPages,
-          currentPage:this.pageData.collectionCurrentPage
+          totalPages: this.pageData.collectionTotalPages,
+          currentPage: this.pageData.collectionCurrentPage
         })
       })
-      .catch(err => {})
+      .catch(err => { })
   },
 
   getMyqustion: function () {
+    if (!this.data.isLogin) return;
     getStorageItem("accountId")
       .then(accountId => {
         const data = {
@@ -181,17 +194,29 @@ Page({
         this.pageData.myqustionTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           myquestionList: [...this.data.myquestionList, ...res.data.data.list],
-          totalPages:this.pageData.myqustionTotalPages,
-          currentPage:this.pageData.myquestionCurrentPage
+          totalPages: this.pageData.myqustionTotalPages,
+          currentPage: this.pageData.myquestionCurrentPage
         })
       })
-      .catch(err => {})
+      .catch(err => { })
   },
 
+  onShow: function () {
+    wx.removeTabBarBadge({
+      index: 3
+    })
+    const accountId = wx.getStorageSync('accountId')
+    if (accountId && !this.data.isLogin) {
+      this.setData({
+        isLogin: true
+      }, wx.startPullDownRefresh())
+    }
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if (!this.data.isLogin) return;
     const type = this.data.currentType;
     switch (type) {
       case "dynamic":
@@ -222,6 +247,7 @@ Page({
   },
 
   onPullDownRefresh: function () {
+    if (!this.data.isLogin) return;
     const type = this.data.currentType;
     const data = {
       dynamicTotalPages: 1,
@@ -238,23 +264,23 @@ Page({
       invitationList: [],
       collectionList: [],
       myquestionList: []
-    },()=>{
-    mergeObj(this.pageData,data);
-   switch (type) {
-      case "dynamic":
+    }, () => {
+      mergeObj(this.pageData, data);
+      switch (type) {
+        case "dynamic":
           this.getDynamic();
-        break;
-      case "invitation":
+          break;
+        case "invitation":
           this.getInvitation();
-        break;
-      case "collection":
+          break;
+        case "collection":
           this.getCollection();
-        break;
-      case "myquestion":
+          break;
+        case "myquestion":
           this.getMyqustion();
-        break;
-    }
-    })   
+          break;
+      }
+    })
     wx.stopPullDownRefresh()
   }
 })

@@ -19,10 +19,10 @@ const chooseImg = function (count, sizeType = ['original', 'compressed'], source
   })
 }
 
-const getStorageItem = function (kay) {
+const getStorageItem = function (key) {
   return new Promise((resolve, reject) => {
     wx.getStorage({
-      key: kay,
+      key: key,
       success: (res) => resolve(res.data),
       fail: (err) => reject(err)
     })

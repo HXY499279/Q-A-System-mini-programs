@@ -10,6 +10,9 @@
 		</view>
 		<view wx:if="{{answerDetail.commentCount > 2}}" class="show_comments" bindtap="showComments">查看全部评论 >> </view>
 	</view>
-	<view class="next_botton"  bindtap="showNext" >查看下个回答>></view>
+	<view class="next_botton"  bindtap="showNext" >
+		<image src="/img/common/show.svg" class="next_icon"></image>
+		<view class="next_text">下一个</view>
+	</view>
 	<i-toast id="toast" />
 </view>

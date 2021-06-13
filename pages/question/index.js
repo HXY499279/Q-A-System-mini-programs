@@ -12,6 +12,7 @@ const app = getApp();
 Page({
   data: {
     currentCategory: "",
+    isLogin: false
   },
   /**
    * 生命周期函数--监听页面显示
@@ -28,50 +29,60 @@ Page({
    * 点击提交
    */
   handleClick: function () {
-    const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
-
-    const subjectId = app.chooseSubjectId;
-    if (!title || !describes) {
+    const accountId = wx.getStorageSync('accountId')
+    if (accountId) {
+      const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
+      const subjectId = app.chooseSubjectId;
+      if (!title || !describes) {
+        $Toast({
+          content: '请完善标题或内容',
+          type: 'warning'
+        });
+        return;
+      }
+      if (!subjectId) {
+        $Toast({
+          content: '请选择科目',
+          type: 'warning'
+        });
+        return;
+      }
+      getStorageItem("accountId")
+        .then(accountId => {
+          wx.showToast({ title: '发布中...', icon: 'loading', duration: 10000, mask: true });
+          let data = { accountId, title, describes, subjectId };
+          if (imgTempPath.length === 0) return httpRequest.submitQuestion({ data })
+          else return httpRequest.submitQuestion({ filePath: imgTempPath[0], data })
+        })
+        .then(res => {
+          if (res.statusCode !== 200) return Promise.reject(res)
+          else {
+            let userInfo = wx.getStorageSync('userInfo');
+            userInfo.questionCount++;
+            wx.setStorageSync('userInfo',userInfo);
+            app.subjectId = undefined
+            app.chooseCategory = ''
+            wx.hideToast()
+            this.clearInput()
+            this.setData({
+              currentCategory: ''
+            })
+            wx.showToast({
+              title: '发布成功',
+              icon: 'success',
+              duration: 1500
+            });
+          }
+        })
+        .catch(err => {
+          wx.showToast({ title: '发布失败', icon: 'error', duration: 1500, mask: true });
+        })
+    } else {
       $Toast({
-        content: '请完善标题或内容',
+        content: "未登录",
         type: 'warning'
       });
-      return;
     }
-    if (!subjectId) {
-      $Toast({
-        content: '请选择科目',
-        type: 'warning'
-      });
-      return;
-    }
-    getStorageItem("accountId")
-      .then(accountId => {
-        wx.showToast({title: '发布中...', icon: 'loading', duration: 10000,mask:true});
-        let data = { accountId, title, describes, subjectId };
-        if (imgTempPath.length === 0) return httpRequest.submitQuestion({ data })
-        else return httpRequest.submitQuestion({ filePath: imgTempPath[0], data })
-      })
-      .then(res => {
-        if(res.statusCode!==200) return Promise.reject(res)
-        else{
-          app.subjectId = undefined,
-          app.chooseCategory = '',
-          wx.hideToast();
-          this.clearInput();
-          this.setData({
-            currentCategory:''
-          })
-          wx.showToast({
-            title: '发布成功',
-            icon: 'success',
-            duration:1500
-          });
-        }
-      })
-      .catch(err => {
-        wx.showToast({title: '发布失败', icon: 'error', duration: 1500,mask:true});
-      })
   },
 
   /**
@@ -95,17 +106,17 @@ Page({
   /**
   * 清除输入框的内容
   */
- clearInput:function(){
-  app.chooseSubjectId = undefined;
-  app.chooseCategory = "";
-  const input = this.selectComponent("#picture_text_box");
-  input.clearInput();
-},
+  clearInput: function () {
+    app.chooseSubjectId = undefined;
+    app.chooseCategory = "";
+    const input = this.selectComponent("#picture_text_box");
+    input.clearInput();
+  },
 
   /**
    * 隐藏页面时提示框消失
    */
-  onHide:function(){
+  onHide: function () {
     wx.hideToast()
   },
 

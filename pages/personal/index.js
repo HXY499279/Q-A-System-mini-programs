@@ -7,96 +7,183 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{}
+    userInfo: {},
+    isLogin: false
+  },
+  pageData: {
+    showGetInfo: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserInfo();
+    try {
+      const accountId = wx.getStorageSync('accountId')
+      if (accountId) {
+        httpRequest.getAccountById({ accountId })
+          .then(res => {
+            if (res.data.code !== 1) return Promise.reject();
+            wx.setStorageSync('userInfo', res.data.data)
+            this.setData({
+              userInfo: res.data.data,
+              isLogin: true
+            })
+          })
+          .catch(err => {
+            wx.showToast({
+              title: '网络繁忙',
+              icon: 'error'
+            })
+          })
+      } else {
+        const uniqueId = wx.getStorageSync('uniqueId')
+        if (uniqueId) {
+          httpRequest.getBindUserInfo({ uniqueId })
+            .then(res => {
+              if (res.data.code !== 1) return Promise.reject();
+              if (res.data.data === null) {
+                wx.showToast({
+                  title: '请登录',
+                  icon: 'none'
+                });
+                return {
+                  data: {
+                    code: 1,
+                    data: null
+                  }
+                };
+              }
+              wx.setStorageSync("accountId", res.data.data.accounId);
+              wx.setStorageSync("currentCollege",res.data.data.college);
+              return httpRequest.getAccountById({ accountId: res.data.data.accounId })
+            })
+            .then(res => {
+              if (res.data.code !== 1) return Promise.reject();
+              if (res.data.data === null) return;
+              wx.setStorageSync('userInfo', res.data.data)
+              this.setData({
+                userInfo: res.data.data,
+                isLogin: true
+              })
+            })
+            .catch(err => {
+              wx.showToast({
+                title: '网络繁忙',
+                icon: 'error'
+              })
+            })
+        } else {
+          wx.showToast({
+            title: '请登录',
+            icon: 'none'
+          })
+        }
+      }
+    }
+    catch (err) { }
   },
 
   /**
-   * 获取用户个人信息 头像，名字，提问数量...
+   * 点击登录
    */
-  getUserInfo:function(){
-    getStorageItem("accountId")
-    .then(accountId=>{
-      return  httpRequest.getAccountById({accountId})
+  gotoLogin: function () {
+    /**生成随机数最为用户uniqueId */
+    const dataString = new Date().getTime();
+    const randomString = this.getRandom();
+    const uniqueId = randomString + dataString;
+    wx.showToast({
+      title: '跳转中...',
+      icon: 'loading',
+      mask: true
     })
-    .then(res=>{
-      if(!res.data.code) return Promise.reject();
-      wx.setStorageSync('userInfo', res.data.data)
-      this.setData({
-        userInfo:res.data.data
-      })
-    })
-    .catch(err=>{
-      try{
-         getStorageItem("userInfo")
-         .then(userInfo=>{
-           this.setData({
-             userInfo
-           })
-         })
-      }
-      catch(err){
-        wx.showToast({
-          title: '当前网络忙',
-          icon:'error',
-          duration:1500
+    httpRequest.login({ uniqueId })
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject()
+        let src = res.data.data;
+        wx.setStorageSync("Loginsrc", src);
+        wx.setStorageSync("uniqueId", uniqueId);
+        this.pageData.showGetInfo = true;
+        wx.redirectTo({
+          url: `/pages/casLogin/index`
         })
-      }
-    })
+      })
+      .catch(err => {
+        wx.showToast({
+          title: '网络出错',
+          icon: 'error'
+        })
+      })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
+  /**生成12位a-zA-Z0-9的随机数 */
+  getRandom: function () {
+    const e = 12;
+    const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const length = t.length;
+    let n = "";
+    for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * length));
+    return n
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    this.getUserInfo();
-    wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    if (this.pageData.showGetInfo) {
+      try {
+        const uniqueId = wx.getStorageSync('uniqueId')
+        if (uniqueId) {
+          httpRequest.getBindUserInfo({ uniqueId })
+            .then(res => {
+              if (res.data.code !== 1) return Promise.reject();
+              if (res.data.data === null) {
+                wx.showToast({
+                  title: '请登录',
+                  icon: 'none'
+                })
+                return {
+                  data: {
+                    code: 1,
+                    data: null
+                  }
+                }
+              }
+              wx.setStorageSync("accountId", res.data.data.accounId);
+              wx.setStorageSync("currentCollege",res.data.data.college);
+              return httpRequest.getAccountById({ accountId: res.data.data.accounId })
+            })
+            .then(res => {
+              if (res.data.code !== 1) return Promise.reject();
+              if (res.data.data === null) return;
+              wx.setStorageSync('userInfo', res.data.data);
+              this.pageData.showGetInfo = false;
+              this.setData({
+                userInfo: res.data.data,
+                isLogin: true
+              })
+            })
+            .catch(err => {
+              wx.showToast({
+                title: '网络出错啦',
+                icon: 'error'
+              })
+            })
+        }
+      }
+      catch (e) {
+        wx.showToast({
+          title: '请登录',
+          icon: 'none'
+        })
+      }
+    } else if (this.data.isLogin) {
+      getStorageItem("userInfo")
+        .then(userInfo => {
+          this.setData({
+            userInfo
+          })
+        })
+    }
   }
 })

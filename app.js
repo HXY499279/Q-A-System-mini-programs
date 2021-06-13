@@ -38,6 +38,6 @@ App({
     myAnswer:null
   },
   url:{
-    currentUrl:"http://202.202.43.250:8080"
+    currentUrl:"https://xscqa.cqupt.edu.cn/question/"
   }
 })

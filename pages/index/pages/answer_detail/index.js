@@ -35,9 +35,8 @@ Page({
   onLoad: function (options) {
     const questionDetail = (JSON.parse(decodeURIComponent(options.questionDetail)));
     const { currentIndex,totalRows,sortOrder,questionId,answerId} = options;
-    mergeObj(this.pageData.answer,{currentPage:currentIndex*1+1,totalRows,sortOrder,questionId});
+    mergeObj(this.pageData.answer,{currentPage:currentIndex*1,totalRows,sortOrder,questionId});
     this.pageData.answerId = answerId;
-    console.log(this.pageData.answer)
     this.setData({
       questionDetail
     })
@@ -92,8 +91,17 @@ Page({
   onAdopt:function(){
     let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
     let newQuestionDetail =  JSON.parse(JSON.stringify(this.data.questionDetail));
-    newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
-    newQuestionDetail.state = newQuestionDetail.state?0:1;
+    if((newAnswerDetail.isAdopt && newQuestionDetail.state)||(!newAnswerDetail.isAdopt && !newQuestionDetail.state) ){
+      newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
+      newQuestionDetail.state = newQuestionDetail.state?0:1;
+      
+      const userInfo = wx.getStorageSync('userInfo')
+      newAnswerDetail.isAdopt ? userInfo.solveCount++:userInfo.solveCount--;
+      wx.setStorageSync('userInfo', userInfo)
+    }
+    else if(!newAnswerDetail.isAdopt && newQuestionDetail.state ){
+      newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
+    }
     this.setData({
       answerDetail:newAnswerDetail,
       questionDetail:newQuestionDetail
@@ -133,6 +141,10 @@ Page({
     })
     .then(res=>{
      if(!res.data.code) return Promise.reject();
+     const isAgree = this.data.answerDetail.isAgree
+      let userInfo = wx.getStorageSync('userInfo');
+      isAgree ? userInfo.agreeCount++:userInfo.agreeCount--;
+      wx.setStorageSync('userInfo', userInfo);
     })
     .catch(err=>{})
   },
@@ -165,7 +177,6 @@ Page({
         return httpRequest.getAnswerList(data)
       })
       .then(res=>{
-        console.log(res);
         if(res.data.code!==1) return Promise.reject();
         const nextAnswerId = res.data.data.list[0].answerId;
         const questionDetail = this.data.questionDetail;

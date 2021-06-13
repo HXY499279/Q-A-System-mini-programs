@@ -4,18 +4,18 @@ Component({
    * 组件的属性列表
    */
   properties: {
-      "icon":{
-        type:String,
-        value:""
-      },
-      "type":{
-        type:String,
-        value:""
-      },
-      "url":{
-        type:String,
-        value:""
-      }
+    "icon": {
+      type: String,
+      value: ""
+    },
+    "type": {
+      type: String,
+      value: ""
+    },
+    "url": {
+      type: String,
+      value: ""
+    }
   },
 
   /**
@@ -29,6 +29,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    gotoUrl: function () {
+      const accountId = wx.getStorageSync('accountId')
+      if (!accountId) {
+        wx.showToast({
+          title:'未登录',
+          icon:'none'
+        })
+        return;
+      }
+      wx.navigateTo({
+        url:this.properties.url
+      })
+    }
   }
 })

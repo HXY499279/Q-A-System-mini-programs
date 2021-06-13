@@ -6,4 +6,6 @@
     <item icon="/img/userInfo/feedback.svg" type="反馈" url="./pages/feedback/index"/>
     <item icon="/img/userInfo/about.svg"  type="关于" url="./pages/aboutApp/index"/>
   </view>
+	<!-- <button  class="btn" hover-class="btn-hover" style="width:90vw" bindtap="gotoLogin">去登陆</button> -->
+	<button wx:if="{{!isLogin}}" class="btn" hover-class="btn-hover" style="width:90vw" bindtap="gotoLogin">去登陆</button>
 </view>
