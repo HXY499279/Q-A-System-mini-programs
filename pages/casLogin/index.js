@@ -14,6 +14,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       url:wx.getStorageSync('Loginsrc')
+      // url:'https://www.baidu.com'
     })
   }
 })

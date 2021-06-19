@@ -24,7 +24,7 @@ Page({
   submitAnswer() {
     const { content, img } = this.getValues();
 
-    if (!content && img.length === 0) {
+    if (!content.trim() && img.length === 0) {
       $Toast({
         content: '请输入回答',
         type: 'warning'

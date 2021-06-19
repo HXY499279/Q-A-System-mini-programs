@@ -22,7 +22,8 @@ Page({
   },
 
   pageData: {
-    showTest: true
+    showTest: true,
+    currentCollege:''
   },
 
   onLoad() {
@@ -169,7 +170,6 @@ Page({
     }
     httpRequest.getAllCollege()
       .then(res => {
-        console.log(res)
         if (res.data.code !== 1) return Promise.reject();
         this.setData({
           collegeList: res.data.data,
@@ -282,9 +282,10 @@ Page({
               }
             }
           }
-          wx.setStorageSync("accountId", res.data.data.accounId);
+          wx.setStorageSync("accountId", res.data.data.accountId);
           wx.setStorageSync("currentCollege", res.data.data.college);
-          return httpRequest.getAccountById({ accountId: res.data.data.accounId })
+          this.pageData.currentCollege = res.data.data.college;
+          return httpRequest.getAccountById({ accountId: res.data.data.accountId })
         })
         .then(res => {
           if (res.data.code !== 1) return Promise.reject();
@@ -292,7 +293,8 @@ Page({
           wx.setStorageSync('userInfo', res.data.data);
           this.pageData.showTest = false;
           this.setData({
-            isLogin: true
+            isLogin: true,
+            currentCollege:this.pageData.currentCollege
           }, () => { wx.startPullDownRefresh() })
         })
         .catch(err => {

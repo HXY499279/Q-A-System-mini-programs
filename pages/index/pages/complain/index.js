@@ -33,7 +33,7 @@ Page({
    */
   submitReport: function () {
     const { content,img } = this.getValues();
-    if (!content) {
+    if (!content.trim()) {
       $Toast({
         content: '请输入举报内容',
         type: 'warning'

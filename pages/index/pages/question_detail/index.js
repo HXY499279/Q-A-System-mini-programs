@@ -236,6 +236,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '兄弟请看这道题！',
+      success: function (shareTickets) {
+      },
+      fail: function (res) {
+      },
+      complete:function(res){
+      }
+    }
   }
 })

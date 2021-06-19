@@ -11,6 +11,7 @@ Page({
     intro:""
   },
 
+
   onLoad: function (options) {
     getStorageItem("userInfo")
     .then(userInfo=>{
@@ -67,10 +68,9 @@ Page({
         content: '更新成功！',
         type: 'success'
       });
-      //返回上一个页面并刷新
-      let pages = getCurrentPages();
-      let beforePage = pages[pages.length - 2];
-      beforePage.getUserInfo();
+      let userInfo = wx.getStorageSync('userInfo');
+      userInfo.introduce = introduction;
+      wx.setStorageSync('userInfo', userInfo)
       wx.navigateBack();
     })
     .catch(err=>{

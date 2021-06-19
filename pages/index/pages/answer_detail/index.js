@@ -80,7 +80,8 @@ Page({
       const {currentPage,pageSize,totalPages,totalRows} = res.data.data.pageInfo;
       mergeObj(this.pageData.comment,{currentPage,pageSize,totalPages,totalRows})
       this.setData({
-        commentList:[...this.data.commentList,...res.data.data.list]
+        // commentList:[...this.data.commentList,...res.data.data.list]
+        commentList:[...res.data.data.list]
       })
     })
   },
@@ -201,7 +202,15 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: '兄弟请看这道题！',
+  //     success: function (shareTickets) {
+  //     },
+  //     fail: function (res) {
+  //     },
+  //     complete:function(res){
+  //     }
+  //   }
+  // }
 })

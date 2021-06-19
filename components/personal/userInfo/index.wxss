@@ -9,7 +9,7 @@
   box-shadow: 0 8rpx 8rpx var(--background);
 }
 .userInfo_left{
-  width: 30%;
+  width: 27%;
   text-align: center;
 }
 

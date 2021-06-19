@@ -33,7 +33,7 @@ Page({
     if (accountId) {
       const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
       const subjectId = app.chooseSubjectId;
-      if (!title || !describes) {
+      if (!title.trim() || !describes.trim()) {
         $Toast({
           content: '请完善标题或内容',
           type: 'warning'

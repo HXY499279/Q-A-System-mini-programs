@@ -2,7 +2,7 @@
 <view class="userInfo">
 	<view class="userInfo_left">
 		<image wx:if="{{url && userInfo.imgPath}}" class="user_head" bindtap="previewPic" data-src="{{userInfo.imgPath}}" src="{{url+userInfo.imgPath}}"></image>
-		<image wx:else class="user_head" src="{{url+userInfo.imgPath}}"></image>
+		<image wx:else class="user_head"></image>
 		<view class="personal_edit">
 			<view class="navigator" bindtap="gotoEdit">编辑资料</view>
 		</view>

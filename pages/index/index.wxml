@@ -9,7 +9,7 @@
 				<block wx:if="{{imgUrls.length!==0 && url}}">
 					<block wx:for="{{imgUrls}}" wx:key="item">
 						<swiper-item>
-							<image  style="display:block;margin:0 auto;padding:0;width:100vw;height:100%" mode="widthFix" src="{{url+item.url}}" class="img" />
+							<image  style="display:block;margin:0 auto;padding:0;width:100vw;height:100%;" mode="aspectFill" src="{{url+item.url}}" class="img" />
 						</swiper-item>
 					</block>
 				</block>

@@ -40,7 +40,7 @@ Page({
   handleSubmit:function(){
     const {tempFilePath:{imgTempPath},textAreat:{currentWord},titleInput} = this.getValues();
     const content = titleInput+currentWord;
-    if(!content.trim() && imgTempPath.length===0){
+    if(!titleInput.trim() && currentWord.trim() && imgTempPath.length===0){
       $Toast({
         content: "请输入内容或图片",
         type: 'warning'
@@ -76,7 +76,6 @@ Page({
       });
     })
     
-
   },
 
   getfeedbackList:function(){

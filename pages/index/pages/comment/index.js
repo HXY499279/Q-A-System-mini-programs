@@ -24,7 +24,7 @@ Page({
   },
   handleSubmit:function(){
     const {currentWord:content} = this.getValues();
-    if(!content){
+    if(!content.trim()){
       $Toast({
         content: '请输入评论',
         type: 'warning'
@@ -55,7 +55,7 @@ Page({
       let pages = getCurrentPages();
       let beforePage = pages[pages.length - 2];
       beforePage.getComment();
-      setTimeout(()=>wx.navigateBack(),1500)
+      setTimeout(()=>wx.navigateBack(),1000)
     })
   },
 

@@ -37,6 +37,7 @@
 }
 .course_item{
   display: flex;
+  /* background: content-box; */
   flex-direction: column;
   width: 100rpx;
   text-align: center;
