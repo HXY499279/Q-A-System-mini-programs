@@ -18,7 +18,7 @@ Page({
     subjectId: 0,
     timer: null,
     currentPage: 1,
-    pageSize: 5,
+    pageSize: 8,
     totalPages: 1,
     totalRows: 0,
     keyWords: "",

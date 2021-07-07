@@ -106,7 +106,9 @@ Page({
   onPullDownRefresh:function(){
     this.pageData.currentPage = 1;
     const data = {pageSize:this.pageData.pageSize,currentPage:this.pageData.currentPage}
-    this.setNewsList(data)
+    this.setData({
+      messageList:[]
+    }, this.setNewsList(data))
     wx.stopPullDownRefresh();
   }
 })
