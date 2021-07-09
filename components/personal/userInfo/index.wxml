@@ -9,16 +9,16 @@
 		<view>积分：{{userInfo.score}}</view>
 	</view>
 	<view class="userInfo_right">
-		<view class="userInfo_right_personalMsg">
-			<view class="name">{{userInfo.userName?userInfo.userName:"未登录"}}</view>
+		<view class="name">{{userInfo.userName?userInfo.userName:"未登录"}}</view>
+		<view class="userInfo_right_personalMsg">		
 			<view class="userInfo_right_personalMsg_item">
 				<image class="user_identity_icon" src="{{userInfo.role == 3 ? '/img/identity/student.svg':userInfo.role == 2 ? '/img/identity/volunteer.svg':userInfo.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
 				<text class="user_identity_text">{{userInfo.role == 1 ? "教师":userInfo.role == 2 ? "志愿者":userInfo.role == 4 ? "管理员":"学生"}}</text>
 			</view>
-			<!-- <view class="userInfo_right_personalMsg_item">
+			<view class="userInfo_right_personalMsg_item" >
 				<image src="/img/userInfo/degree.svg"></image>
-				<view>本科</view>
-			</view> -->
+				<view class="college">{{userInfo.college}}</view>
+			</view>
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/level.svg"></image>
 				<view>{{userInfo.score>200?"大显身手":userInfo.score>100?"游刃有余":userInfo.score>30?"小有成就":"初出茅庐"}}</view>

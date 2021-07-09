@@ -22,7 +22,7 @@ Page({
     questionId: undefined,
     currentHotPage: 1,
     currentNewPage: 1,
-    pageSize: 4,
+    pageSize: 6,
     totalPages: 1,
     totalRows: 0,
     hotAnswerList: [],

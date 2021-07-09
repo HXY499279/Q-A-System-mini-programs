@@ -20,10 +20,12 @@
   background-color: var(--background);
 }
 .name{
-  max-width: 200rpx;
+  /* max-width: 200rpx;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
+  font-size: 32rpx;
+  /* padding: ; */
 }
 .personal_edit{
   padding: 15rpx;
@@ -39,7 +41,7 @@
 }
 .userInfo_right_personalMsg{
   display: flex;
-  padding: 20rpx 10rpx 20rpx 0 ;
+  padding: 15rpx 10rpx 15rpx 0 ;
   justify-content: space-between;
 }
 
@@ -55,7 +57,7 @@
 
 .userInfo_right_introduce{
   color: rgb(128,128,128);
-  height: 76rpx;
+  height: 40rpx;
   overflow: auto;
 }
 
@@ -73,4 +75,10 @@
 .user_track_item>view:nth-child(2){
   padding: 10rpx 0;
  color: #999999;
+}
+.college{
+  max-width: 180rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

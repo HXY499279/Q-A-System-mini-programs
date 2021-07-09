@@ -11,7 +11,8 @@ Page({
     isLogin: false
   },
   pageData: {
-    showGetInfo: false
+    showGetInfo: false,
+    college:''
   },
 
   /**
@@ -24,9 +25,12 @@ Page({
         httpRequest.getAccountById({ accountId })
           .then(res => {
             if (res.data.code !== 1) return Promise.reject();
-            wx.setStorageSync('userInfo', res.data.data)
+            let college = wx.getStorageSync('college');
+            let userInfo =  res.data.data;
+            userInfo.college = college;
+            wx.setStorageSync('userInfo', userInfo)
             this.setData({
-              userInfo: res.data.data,
+              userInfo:userInfo,
               isLogin: true
             })
           })
@@ -56,14 +60,18 @@ Page({
               }
               wx.setStorageSync("accountId", res.data.data.accountId);
               wx.setStorageSync("currentCollege",res.data.data.college);
+              wx.setStorageSync('college', res.data.data.college)
+              this.pageData.college = res.data.data.college;
               return httpRequest.getAccountById({ accountId: res.data.data.accountId })
             })
             .then(res => {
               if (res.data.code !== 1) return Promise.reject();
               if (res.data.data === null) return;
-              wx.setStorageSync('userInfo', res.data.data)
+              let userInfo = res.data.data;
+              userInfo.college = this.pageData.college;
+              wx.setStorageSync('userInfo',userInfo)
               this.setData({
-                userInfo: res.data.data,
+                userInfo: userInfo,
                 isLogin: true
               })
             })
@@ -118,18 +126,20 @@ Page({
 
   /**生成12位a-zA-Z0-9的随机数 */
   getRandom: function () {
-    const e = 12;
-    const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const length = t.length;
-    let n = "";
-    for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * length));
-    return n
+    // const e = 12;
+    // const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    // const length = t.length;
+    // let n = "";
+    // for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * length));
+    // return n
+    return "RB8WI933R5031625836096823"
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("onShow...")
     if (this.pageData.showGetInfo) {
       try {
         const uniqueId = wx.getStorageSync('uniqueId')
@@ -151,12 +161,16 @@ Page({
               }
               wx.setStorageSync("accountId", res.data.data.accountId);
               wx.setStorageSync("currentCollege",res.data.data.college);
+              wx.setStorageSync('college', res.data.data.college);
+              this.pageData.college = res.data.data.college;
               return httpRequest.getAccountById({ accountId: res.data.data.accountId })
             })
             .then(res => {
               if (res.data.code !== 1) return Promise.reject();
               if (res.data.data === null) return;
-              wx.setStorageSync('userInfo', res.data.data);
+              let userInfo = res.data.data;
+              userInfo.college = this.pageData.college;
+              wx.setStorageSync('userInfo', userInfo);
               this.pageData.showGetInfo = false;
               this.setData({
                 userInfo: res.data.data,
