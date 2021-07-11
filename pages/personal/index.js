@@ -126,20 +126,24 @@ Page({
 
   /**生成12位a-zA-Z0-9的随机数 */
   getRandom: function () {
-    // const e = 12;
-    // const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    // const length = t.length;
-    // let n = "";
-    // for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * length));
-    // return n
-    return "RB8WI933R5031625836096823"
+    const e = 12;
+    const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const length = t.length;
+    let n = "";
+    for (let i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * length));
+    return n
   },
 
+  logout:function(){
+    wx.clearStorageSync();
+    wx.redirectTo({
+      url: `/pages/casLogin/index?logoutsrc=https://ids.cqupt.edu.cn/authserver/logout`
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow...")
     if (this.pageData.showGetInfo) {
       try {
         const uniqueId = wx.getStorageSync('uniqueId')
@@ -173,7 +177,7 @@ Page({
               wx.setStorageSync('userInfo', userInfo);
               this.pageData.showGetInfo = false;
               this.setData({
-                userInfo: res.data.data,
+                userInfo: userInfo,
                 isLogin: true
               })
             })

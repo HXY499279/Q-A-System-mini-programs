@@ -15,7 +15,8 @@ Page({
 
   //该页面的全局变量
   pageData: {
-    subjectId: 0,
+    subjectId: undefined,
+    subjectName:'',
     timer: null,
     currentPage: 1,
     pageSize: 8,
@@ -30,13 +31,19 @@ Page({
     const { subjectId , subjectName} = options;
     const { state } = this.data;
     const { currentPage, pageSize } = this.pageData;
-    const data = {
-      subjectId, state, currentPage, pageSize
+    let data ;
+
+    if(subjectId == 'undefined') {
+      data = { subjectName, state, currentPage, pageSize}
+    }else {
+      data = {subjectId, state, currentPage, pageSize}
     };
+
     wx.setNavigationBarTitle({
       title: subjectName 
     })
     this.pageData.subjectId = subjectId;
+    this.pageData.subjectName = subjectName;
     this.setQuestionList(data);
   },
 
@@ -74,10 +81,10 @@ Page({
       const newState = detail.value ? 1 : 0;
       const newPageData = { totalPages: 1, totalRows: 0, currentPage: 1 };
       mergeObj(this.pageData, newPageData);
-      const { subjectId, currentPage, pageSize, keyWords } = this.pageData;
+      const { subjectId, currentPage, pageSize, keyWords,subjectName } = this.pageData;
       const data = keyWords.trim() === "" ?
-        ({ subjectId, currentPage, pageSize, state: newState }) :
-        ({ subjectId, currentPage, pageSize, keyWords, state: newState })
+        subjectId != 'undefined' ? ({ subjectId, currentPage, pageSize, state: newState }) :({ subjectName, currentPage, pageSize, state: newState }) :
+        subjectId != 'undefined' ? ({ subjectId, currentPage, pageSize, keyWords, state: newState }):({ subjectName, currentPage, pageSize, keyWords, state: newState })
       this.setData({
         state: newState
       })
@@ -98,14 +105,14 @@ Page({
       const keyWords = e.detail.value;
       this.pageData.keyWords = keyWords;
       let data = {};
-      const { subjectId, currentPage, pageSize } = this.pageData;
+      const { subjectId, currentPage, pageSize ,subjectName} = this.pageData;
       const state = this.data.state;
 
       if (keyWords.trim() === "") {
-        data = { subjectId, state, currentPage, pageSize }
+        data = subjectId != 'undefined' ? { subjectId, state, currentPage, pageSize } : {subjectName,state, currentPage, pageSize}
       }
       else {
-        data = { subjectId, state, currentPage, pageSize, keyWords }
+        data = subjectId != 'undefined' ? { subjectId, state, currentPage, pageSize, keyWords }:{subjectName,state, currentPage, pageSize, keyWords }
       }
       this.setData({
         questionList: []
@@ -122,11 +129,11 @@ Page({
   onReachBottom: function () {
     if (this.pageData.totalPages > this.pageData.currentPage) {
       this.pageData.currentPage++;
-      const { keyWords, currentPage, pageSize, subjectId } = this.pageData;
+      const { keyWords, currentPage, pageSize, subjectId ,subjectName} = this.pageData;
       const state = this.data.state;
       let data = {};
-      if (keyWords) data = { currentPage, pageSize, subjectId, state, keyWords }
-      else data = { currentPage, pageSize, subjectId, state }
+      if (keyWords) data = subjectId != 'undefined' ? { currentPage, pageSize, subjectId, state, keyWords }:{currentPage, pageSize, subjectName, state, keyWords }
+      else data = subjectId != 'undefined' ? { currentPage, pageSize, subjectId, state }:{currentPage, pageSize,subjectName, state};
       this.setQuestionList(data)
     }
   },

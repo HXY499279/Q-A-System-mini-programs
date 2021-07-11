@@ -1,2 +1,2 @@
 <!--pages/casLogin/index.wxml-->
-<web-view src="{{url}}"> </web-view>
+<web-view src="{{url}}" bindload="bindload"> </web-view>

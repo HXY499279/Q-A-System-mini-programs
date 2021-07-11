@@ -8,4 +8,5 @@
   </view>
 	<!-- <button  class="btn" hover-class="btn-hover" style="width:90vw" bindtap="gotoLogin">去登陆</button> -->
 	<button wx:if="{{!isLogin}}" class="btn" hover-class="btn-hover" style="width:90vw" bindtap="gotoLogin">去登陆</button>
+	<button wx:if="{{isLogin}}" class="btn" hover-class="btn-hover" style="width:90vw" bindtap="logout">退出登录</button>
 </view>

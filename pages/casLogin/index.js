@@ -12,9 +12,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let url= options.logoutsrc;
+    if(!url){
+      url = wx.getStorageSync('Loginsrc');
+    } 
+    console.log(url)
     this.setData({
-      url:wx.getStorageSync('Loginsrc')
-      // url:'https://www.baidu.com'
+      url:url
     })
-  }
+  },
+
 })

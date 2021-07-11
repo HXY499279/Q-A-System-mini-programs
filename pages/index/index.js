@@ -222,10 +222,10 @@ Page({
   getOtherOneQuestion: function (params) {
     return new Promise((resolve, reject) => {
       const data = {
-        subjectId: 1,
         state: 0,
         currentPage: 1,
-        pageSize: 1
+        pageSize: 1,
+        subjectName:"高数"
       }
       httpRequest.getQuestionList(data)
         .then(res => {
@@ -284,6 +284,7 @@ Page({
           }
           wx.setStorageSync("accountId", res.data.data.accountId);
           wx.setStorageSync("currentCollege", res.data.data.college);
+          wx.setStorageSync("college", res.data.data.college)
           this.pageData.currentCollege = res.data.data.college;
           return httpRequest.getAccountById({ accountId: res.data.data.accountId })
         })
@@ -306,7 +307,10 @@ Page({
 
     }
   },
-
+  onHide:function(){
+    wx.stopPullDownRefresh()
+  },
+  
   onPullDownRefresh: function () {
     if (!this.data.isLogin) {
       wx.showToast({

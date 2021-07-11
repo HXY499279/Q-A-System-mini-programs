@@ -54,7 +54,6 @@ Page({
     httpRequest.getImgs({type:3})
     .then(res=>{
       if(res.data.code !==1) return Promise.reject();
-      console.log(res)
       this.setData({
         imgMsg:res.data.data[0]
       })

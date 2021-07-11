@@ -58,7 +58,7 @@
 				</block>
 			</view>
 			<view class="box">
-				<view class="other_question_title" data-id="{{1}}" data-name="其他疑难" bindtap="gotoQuestionList">
+				<view class="other_question_title" data-id="{{undefined}}" data-name="其他疑难" bindtap="gotoQuestionList">
 					<title icon="/img/identity/volunteer.svg" title="其他疑难" />
 					<image src="/img/common/show.svg" class="show"></image>
 				</view>

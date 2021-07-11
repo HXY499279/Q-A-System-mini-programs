@@ -10,3 +10,9 @@
   padding: 0 25rpx;
   margin-top: 10rpx;
 }
+.feedback_groupqq{
+  padding: 25rpx 0 0 0;
+  font-size: 25rpx;
+  text-align: center;
+  color: var(--grayWord);
+}
