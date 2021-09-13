@@ -96,9 +96,9 @@ Page({
       newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
       newQuestionDetail.state = newQuestionDetail.state?0:1;
       
-      const userInfo = wx.getStorageSync('userInfo')
-      newAnswerDetail.isAdopt ? userInfo.solveCount++:userInfo.solveCount--;
-      wx.setStorageSync('userInfo', userInfo)
+      // const userInfo = wx.getStorageSync('userInfo')
+      // newAnswerDetail.isAdopt ? userInfo.solveCount++:userInfo.solveCount--;
+      // wx.setStorageSync('userInfo', userInfo)
     }
     else if(!newAnswerDetail.isAdopt && newQuestionDetail.state ){
       newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
@@ -143,9 +143,9 @@ Page({
     .then(res=>{
      if(!res.data.code) return Promise.reject();
      const isAgree = this.data.answerDetail.isAgree
-      let userInfo = wx.getStorageSync('userInfo');
-      isAgree ? userInfo.agreeCount++:userInfo.agreeCount--;
-      wx.setStorageSync('userInfo', userInfo);
+      // let userInfo = wx.getStorageSync('userInfo');
+      // isAgree ? userInfo.agreeCount++:userInfo.agreeCount--;
+      // wx.setStorageSync('userInfo', userInfo);
     })
     .catch(err=>{})
   },
@@ -171,10 +171,10 @@ Page({
   showNext:function(){
     if(this.pageData.answer.totalRows>this.pageData.answer.currentPage){
       this.pageData.answer.currentPage++;
-      const {answerSortType,currentPage,pageSize,questionId,totalRows} = this.pageData.answer;
+      const {sortOrder,currentPage,pageSize,questionId,totalRows} = this.pageData.answer;
        getStorageItem("accountId")
       .then(accountId=>{
-        const data = {accountId,currentPage,pageSize,questionId,sortOrder:answerSortType};
+        const data = {accountId,currentPage,pageSize,questionId,sortOrder};
         return httpRequest.getAnswerList(data)
       })
       .then(res=>{
@@ -182,7 +182,7 @@ Page({
         const nextAnswerId = res.data.data.list[0].answerId;
         const questionDetail = this.data.questionDetail;
         wx.redirectTo({
-          url: `/pages/index/pages/answer_detail/index?answerId=${nextAnswerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentPage}&totalRows=${totalRows}&sortOrder=${answerSortType}&questionId=${questionDetail.questionId}`
+          url: `/pages/index/pages/answer_detail/index?answerId=${nextAnswerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentPage}&totalRows=${totalRows}&sortOrder=${sortOrder}&questionId=${questionDetail.questionId}`
         })
       })
      .catch(err=>{

@@ -111,7 +111,7 @@
   top: 20vh;
   overflow: scroll;
   z-index: 999;
-  box-shadow: 8rpx 8rpx 16rpx var(--background);
+  border:5rpx solid var(--background);
 }
 .choose_college_title{
   text-align: center;

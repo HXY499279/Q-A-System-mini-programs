@@ -16,7 +16,6 @@ Page({
     if(!url){
       url = wx.getStorageSync('Loginsrc');
     } 
-    console.log(url)
     this.setData({
       url:url
     })

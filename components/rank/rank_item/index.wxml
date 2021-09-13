@@ -4,7 +4,8 @@
 		<image class="rank_item_icon" src="{{icon}}"></image>
 		<view class="user_msg" bindtap="gotoPersonalIndex">
 			<image class="user_mag_img" src="{{url+userInfo.userImg}}"></image>
-			<text> {{userInfo.userName}} \n 尊贵铂金</text>
+			<text> {{userInfo.userName}} \n {{userInfo.score < 100 ? '倔强青铜' : userInfo.score < 300 ? '秩序白银' :userInfo.score <
+					600 ? '荣耀黄金' :userInfo.score < 1000 ? '尊贵铂金' :userInfo.score < 1500 ? '永恒钻石' :'最强王者'}}</text>
 		</view>
 	</view>
 	<text class="rank_item_right">总积分\n {{userInfo.score}}</text>

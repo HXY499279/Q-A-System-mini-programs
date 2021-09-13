@@ -6,7 +6,7 @@
 	</view>
 	<view class="message_list" wx:if="{{messageList.length!==0}}">
 		<block wx:for="{{messageList}}" wx:key="item">
-			<message-item msg="{{item}}" data-newsid="{{item.newsId}}" bindtap="gotoMsgDetail" />
+			<message-item msg="{{item}}" data-newsid="{{item.newsId}}" data-index="{{index}}" bindtap="gotoMsgDetail" />
 		</block>
 	</view>
 	<i-load-more loading="{{ currentPage < totalPages }}" />

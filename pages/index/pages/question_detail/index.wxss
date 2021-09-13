@@ -6,6 +6,7 @@
 }
 .collection{
   display: flex;
+  align-items: center;
   justify-content: center;
   color: gray;
   padding: 20rpx 0;

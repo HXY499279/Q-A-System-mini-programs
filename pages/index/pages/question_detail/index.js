@@ -175,12 +175,12 @@ Page({
       })
       .then(res => {
         if (res.data.code) {
-          let userInfo = wx.getStorageSync('userInfo');
+          // let userInfo = wx.getStorageSync('userInfo');
           const isCollected = !this.data.isCollected;
           const questionDetailData = JSON.parse(JSON.stringify(this.data.questionDetailData));
           isCollected ? questionDetailData.collectionCount++ : questionDetailData.collectionCount--;
-          isCollected ? userInfo.collectionCount++ : userInfo.collectionCount--;
-          wx.setStorageSync('userInfo', userInfo);
+          // isCollected ? userInfo.collectionCount++ : userInfo.collectionCount--;
+          // wx.setStorageSync('userInfo', userInfo);
           this.setData({
             isCollected,
             questionDetailData

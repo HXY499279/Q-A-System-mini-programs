@@ -3,7 +3,7 @@
 <view bindtap="gotoQuestionDetail" data-questionId="{{question.questionId}}">
 	<detail-item-box answer="{{answer}}">
 		<view slot="title" class="title">
-			<view class="title_describes"><text decode="true" >{{util.format(question.describes)}}</text></view>
+			<view class="title_describes"><text decode="true" >{{util.format(question.title)}}</text></view>
 			<view >
 				<view class="state">
 					<view class="{{question.state?'is_solute':'un_solute'}}">{{question.state?"已解决":"未解决"}}</view>

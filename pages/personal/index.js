@@ -20,53 +20,49 @@ Page({
    */
   onLoad: function (options) {
     try {
-      const accountId = wx.getStorageSync('accountId')
-      if (accountId) {
-        httpRequest.getAccountById({ accountId })
-          .then(res => {
-            if (res.data.code !== 1) return Promise.reject();
-            let college = wx.getStorageSync('college');
-            let userInfo =  res.data.data;
-            userInfo.college = college;
-            wx.setStorageSync('userInfo', userInfo)
-            this.setData({
-              userInfo:userInfo,
-              isLogin: true
-            })
-          })
-          .catch(err => {
-            wx.showToast({
-              title: '网络繁忙',
-              icon: 'error'
-            })
-          })
-      } else {
+      // const accountId = wx.getStorageSync('accountId')
+      // if (accountId) {
+      //   httpRequest.getAccountById({ accountId })
+      //     .then(res => {
+      //       if (res.data.code !== 1) return Promise.reject();
+      //       let college = wx.getStorageSync('college');
+      //       let userInfo =  res.data.data;
+      //       userInfo.college = college;
+      //       wx.setStorageSync('userInfo', userInfo)
+      //       this.setData({
+      //         userInfo:userInfo,
+      //         isLogin: true
+      //       })
+      //     })
+      //     .catch(err => {
+      //       wx.showToast({
+      //         title: '网络繁忙',
+      //         icon: 'error'
+      //       })
+      //     })
+      // } else {
         const uniqueId = wx.getStorageSync('uniqueId')
         if (uniqueId) {
           httpRequest.getBindUserInfo({ uniqueId })
             .then(res => {
-              if (res.data.code !== 1) return Promise.reject();
-              if (res.data.data === null) {
-                wx.showToast({
-                  title: '请登录',
-                  icon: 'none'
-                });
-                return {
-                  data: {
-                    code: 1,
-                    data: null
-                  }
-                };
+              if (res.data.code !== 1 || !res.data.data){
+                wx.clearStorage()
+                return Promise.reject("请重新登录")
               }
               wx.setStorageSync("accountId", res.data.data.accountId);
               wx.setStorageSync("currentCollege",res.data.data.college);
               wx.setStorageSync('college', res.data.data.college)
               this.pageData.college = res.data.data.college;
+              if(res.data.data.loginScore!==0){
+                wx.showToast({
+                  title: `签到成功 ，积分 +${res.data.data.loginScore}`,
+                  icon:"none"
+                })
+              }
               return httpRequest.getAccountById({ accountId: res.data.data.accountId })
             })
             .then(res => {
-              if (res.data.code !== 1) return Promise.reject();
-              if (res.data.data === null) return;
+              if (res.data.code !== 1 || res.data.data === null) return Promise.reject("网络繁忙");
               let userInfo = res.data.data;
               userInfo.college = this.pageData.college;
               wx.setStorageSync('userInfo',userInfo)
@@ -76,9 +72,10 @@ Page({
               })
             })
             .catch(err => {
+              const errMsg  = typeof err === 'string' ? err : '网络繁忙'
               wx.showToast({
-                title: '网络繁忙',
-                icon: 'error'
+                title: errMsg,
+                icon: 'none'
               })
             })
         } else {
@@ -87,7 +84,7 @@ Page({
             icon: 'none'
           })
         }
-      }
+      // }
     }
     catch (err) { }
   },
@@ -150,28 +147,24 @@ Page({
         if (uniqueId) {
           httpRequest.getBindUserInfo({ uniqueId })
             .then(res => {
-              if (res.data.code !== 1) return Promise.reject();
-              if (res.data.data === null) {
-                wx.showToast({
-                  title: '请登录',
-                  icon: 'none'
-                })
-                return {
-                  data: {
-                    code: 1,
-                    data: null
-                  }
-                }
+              if (res.data.code !== 1 || res.data.data === null){
+                wx.clearStorage()
+                return Promise.reject("请重新登录")
               }
               wx.setStorageSync("accountId", res.data.data.accountId);
               wx.setStorageSync("currentCollege",res.data.data.college);
               wx.setStorageSync('college', res.data.data.college);
               this.pageData.college = res.data.data.college;
+              if(res.data.data.loginScore!==0){
+                wx.showToast({
+                  title: `签到成功 ，积分 +${res.data.data.loginScore}`,
+                  icon:"none"
+                })
+              }
               return httpRequest.getAccountById({ accountId: res.data.data.accountId })
             })
             .then(res => {
-              if (res.data.code !== 1) return Promise.reject();
-              if (res.data.data === null) return;
+              if (res.data.code !== 1 || res.data.data === null) return Promise.reject("网络繁忙");
               let userInfo = res.data.data;
               userInfo.college = this.pageData.college;
               wx.setStorageSync('userInfo', userInfo);
@@ -182,9 +175,10 @@ Page({
               })
             })
             .catch(err => {
+              const errMsg  = typeof err === 'string' ? err : '网络繁忙'
               wx.showToast({
-                title: '网络出错啦',
-                icon: 'error'
+                title: errMsg,
+                icon: 'none'
               })
             })
         }
@@ -196,12 +190,24 @@ Page({
         })
       }
     } else if (this.data.isLogin) {
-      getStorageItem("userInfo")
-        .then(userInfo => {
-          this.setData({
-            userInfo
-          })
+      const accountId = wx.getStorageSync('accountId')
+      httpRequest.getAccountById({accountId })
+      .then(res => {
+        if (res.data.code !== 1 || res.data.data === null) return Promise.reject("网络繁忙");
+        let userInfo = res.data.data;
+        userInfo.college = this.pageData.college;
+        wx.setStorageSync('userInfo', userInfo);
+        this.setData({
+          userInfo: userInfo,
         })
+      })
+      .catch(err => {
+        const errMsg  = typeof err === 'string' ? err : '网络繁忙'
+        wx.showToast({
+          title: errMsg,
+          icon: 'none'
+        })
+      })
     }
   }
 })

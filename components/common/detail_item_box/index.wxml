@@ -27,7 +27,7 @@
 			<slot name="ru_operate"></slot>
 		</view>
 		<view class="item_content">
-			<text class="content_words" decode="true">{{util.format(answer.content)}}</text>
+			<text class="content_words" decode="true">{{answer.content ? util.format(answer.content):'[图片]'}}</text>
 			<view class="content_img" wx:if="{{answer.contentImg && answer.contentImg != -1 }}">
 				<image  wx:if="{{url}}" mode='aspectFill' class="img"  src="{{url+answer.contentImg}}"></image>
 				<image  wx:else mode='aspectFill' class="img" ></image>

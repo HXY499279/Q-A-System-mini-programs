@@ -5,3 +5,7 @@
   color: var(--grayWord);
   width: 200rpx;
 }
+.tips{
+  text-align: center;
+  color: var(--grayWord);
+}

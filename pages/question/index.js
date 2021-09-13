@@ -57,10 +57,10 @@ Page({
         .then(res => {
           if (res.statusCode !== 200) return Promise.reject(res)
           else {
-            let userInfo = wx.getStorageSync('userInfo');
-            userInfo.questionCount++;
-            wx.setStorageSync('userInfo',userInfo);
-            app.subjectId = undefined
+            // let userInfo = wx.getStorageSync('userInfo');
+            // userInfo.questionCount++;
+            // wx.setStorageSync('userInfo',userInfo);
+            app.chooseSubjectId = undefined
             app.chooseCategory = ''
             wx.hideToast()
             this.clearInput()
@@ -89,6 +89,8 @@ Page({
    * 点击删除已选择的课程
    */
   delCurrentCategory: function () {
+    app.chooseSubjectId = undefined
+    app.chooseCategory = ''
     this.setData({
       currentCategory: ""
     })

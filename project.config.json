@@ -1,211 +1,208 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": false,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": false,
-		"coverView": true,
-		"nodeModules": false,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.14.4",
-	"appid": "wx046ff9c3c557efef",
-	"projectname": "ACS%201.0.0",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"scripts": {},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"current": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "首页",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "个人中心",
-					"pathName": "pages/personal/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "关于",
-					"pathName": "pages/personal/pages/aboutApp/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "排行榜",
-					"pathName": "pages/personal/pages/rank/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "编辑资料",
-					"pathName": "pages/personal/pages/edit/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "反馈",
-					"pathName": "pages/personal/pages/feedback/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "资讯",
-					"pathName": "pages/message/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "选择类别",
-					"pathName": "pages/question/choose_ category/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "提问",
-					"pathName": "pages/question/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "邮件",
-					"pathName": "pages/email/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "首页",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 11,
-					"name": "举报",
-					"pathName": "pages/index/pages/complain/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 12,
-					"name": "问题列表",
-					"pathName": "pages/index/pages/question_list/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 13,
-					"name": "问题详情页",
-					"pathName": "pages/index/pages/question_detail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 14,
-					"name": "pages/index/pages/answer_detail/index",
-					"pathName": "pages/index/pages/answer_detail/index",
-					"query": "questionId=5",
-					"scene": null
-				},
-				{
-					"id": 15,
-					"name": "评论",
-					"pathName": "pages/index/pages/comment/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "写回答",
-					"pathName": "pages/index/pages/write_answer/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "咨询详情",
-					"pathName": "pages/message/message_detail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 18,
-					"name": "他人主页",
-					"pathName": "pages/index/pages/other_index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "查看评论",
-					"pathName": "pages/index/pages/show_comments/index",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.4",
+  "appid": "wx046ff9c3c557efef",
+  "projectname": "ACS%201.0.0",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "个人中心",
+          "pathName": "pages/personal/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "关于",
+          "pathName": "pages/personal/pages/aboutApp/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "排行榜",
+          "pathName": "pages/personal/pages/rank/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "编辑资料",
+          "pathName": "pages/personal/pages/edit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "反馈",
+          "pathName": "pages/personal/pages/feedback/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "资讯",
+          "pathName": "pages/message/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择类别",
+          "pathName": "pages/question/choose_ category/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "提问",
+          "pathName": "pages/question/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "邮件",
+          "pathName": "pages/email/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 11,
+          "name": "举报",
+          "pathName": "pages/index/pages/complain/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 12,
+          "name": "问题列表",
+          "pathName": "pages/index/pages/question_list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 13,
+          "name": "问题详情页",
+          "pathName": "pages/index/pages/question_detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 14,
+          "name": "pages/index/pages/answer_detail/index",
+          "pathName": "pages/index/pages/answer_detail/index",
+          "query": "questionId=5",
+          "scene": null
+        },
+        {
+          "id": 15,
+          "name": "评论",
+          "pathName": "pages/index/pages/comment/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "写回答",
+          "pathName": "pages/index/pages/write_answer/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "咨询详情",
+          "pathName": "pages/message/message_detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 18,
+          "name": "他人主页",
+          "pathName": "pages/index/pages/other_index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "查看评论",
+          "pathName": "pages/index/pages/show_comments/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

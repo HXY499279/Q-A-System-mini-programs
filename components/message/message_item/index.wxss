@@ -24,7 +24,6 @@
   margin-right: 15rpx;
 }
 .content{
-  padding: 15rpx 0 10rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

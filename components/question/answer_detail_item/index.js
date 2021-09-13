@@ -19,13 +19,16 @@ Component({
   data: {
     isAdopt: false,
     isAgree: false,
-    url:''
+    url:'',
+    currentAccount:undefined
   },
 
   lifetimes:{
     attached:function(){
+      const accountId = wx.getStorageSync('accountId')
       this.setData({
-        url:getApp().url.currentUrl+'/img'
+        url:getApp().url.currentUrl+'/img',
+        currentAccount:accountId
       })
     }
   },

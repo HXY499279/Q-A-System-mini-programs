@@ -50,9 +50,9 @@ Page({
         if (res.statusCode !== 200) return Promise.reject();
         this.clearInput();
 
-        let userInfo = wx.getStorageSync('userInfo');
-        userInfo.answerCount++;
-        wx.setStorageSync('userInfo', userInfo);
+        // let userInfo = wx.getStorageSync('userInfo');
+        // userInfo.answerCount++;
+        // wx.setStorageSync('userInfo', userInfo);
 
         wx.showToast({
           icon: "success",

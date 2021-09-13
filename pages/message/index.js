@@ -98,8 +98,14 @@ Page({
 
   gotoMsgDetail:function(e){
     const newsId = e.currentTarget.dataset.newsid;
+    const index =  e.currentTarget.dataset.index;
+    const newMsg = JSON.parse(JSON.stringify(this.data.messageList));
+    newMsg[index].readCount++;
     wx.navigateTo({
       url: `/pages/message/message_detail/index?newsId=${newsId}`,
+    })
+    this.setData({
+      messageList:newMsg
     })
   },
 

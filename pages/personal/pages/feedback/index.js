@@ -37,10 +37,36 @@ Page({
     picTextBox.clearInput();
   },
 
+  getfeedbackList:function(){
+    getStorageItem("accountId")
+    .then(accountId=>{
+      const {currentPage,pageSize}  = this.pageData;
+      const data = {currentPage,pageSize,accountId}
+      return httpRequest.getFeedbackList(data)
+    })
+    .then(res=>{
+      if(res.data.code !== 1) return Promise.reject();
+      mergeObj(this.pageData,res.data.data.pageInfo)
+      this.pageData.totalPages = res.data.data.pageInfo.totalPages;
+      this.pageData.totalRows = res.data.data.pageInfo.totalRows;
+      this.setData({
+        feedbackList:[...this.data.feedbackList,...res.data.data.list],
+        currentPage:this.pageData.currentPage,
+        totalPages:this.pageData.totalPages
+      })
+    })
+    .catch(err=>{
+      wx.showToast({
+        title: String(err),
+        type:'error'
+      })
+    })
+  },
+
   handleSubmit:function(){
     const {tempFilePath:{imgTempPath},textAreat:{currentWord},titleInput} = this.getValues();
-    const content = titleInput+currentWord;
-    if(!titleInput.trim() && currentWord.trim() && imgTempPath.length===0){
+    const content = titleInput+": "+currentWord;
+    if((titleInput.trim()==='' || currentWord.trim()==='') && imgTempPath.length===0){
       $Toast({
         content: "请输入内容或图片",
         type: 'warning'
@@ -62,11 +88,18 @@ Page({
     .then(res=>{
       if(res.statusCode!==200) return Promise.reject(res)
       this.clearInput();
-      wx.showToast({
-        icon: "success",
-        title: "感谢您的反馈！",
-        duration:1000
+      this.pageData.currentPage = 1;
+      this.setData({
+        feedbackList:[],
+      },()=>{
+      this.getfeedbackList();
       })
+      wx.showToast({
+        icon:"success",
+        title: "感谢您的反馈",
+        duration:1500,
+        mask:true
+      });
     })
     .catch(err=>{
       wx.hideToast();
@@ -75,34 +108,8 @@ Page({
         type: 'error'
       });
     })
-    
   },
 
-  getfeedbackList:function(){
-    getStorageItem("accountId")
-    .then(accountId=>{
-      const {currentPage,pageSize}  = this.pageData;
-      const data = {currentPage,pageSize}
-      return httpRequest.getFeedbackList(data)
-    })
-    .then(res=>{
-      if(res.data.code !== 1) return Promise.reject();
-      mergeObj(this.pageData,res.data.data.pageInfo)
-      this.pageData.totalPages = res.data.data.pageInfo.totalPages;
-      this.pageData.totalRows = res.data.data.pageInfo.totalRows;
-      this.setData({
-        feedbackList:[...this.data.feedbackList,...res.data.data.list],
-        currentPage:this.pageData.currentPage,
-        totalPages:this.pageData.totalPages
-      })
-    })
-    .catch(err=>{
-      wx.showToast({
-        title: '你发现了bug!',
-        type:'error'
-      })
-    })
-  },
 
   handleAgreeClick:function(e){
     const {feedbackId,index} = e.detail ;
