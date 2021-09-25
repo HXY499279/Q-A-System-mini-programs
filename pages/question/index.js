@@ -29,6 +29,7 @@ Page({
    * 点击提交
    */
   handleClick: function () {
+      const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
     const accountId = wx.getStorageSync('accountId')
     if (accountId) {
       const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
@@ -50,16 +51,22 @@ Page({
       getStorageItem("accountId")
         .then(accountId => {
           wx.showToast({ title: '发布中...', icon: 'loading', duration: 10000, mask: true });
-          let data = { accountId, title, describes, subjectId };
+          let data = { accountId, title, describes, subjectId };      
           if (imgTempPath.length === 0) return httpRequest.submitQuestion({ data })
           else return httpRequest.submitQuestion({ filePath: imgTempPath[0], data })
         })
         .then(res => {
           if (res.statusCode !== 200) return Promise.reject(res)
           else {
-            // let userInfo = wx.getStorageSync('userInfo');
-            // userInfo.questionCount++;
-            // wx.setStorageSync('userInfo',userInfo);
+            const resData = typeof res.data === 'string' ? JSON.parse(res.data) : res.data
+            if(Number(resData.code) === 0){
+              wx.showToast({
+                title: '上传失败,'+ resData.msg,
+                icon:'none',
+                duration:2000
+              })
+              return;
+            }
             app.chooseSubjectId = undefined
             app.chooseCategory = ''
             wx.hideToast()

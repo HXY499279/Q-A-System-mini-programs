@@ -1,6 +1,14 @@
 // app.js
+// var plugin = requirePlugin("chatbot");
 App({
   onLaunch() {
+    //内容检测
+    // plugin.init({
+    //   appid: "wx046ff9c3c557efef",
+    //   openid:"",
+    //   success:()=>{console.log('plugin success')},
+    //   fail:(err)=>{console.log('plugin fail',err)}
+		// });
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

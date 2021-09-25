@@ -45,7 +45,18 @@ Page({
       return httpRequest.submitComment(data)
     })
     .then(res=>{
-      if(!res.data.code) return Promise.reject();
+
+      const resData = typeof res.data === 'string' ? JSON.parse(res.data) : res.data
+      if(Number(resData.code) === 0){
+        wx.showToast({
+          title: '上传失败,'+ resData.msg,
+          icon:'none',
+          duration:2000
+        })
+        return;
+      }
+
+      if(!resData.code) return Promise.reject();
       wx.showToast({
         title: '发布成功',
         icon:"success",

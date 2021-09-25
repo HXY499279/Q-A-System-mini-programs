@@ -75,6 +75,16 @@ Page({
         console.log(res)
         if (res.statusCode !== 200) return Promise.reject();
         else {
+          const resData = typeof res.data === 'string' ? JSON.parse(res.data) : res.data
+          if(Number(resData.code) === 0){
+            wx.showToast({
+              title: '上传失败,'+ resData.msg,
+              icon:'none',
+              duration:2000
+            })
+            return;
+          }
+          
           this.clearInput();
           wx.showToast({
             icon: "success",
