@@ -10,13 +10,19 @@
   margin-bottom: 10rpx;
 }
 
-.head {
-  display: flex;
-  justify-content: space-between;
+.head{
+  white-space: pre-wrap;
+  line-height: 40rpx;
+  font-weight: 550
+}
+.title{
+  font-size: 35rpx
 }
 
 .state {
   display: flex;
+  align-items: center;
+  float:right;
   white-space: nowrap;
 }
 .state_text{

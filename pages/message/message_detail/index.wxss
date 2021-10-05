@@ -30,6 +30,7 @@
 .head_date{
   color: var(--grayWord);
 }
+
 .content_text{
   padding: 10rpx 0;
 }
@@ -47,4 +48,5 @@
   color: var(--grayWord);
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 100px;
 }

@@ -1,10 +1,12 @@
 <!--components/email/collection/index.wxml-->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+
 <view bindtap="gotoQuestionDetail">
 	<detail-item-box answer="{{msg.answer}}">
 		<view class="title" slot="title">
 			<view class="text">
 				<text class="category">{{msg.question.subjectName}}</text>
-				{{msg.question.title}}
+				<text decode="true">{{ util.format(msg.question.title)}}</text>
 			</view>
 			<view class="state {{msg.question.state?'is_solute':'un_solute'}}">{{msg.question.state?'已解决':'未解决'}}</view>
 		</view>
