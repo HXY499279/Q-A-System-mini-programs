@@ -1,6 +1,6 @@
 <!--components/question/comment/index.wxml-->
-<view>
-	<detail-item-box answer="{{comment}}">
+<!-- <view>
+	<detail-item-box comment="{{comment}}">
 		<view slot="ru_operate">
 			<view class="iconfont icon-jubao" bindtap="gotoReport"></view>
 		</view>
@@ -8,4 +8,30 @@
 		{{comment.commentTime}}
 		</view>
 	</detail-item-box>
+</view> -->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+<view class="detail_item_box">
+	<view class="basic_inform">
+		<view class="user_infor">
+			<view class="user_head" catchtap="gotoPersonalIndex">
+				<image wx:if="{{url && comment.userImg && comment.userImg!='-1'}}" class="user_head_img" src="{{url+comment.userImg}}"></image>
+				<image wx:else class="user_head_img"></image>
+				<text>{{comment.userName}}</text>
+			</view>
+			<view class="user_identity">
+				<image class="user_identity_icon"
+					src="{{comment.role == 3 ? '/img/identity/student.svg':comment.role == 2 ? '/img/identity/volunteer.svg':comment.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}">
+				</image>
+				<text class="user_identity_text">{{comment.role == 3 ? "学生":comment.role == 2 ? "志愿者":comment.role == 4 ?
+					"管理员":"老师"}}</text>
+			</view>
+		</view>
+		<view class="iconfont icon-jubao" bindtap="gotoReport"></view>
+	</view>
+	<view class="item_content">
+		<text class="content_words" decode="true">{{util.format(comment.content)}}</text>
+	</view>
+	<view class="item_footer">
+		{{comment.commentTime}}
+	</view>
 </view>

@@ -17,6 +17,7 @@
 
 .user_msg{
   display: flex;
+  align-items: center;
 }
 
 .user_mag_img{

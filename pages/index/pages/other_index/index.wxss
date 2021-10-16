@@ -16,6 +16,7 @@
   align-items: center;
 }
 .personal_img{
+  background-color: var(--background);
   width: 125rpx;
   height: 125rpx;
   border-radius: 50%;
@@ -34,8 +35,8 @@
   align-items: center;
 }
 .icon{
-  width: 30rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height: 35rpx;
   margin-right: 5rpx;
 }
 .question_detail{

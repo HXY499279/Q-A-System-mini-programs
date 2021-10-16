@@ -1,7 +1,7 @@
 <!--pages/personal/pages/aboutApp/index.wxml-->
 <view class="aboutApp_box">
   <!-- <image src=""></image> -->
-  <image wx:if="{{imgMsg}}" src="{{url+imgMsg.url}}" class="image" mode="aspectFill"></image>
+  <image wx:if="{{imgMsg}}" src="{{(url && imgMsg.url && imgMsg.url!='-1') ? url+imgMsg.url:''}}" class="image" mode="aspectFill"></image>
   <view class="intro">
     <title class="title" icon="/img/userInfo/introduce_icon.svg" title="简介"/>
     <view class="intro_content">简介简介简介简介简介简介简介简介简介简介简介简介简介简介</view>

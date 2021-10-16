@@ -3,7 +3,7 @@
 	<view class="basic_inform">
 		<view class="user_infor">
 			<view class="user_head" bindtap="gotoPersonalIndex">
-				<image class="user_head_img" src="{{url+feedback.userImg}}"></image>
+				<image class="user_head_img" src="{{(url &&feedback.userImg && feedback.userImg!='-1')? url+feedback.userImg:''}}"></image>
 				<text>{{feedback.userName}}</text>
 			</view>
 			<view class="user_identity">
@@ -14,7 +14,7 @@
 	</view>
 	<view class="item_content">
 		<view class="content_words">{{feedback.content}}</view>
-		<view class="content_img" wx:if="{{feedback.contentImg && feedback.contentImg != -1 }}">
+		<view class="content_img" wx:if="{{url && feedback.contentImg && feedback.contentImg != -1 }}">
 			<image mode='aspectFill' bindtap="previewPic" src="{{url+feedback.contentImg}}" class="img" data-src="{{feedback.contentImg}}"></image>
 		</view>
 	</view>

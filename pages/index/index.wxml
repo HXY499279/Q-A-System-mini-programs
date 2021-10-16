@@ -38,7 +38,7 @@
 				<view class="title_box">
 					<title icon="/img/identity/volunteer.svg" title="专业课程" />
 					<view class="current_college" bindtap="showAllCollege">
-						当前：{{currentCollege}}
+						<View class="current_text">当前：{{currentCollege}}</View>
 						<image src="/img/common/show.svg" class="show"></image>
 					</view>
 				</view>
@@ -78,7 +78,7 @@
 
 	<view wx:if="{{chooseCollege}}" catchtouchmove="ture">
 		<view class="choose_college_mask" bindtap="cancelMask"></view>
-		<view class="choose_college">
+		<scroll-view class="choose_college" scroll-y="true">
 			<view class="choose_college_title">请选择学院</view>
 			<block wx:for="{{collegeList}}" wx:key="item">
 				<view class="college_item" data-collegename="{{item.collegeName}}" bindtap="changeCollege">
@@ -86,7 +86,7 @@
 					<view class="add_college"> + </view>
 				</view>
 			</block>
-		</view>
+		</scroll-view>
 	</view>
 	<i-toast id="toast" />
 </view>

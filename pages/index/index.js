@@ -32,31 +32,31 @@ Page({
 
   onLoad() {
     this.getUrl();
-    const currentCollege = wx.getStorageSync('currentCollege')
+    const currentCollege = wx.getStorageSync('college')
     if (currentCollege) {
       this.pageData.showTest = false;
       this.setData({
         isLogin: true
       })
-      getStorageItem("currentCollege")
-        .then(currentCollege => {
-          Promise.all([this.getOtherOneQuestion(), this.getBasicSubject(), this.listSubjectByCollege(currentCollege), this.getUnreadMsg(), this.getSwiper()])
-            .then(res => {
-              this.setData({
-                isLoading: false,
-                currentCollege
-              })
-            })
-            .catch(err => {
-              const errMsg = typeof err === 'string' ? err : "网络错误"
-              this.setData({
-                isLoading: false
-              })
-              wx.showToast({
-                title: errMsg,
-                icon: 'none'
-              })
-            })
+      Promise.all([this.getOtherOneQuestion(), this.getBasicSubject(), this.listSubjectByCollege(currentCollege), this.getUnreadMsg(), this.getSwiper()].map(item =>
+        item.catch(err => {
+          wx.showToast({
+          title: String(err),
+          icon: 'none'
+        })
+       }
+      )))
+      .then(res => {
+        wx.setStorageSync("currentCollege",currentCollege)
+          this.setData({
+            isLoading: false,
+            currentCollege
+          })
+        })
+      .catch(err => {
+          this.setData({
+            isLoading: false
+          })
         })
     } else {
       this.getSwiper();
@@ -110,7 +110,7 @@ Page({
   getBasicSubject: function () {
     return new Promise((resolve, reject) => {
         httpRequest.listSubjectByCollege({
-            college: "基础学科"
+            college: "基础课程"
           })
           .then(res => {
             if (res.data.code !== 1) return Promise.reject("获取基础课程失败");
@@ -168,12 +168,23 @@ Page({
    */
   changeCollege: function (e) {
     const currentCollege = e.currentTarget.dataset.collegename;
-    wx.setStorageSync('currentCollege', currentCollege);
+    if(currentCollege !== this.data.currentCollege){
+      wx.setStorageSync('currentCollege', currentCollege);
+      this.listSubjectByCollege(currentCollege).catch(err=>{
+        wx.showToast({
+          title: String(err),
+          icon:'none'
+        })
+      })
+      this.setData({
+        isLogin: true,
+        currentCollege
+      })
+    }
     this.setData({
-      chooseCollege: false,
-      isLogin: true,
-      currentCollege
-    }, wx.startPullDownRefresh())
+      chooseCollege: false
+    })
+     
   },
 
   /**
@@ -281,7 +292,7 @@ Page({
    */
   showMore: function (e) {
     const type = e.currentTarget.dataset.type;
-    let college = type === 'basic' ? '基础学科' : this.data.currentCollege
+    let college = type === 'basic' ? '基础课程' : this.data.currentCollege
     wx.navigateTo({
       url: `/pages/index/pages/show_more_course/index?type=${type}&college=${college}`,
     })
@@ -350,7 +361,14 @@ Page({
       return;
     }
     const currentCollege = wx.getStorageSync('currentCollege')
-    Promise.all([this.getOtherOneQuestion(), this.getBasicSubject(), this.listSubjectByCollege(currentCollege), this.getUnreadMsg()])
+    Promise.all([this.getOtherOneQuestion(), this.getBasicSubject(), this.listSubjectByCollege(currentCollege), this.getUnreadMsg()].map(item =>
+      item.catch(err => {
+        wx.showToast({
+        title: String(err),
+        icon: 'none'
+      })
+     }
+    )))
       .then(res => {
         wx.stopPullDownRefresh();
         this.setData({
@@ -358,11 +376,6 @@ Page({
         })
       })
       .catch(err => {
-        const errMsg = typeof err === 'string' ? err : '网络错误'
-        wx.showToast({
-          title: errMsg,
-          icon: 'none'
-        })
         wx.stopPullDownRefresh();
       })
   }

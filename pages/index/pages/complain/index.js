@@ -54,7 +54,7 @@ Page({
         param = {accountId,content,questionId:this.data.dataDetail.questionId}:
         this.data.type === 1 ?
           param = {accountId,content,answerId:this.data.dataDetail.answerId}:
-          param = {accountId,content,answerId:this.data.dataDetail.commentId}
+          param = {accountId,content,commentId:this.data.dataDetail.commentId}
         
         switch (this.data.type){
           case 0:  //0 代表举报问题
@@ -72,7 +72,6 @@ Page({
         }
       })
       .then(res => {
-        console.log(res)
         if (res.statusCode !== 200) return Promise.reject();
         else {
           const resData = typeof res.data === 'string' ? JSON.parse(res.data) : res.data

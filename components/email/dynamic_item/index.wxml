@@ -1,8 +1,8 @@
 <!--components/email/dynamic_item/index.wxml-->
 <question-card dataDetail="{{msg.emailContent.question}}" type="{{0}}" bindtap="gotoQuestionDetail">
 	<view slot="head_left" class="item_head">
-		<image wx:if="{{url&&msg.type!==7}}" class="head_img" src="{{url+msg.emailContent.sender.imgPath}}"></image>
-		<image wx:elif="{{url&&msg.type===7}}" class="head_img" src="/img/common/robot.png"></image>
+		<image wx:if="{{msg.type!==7}}" class="head_img" src="{{(url && msg.emailContent.sender.imgPath && msg.emailContent.sender.imgPath!='-1') ? url+msg.emailContent.sender.imgPath:''}}"></image>
+		<image wx:elif="{{msg.type===7}}" class="head_img" src="/img/common/robot.png"></image>
 		<image wx:else class="head_img" ></image>
 		<text class="head_name" wx:if="{{msg.type===2}}">{{msg.emailContent.sender.userName}} 回答了问题\n{{msg.emailCreatTime}}</text>
 		<text class="head_name" wx:elif="{{msg.type===3}}">{{msg.emailContent.sender.userName}} 评论了回答\n{{msg.emailCreatTime}}</text>

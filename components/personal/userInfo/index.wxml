@@ -1,7 +1,7 @@
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view class="userInfo">
 	<view class="userInfo_left">
-		<image wx:if="{{url && userInfo.imgPath}}" class="user_head" bindtap="previewPic" data-src="{{userInfo.imgPath}}" src="{{url+userInfo.imgPath}}"></image>
+		<image wx:if="{{url && userInfo.imgPath && userInfo.imgPath!='-1'}}" class="user_head" bindtap="previewPic" data-src="{{userInfo.imgPath}}" src="{{url+userInfo.imgPath}}"></image>
 		<image wx:else class="user_head"></image>
 		<view class="personal_edit">
 			<view class="navigator" bindtap="gotoEdit">编辑资料</view>
@@ -21,7 +21,7 @@
 			</view>
 			<view class="userInfo_right_personalMsg_item">
 				<image src="/img/userInfo/level.svg"></image>
-				<view>{{userInfo.score>200?"大显身手":userInfo.score>100?"游刃有余":userInfo.score>30?"小有成就":"初出茅庐"}}</view>
+				<view>{{userInfo.score>2000?"名冠天下":userInfo.score>1000?"名扬四海":userInfo.score>500?"远近闻名":userInfo.score>200?"小有名气":userInfo.score>120?"锋芒毕露":userInfo.score>50?"崭露头角":"默默无闻"}}</view>
 			</view>
 		</view>
 		<view class="userInfo_right_introduce"><text decode="true">{{util.format(userInfo.introduce)}}</text></view>

@@ -3,7 +3,8 @@
 <view class="container">
 	<view class='personal_card'>
 		<view class="personal_info">
-			<image src="{{url+personalInfo.imgPath}}" bindtap="previewPic" data-src="{{personalInfo.imgPath}}" class="personal_img"></image>
+			<image wx:if="{{url && personalInfo.imgPath && personalInfo.imgPath!='-1'}}"  src="{{url+personalInfo.imgPath}}" bindtap="previewPic" data-src="{{personalInfo.imgPath}}" class="personal_img"></image>
+			<image wx:else class="personal_img"></image>
 			<view class="personal_name">{{personalInfo.userName}}</view>
 			<view class="userInfo_detail">
 				<view class="userInfo_item">
@@ -16,7 +17,7 @@
 				</view> -->
 				<view class="userInfo_item">
 					<image src="/img/userInfo/level.svg" class="icon"></image>
-					<view>初出茅庐</view>
+					{{personalInfo.score>2000?"名冠天下":personalInfo.score>1000?"名扬四海":personalInfo.score>500?"远近闻名":personalInfo.score>200?"小有名气":personalInfo.score>120?"锋芒毕露":personalInfo.score>50?"崭露头角":"默默无闻"}}
 				</view>
 			</view>
 		</view>
@@ -46,7 +47,7 @@
 	<view class="personal_intro">
 		<title icon="/img/identity/introduce.svg" title="个人简介" />
 		<view class="introduce_text">
-		<text decode="true">{{util.format(personalInfo.introduce)}}</text></view>
+		<text decode="true">{{personalInfo.introduce ? util.format(personalInfo.introduce) : '暂无'}}</text></view>
 	</view>
 	<view class="dynamic">
 		<title icon="/img/identity/dynamic.svg" title="最新动态" />

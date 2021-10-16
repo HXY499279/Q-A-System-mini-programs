@@ -18,7 +18,7 @@ Component({
   data: {
     currentWordsLen: "0", //记录当前字数
     currentWord: "",
-    allowWords:140 //允许输入的字数
+    allowWords:150 //允许输入的字数
   },
 
   /**
@@ -29,7 +29,7 @@ Component({
     textareaInput(e) {
       const inputValue = e.detail.value;
       const len = inputValue.length;
-      if (len == this.data.allowWords) {
+      if (len >= this.data.allowWords) {
         $Toast({
           content: `最多${this.data.allowWords}字，不能再多啦`,
           type: 'warning'

@@ -100,7 +100,8 @@ Page({
     wx.showToast({
       title: '跳转中...',
       icon: 'loading',
-      mask: true
+      mask: true,
+      duration:5000
     })
     httpRequest.login({ uniqueId })
       .then(res => {
@@ -115,7 +116,7 @@ Page({
       })
       .catch(err => {
         wx.showToast({
-          title: '网络出错',
+          title: '获取地址失败',
           icon: 'error'
         })
       })

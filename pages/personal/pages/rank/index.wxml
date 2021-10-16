@@ -1,7 +1,7 @@
 <!--pages/personal/pages/rank/index.wxml-->
 <view class="rank_page">
 	<view class='my_score'>
-		<image wx:if="{{imgMsg}}" src="{{url+imgMsg.url}}" class="bg_img" mode="aspectFill"></image>
+		<image wx:if="{{imgMsg}}" src="{{url && imgMsg.url && imgMsg.url!='-1' ? url+imgMsg.url:''}}" class="bg_img" mode="aspectFill"></image>
 		<view class="bg_text_container">
 			<view class="bg_text">
 				<view class="my_score_title">成长总积分</view>

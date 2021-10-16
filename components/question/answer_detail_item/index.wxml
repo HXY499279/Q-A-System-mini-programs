@@ -5,8 +5,7 @@
 	<view class="head">
 		<view class="user_info" bindtap="gotoPersonalIndex">
 			<view class="user_head">
-				<image wx:if="{{url}}" class="user_head_img" src="{{url+answerDetail.userImg}}" mode='aspectFill'></image>
-				<image wx:else class="user_head_img"></image>
+				<image  class="user_head_img" src="{{(url && answerDetail.userImg && answerDetail.userImg!='-1') ? url+answerDetail.userImg:''}}" mode='aspectFill'></image>
 				<text>{{answerDetail.userName}}</text>
 			</view>
 			<view class="user_identity">

@@ -78,6 +78,7 @@ Page({
 
   changeItem: function (e) {
     const { type } = e.currentTarget.dataset;
+    if(this.pageData.currentType === type) return
     this.pageData.currentType = type;
     switch (type) {
       case "dynamic":
@@ -119,7 +120,7 @@ Page({
         return httpRequest.getDynamic(data)
       })
       .then(res => {
-        if (res.data.code !== 1) return Promise.reject();
+        if (res.data.code !== 1) return Promise.reject("获取动态失败");
         this.pageData.dynamicTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           dynamicList: [...this.data.dynamicList, ...res.data.data.list],
@@ -127,7 +128,10 @@ Page({
           currentPage: this.pageData.dynamicCurrentPage
         })
       })
-      .catch(err => { })
+      .catch(err => { wx.showToast({
+        title: String(err),
+        icon:"none"
+      })})
   },
 
   getInvitation: function () {
@@ -142,7 +146,7 @@ Page({
         return httpRequest.getInvitation(data)
       })
       .then(res => {
-        if (res.data.code !== 1) return Promise.reject();
+        if (res.data.code !== 1) return Promise.reject('获取邀请失败');
         this.pageData.invitationTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           invitationList: res.data.data.list,
@@ -150,7 +154,10 @@ Page({
           currentPage: this.pageData.invitationCurrentPage
         })
       })
-      .catch(err => { })
+      .catch(err => { wx.showToast({
+        title: String(err),
+        icon:"none"
+      })})
   },
 
   getCollection: function () {
@@ -166,7 +173,7 @@ Page({
         return httpRequest.getAboutMyQuestion(data)
       })
       .then(res => {
-        if (res.data.code !== 1) return Promise.reject();
+        if (res.data.code !== 1) return Promise.reject("获取收藏失败");
         this.pageData.collectionTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           collectionList: [...this.data.collectionList, ...res.data.data.list],
@@ -174,7 +181,10 @@ Page({
           currentPage: this.pageData.collectionCurrentPage
         })
       })
-      .catch(err => { })
+      .catch(err => {wx.showToast({
+        title: String(err),
+        icon:"none"
+      }) })
   },
 
   getMyqustion: function () {
@@ -190,7 +200,7 @@ Page({
         return httpRequest.getAboutMyQuestion(data)
       })
       .then(res => {
-        if (res.data.code !== 1) return Promise.reject();
+        if (res.data.code !== 1) return Promise.reject("获取问题失败");
         this.pageData.myqustionTotalPages = res.data.data.pageInfo.totalPages;
         this.setData({
           myquestionList: [...this.data.myquestionList, ...res.data.data.list],
@@ -198,7 +208,10 @@ Page({
           currentPage: this.pageData.myquestionCurrentPage
         })
       })
-      .catch(err => { })
+      .catch(err => { wx.showToast({
+        title: String(err),
+        icon:"none"
+      })})
   },
 
   onShow: function () {

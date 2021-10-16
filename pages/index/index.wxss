@@ -13,6 +13,7 @@
  height: 100%;
 }
 .box{
+  white-space:nowrap;
   background-color: white;
   margin:0 0 15rpx 0;
   border-radius: 6rpx;
@@ -29,6 +30,15 @@
 .current_college{
   display: flex;
   align-items: center;
+}
+.current_text{
+  max-width: 50vw;
+  flex:1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .course{
   padding:0 20rpx;
@@ -109,7 +119,7 @@
   border-radius: 30rpx;
   left: 12.5vw;
   top: 20vh;
-  overflow: scroll;
+  overflow-y: auto;
   z-index: 999;
   border:5rpx solid var(--background);
 }

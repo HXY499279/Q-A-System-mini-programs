@@ -15,8 +15,7 @@
 		<view class="basic_inform">
 			<view class="user_infor">
 				<view class="user_head" catchtap="gotoPersonalIndex">
-					<image wx:if="{{url}}" class="user_head_img" src="{{url+answer.userImg}}"></image>
-					<image wx:else class="user_head_img"></image>
+					<image  class="user_head_img" src="{{url && answer.userImg && answer.userImg!='-1'?url+answer.userImg:''}}"></image>
 					<text>{{answer.userName}}</text>
 				</view>
 				<view class="user_identity">

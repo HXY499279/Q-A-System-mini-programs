@@ -10,7 +10,8 @@ Page({
   data: {
     answerDetail:{},
     questionDetail:{},
-    commentList:[]
+    commentList:[],
+    commentCount:0
   },
   pageData:{
     answerId:undefined,
@@ -81,7 +82,8 @@ Page({
       mergeObj(this.pageData.comment,{currentPage,pageSize,totalPages,totalRows})
       this.setData({
         // commentList:[...this.data.commentList,...res.data.data.list]
-        commentList:[...res.data.data.list]
+        commentList:[...res.data.data.list],
+        commentCount:res.data.data.pageInfo.totalRows
       })
     })
   },

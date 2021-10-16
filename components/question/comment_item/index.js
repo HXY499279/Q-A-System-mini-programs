@@ -14,7 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    url:''
   },
 
   /**
@@ -22,10 +22,25 @@ Component({
    */
   methods: {
     gotoReport(){
-      const dataDetail ={content:this.properties.comment.content , contentId:this.properties.commentcommentId} 
+      const dataDetail ={content:this.properties.comment.content , commentId:this.properties.comment.commentId}
+      console.log(dataDetail) 
       wx.navigateTo({
         url: `/pages/index/pages/complain/index?type=2&param=${encodeURIComponent(JSON.stringify(dataDetail))}`,
       })
+    },
+    gotoPersonalIndex(){
+      if(this.properties.comment.accountId){
+        wx.navigateTo({
+          url: `/pages/index/pages/other_index/index?accountId=${this.properties.comment.accountId}`,
+        })
+      }
     }
+  },
+
+  attached(){
+    this.setData({
+      url:getApp().url.currentUrl+'/img'
+    })
   }
-})
+});
+
