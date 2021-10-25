@@ -36,8 +36,8 @@ Component({
         });
       }
       this.setData({
-        currentWordsLen: len,
-        currentWord:inputValue
+        currentWordsLen: len > this.data.allowWords ? this.data.allowWords : len,
+        currentWord:inputValue.slice(0,this.data.allowWords)
       })
     },
 

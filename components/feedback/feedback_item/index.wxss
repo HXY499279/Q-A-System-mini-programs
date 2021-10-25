@@ -58,6 +58,7 @@
 }
 .agree_box{
   padding-left: 10rpx;
+  margin-top: 10rpx;
   display: flex;
   align-items: center;
   justify-content: flex-end; 
