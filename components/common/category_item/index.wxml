@@ -1,18 +1,27 @@
 <!--components/common/category_item/index.wxml-->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+
 <view class="category_item_box" data-subjectId="{{categoryMsg.subjectId}}">
 	<view class="item_left">
-		<image  class="icon" wx:if="{{url}}" src="{{url+categoryMsg.iconPath}}"></image>
-		<image  class="icon" wx:else></image>
+		<image class="icon" wx:if="{{url}}" src="{{url+categoryMsg.iconPath}}"></image>
+		<image class="icon" wx:else></image>
 
 		<text class="text left_text_first">{{categoryMsg.college}}</text>
 		<text class="text left_text_second">{{categoryMsg.subjectName}}</text>
 	</view>
 	<view class="item_right">
-		<view>
+		<view class="item_right_content">
 			<view>此科目已累计<text class="number_g">{{categoryMsg.questionCount}}</text>个问题</view>
-			<view>待解决<text class="number_y">{{categoryMsg.unresolvedQuestionCount}}</text> 今日新增<text class="number_y">{{categoryMsg.newQuestionCount}}</text></view>
-			<view class="intro_text">{{categoryMsg.subjectInfo}}</view>
+			<view>待解决<text class="number_y">{{categoryMsg.unresolvedQuestionCount}}</text> 今日新增<text
+					class="number_y">{{categoryMsg.newQuestionCount}}</text></view>
+			<view class="intro_text" catchtouchstart="showDetail" catchtouchend="hideDetail">
+				<text decode="true" class="intro_cut">{{categoryMsg.subjectInfo? util.format(categoryMsg.subjectInfo) : ''}}</text>
+				<view class='intro_hide' wx:if="{{showHide}}">
+					<text decode="true" class="hide_content" >{{categoryMsg.subjectInfo? util.format(categoryMsg.subjectInfo)
+						:''}}</text>
+				</view>
+			</view>
 		</view>
-    <slot name="operate"></slot>
+		<slot name="operate"></slot>
 	</view>
 </view>

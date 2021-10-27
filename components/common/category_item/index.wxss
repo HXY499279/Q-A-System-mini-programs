@@ -1,58 +1,113 @@
 /* components/common/category_item/index.wxss */
-.category_item_box{
+.category_item_box {
   display: flex;
   padding: 25rpx;
   box-shadow: 0 8rpx 8rpx var(--background);
   margin-bottom: 10rpx;
 }
-.item_left{
+
+.item_left {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding:0 10rpx 0 0;
+  padding: 0 10rpx 0 0;
   border-right: 4rpx solid var(--line);
   width: 150rpx;
 }
-.text{
+
+.text {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.left_text_first{
+
+.left_text_first {
   font-size: 22rpx;
   color: var(--theme);
 }
-.icon{
+
+.icon {
   width: 96rpx;
   height: 96rpx;
   border: 2rpx solid var(--theme);
   border-radius: 20rpx;
-  margin:0 auto;
+  margin: 0 auto;
   margin-bottom: 10rpx;
   background-color: var(--background);
 }
-.item_right{
+
+.item_right {
   display: flex;
   flex: 1;
   justify-content: space-between;
   align-items: center;
   padding: 0 0 0 25rpx;
 }
-.number_g{
+
+.item_right_content {
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.number_g {
   font-size: 35rpx;
   color: var(--theme);
   padding: 0 10rpx;
 }
-.number_y{
+
+.number_y {
   font-size: 35rpx;
   color: orange;
   padding: 0 10rpx;
 }
-.intro_text{
-  width: 300rpx;
+
+.intro_text {
+  position: relative;
+}
+
+.intro_cut {
+  margin-top: 10rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+.intro_hide {
+  position: absolute;
+  width: 400rpx;
+  margin-top: 15rpx;
+  padding: 5rpx 10rpx;
+  background-color: white;
+  box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.2);
+}
+
+.hide_content {
+  position: relative;
+}
+
+.hide_content::before {
+  position: absolute;
+  top: -30rpx;
+  left: 20rpx;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 15rpx solid transparent;
+  border-bottom: 15rpx solid white;
+  content: '';
+}
+
+.hide_content::after {
+  position: absolute;
+  top: -35rpx;
+  left: 20rpx;
+  z-index: -1;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 15rpx solid transparent;
+  border-bottom: 15rpx solid rgba(187, 185, 185, 0.2);
+  content: '';
 }

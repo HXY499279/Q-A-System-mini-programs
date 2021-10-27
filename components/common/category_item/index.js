@@ -17,7 +17,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    url: ""
+    url: "",
+    showHide:false
   },
   lifetimes: {
     attached:function(){
@@ -31,6 +32,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    showDetail:function(){
+      this.setData({
+        showHide:true
+      })
+    },
+    hideDetail:function(){
+      this.setData({
+        showHide:false
+      })
+    }
 
   }
 })
