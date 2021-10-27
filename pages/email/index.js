@@ -260,7 +260,10 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    if (!this.data.isLogin) return;
+    if (!this.data.isLogin){
+      wx.stopPullDownRefresh()
+      return;
+    };
     const type = this.data.currentType;
     const data = {
       dynamicTotalPages: 1,

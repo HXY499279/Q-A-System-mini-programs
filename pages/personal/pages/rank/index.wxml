@@ -7,7 +7,7 @@
 			<view class="bg_text">
 				<view class="my_score_title">成长总积分</view>
 				<view class="my_score_num">{{myInfo.score}}</view>
-				<view class="my_score_level">段位：名扬四海</view>
+				<view class="my_score_level">{{myInfo.score>2000?"名冠天下":myInfo.score>1000?"名扬四海":myInfo.score>500?"远近闻名":myInfo.score>200?"小有名气":myInfo.score>120?"锋芒毕露":myInfo.score>50?"崭露头角":"默默无闻"}}</view>
 			</view>
 		</view>
 	</view>

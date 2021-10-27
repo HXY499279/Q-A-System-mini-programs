@@ -14,6 +14,8 @@ Page({
     commentCount:0
   },
   pageData:{
+    canClickAgree:true,
+    canClickAdopt:true,
     answerId:undefined,
     answer:{
       currentPage:1,
@@ -92,15 +94,13 @@ Page({
    * 点击采纳
    */
   onAdopt:function(){
+    if(!this.pageData.canClickAdopt) return;
+    this.pageData.canClickAdopt = false
     let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
     let newQuestionDetail =  JSON.parse(JSON.stringify(this.data.questionDetail));
     if((newAnswerDetail.isAdopt && newQuestionDetail.state)||(!newAnswerDetail.isAdopt && !newQuestionDetail.state) ){
       newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
       newQuestionDetail.state = newQuestionDetail.state?0:1;
-      
-      // const userInfo = wx.getStorageSync('userInfo')
-      // newAnswerDetail.isAdopt ? userInfo.solveCount++:userInfo.solveCount--;
-      // wx.setStorageSync('userInfo', userInfo)
     }
     else if(!newAnswerDetail.isAdopt && newQuestionDetail.state ){
       newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
@@ -120,14 +120,19 @@ Page({
     })
     .then(res=>{
       if(res.data.code !== 1) return Promise.reject();
+      this.pageData.canClickAdopt = true;
     })
-    .catch(err=>{})
+    .catch(err=>{
+      this.pageData.canClickAdopt = true
+    })
   },
 
   /**
    * 点击赞同
    */
   onAgree:function(){
+    if(!this.pageData.canClickAgree) return;
+    this.pageData.canClickAgree = false;
     let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
     newAnswerDetail.isAgree = newAnswerDetail.isAgree ? 0 : 1;
     newAnswerDetail.isAgree ? newAnswerDetail.agreeCount++ :  newAnswerDetail.agreeCount--;
@@ -144,12 +149,11 @@ Page({
     })
     .then(res=>{
      if(!res.data.code) return Promise.reject();
-     const isAgree = this.data.answerDetail.isAgree
-      // let userInfo = wx.getStorageSync('userInfo');
-      // isAgree ? userInfo.agreeCount++:userInfo.agreeCount--;
-      // wx.setStorageSync('userInfo', userInfo);
+     this.pageData.canClickAgree = true
     })
-    .catch(err=>{})
+    .catch(err=>{
+      this.pageData.canClickAgree = true
+    })
   },
 
   /**

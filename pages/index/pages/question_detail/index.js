@@ -19,6 +19,7 @@ Page({
   },
 
   pageData: {
+    canClickCollect:true,
     questionId: undefined,
     currentHotPage: 1,
     currentNewPage: 1,
@@ -106,8 +107,8 @@ Page({
       })
       .catch(err => {
         wx.showToast({
-          title: '网络忙 稍后试',
-          type: 'error'
+          title: '网络繁忙',
+          type:'error'
         })
       })
   },
@@ -166,6 +167,8 @@ Page({
    *收藏/取消收藏
    */
   addIntoCollection: function () {
+    if(!this.pageData.canClickCollect) return;
+    this.pageData.canClickCollect = false
     getStorageItem("accountId")
       .then(res => {
         const questionId = this.data.questionDetailData.questionId;
@@ -175,17 +178,18 @@ Page({
       })
       .then(res => {
         if (res.data.code) {
-          // let userInfo = wx.getStorageSync('userInfo');
           const isCollected = !this.data.isCollected;
           const questionDetailData = JSON.parse(JSON.stringify(this.data.questionDetailData));
           isCollected ? questionDetailData.collectionCount++ : questionDetailData.collectionCount--;
-          // isCollected ? userInfo.collectionCount++ : userInfo.collectionCount--;
-          // wx.setStorageSync('userInfo', userInfo);
+          this.pageData.canClickCollect = true;
           this.setData({
             isCollected,
             questionDetailData
           })
-        }
+        }else return Promise.reject('收藏失败')
+      })
+      .catch(err=>{
+        this.pageData.canClickCollect = true;
       })
   },
 

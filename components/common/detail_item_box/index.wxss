@@ -41,8 +41,8 @@
 }
 
 .user_identity_icon {
-  width: 43rpx;
-  height: 43rpx;
+  width: 38rpx;
+  height: 38rpx;
 }
 
 .user_identity_text {
