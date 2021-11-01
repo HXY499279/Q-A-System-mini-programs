@@ -6,7 +6,7 @@
   position: relative;
 }
 .swiper{
-  height: 32vh;
+  height: 28vh;
 }
 .img{
  /* width: 100%; */
