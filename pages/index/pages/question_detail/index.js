@@ -15,7 +15,8 @@ Page({
     answerList: [],
     questionDetailData: {},
     currentPage: 0,
-    totalPages: 1
+    totalPages: 1,
+    loading:true
   },
 
   pageData: {
@@ -102,7 +103,8 @@ Page({
         const isCollected = res.data.data.isCollected ? true : false;
         this.setData({
           isCollected,
-          questionDetailData: res.data.data
+          questionDetailData: res.data.data,
+          loading:false
         })
       })
       .catch(err => {

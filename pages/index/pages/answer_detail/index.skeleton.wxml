@@ -1,0 +1,71 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/11/3 下午9:54:02
+使用方法：
+在 C:\Users\hp\Documents\ACS 1.0.0\pages\index\pages\answer_detail\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 C:\Users\hp\Documents\ACS 1.0.0\pages\index\pages\answer_detail\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="answer_detail_page">
+      <view is="components/question/question_detail_item/index">
+        <view class="question-detail-item-index--question_detail_item">
+          <view class="question-detail-item-index--head">
+            <view class="question-detail-item-index--state">
+              <view class="question-detail-item-index--state_text question-detail-item-index--un_solute sk-transparent sk-text-15-0000-797 sk-text">未解决</view>
+            </view>
+            <text class="question-detail-item-index--title sk-transparent sk-text-7-5000-877 sk-text" decode="true">问题题目问题题目</text>
+          </view>
+          <view class="question-detail-item-index--content">
+            <view>
+              <text decode="true" class="sk-transparent sk-text-14-2857-72 sk-text">问题描述问题描述问题描述问题描述</text>
+            </view>
+            <view class="question-detail-item-index--content_img"></view>
+            <view class="question-detail-item-index--content_footer">
+              <view class="sk-transparent sk-text-14-2857-344 sk-text">1 回答 0 收藏 </view>
+              <view class="sk-transparent sk-text-14-2857-134 sk-text">2021-11-03 18:59:38</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="title sk-transparent sk-text-14-2857-851 sk-text">回答</view>
+      <view is="components/question/answer_detail_item/index">
+        <view class="answer-detail-item-index--answer_detail_item">
+          <view class="answer-detail-item-index--head">
+            <view class="answer-detail-item-index--user_info">
+              <view class="answer-detail-item-index--user_head">
+                <image class="answer-detail-item-index--user_head_img sk-image" mode="aspectFill"></image>
+                <text class="sk-transparent sk-text-14-2857-895 sk-text">代露</text>
+              </view>
+              <view class="answer-detail-item-index--user_identity">
+                <image class="answer-detail-item-index--user_identity_icon sk-image"></image>
+                <text class="answer-detail-item-index--user_identity_text sk-transparent sk-text-14-2857-56 sk-text">管理员</text>
+              </view>
+            </view>
+          </view>
+          <view class="answer-detail-item-index--content">
+            <view class="answer-detail-item-index--content_msg">
+              <view>
+                <text class="answer-detail-item-index--content_text sk-transparent sk-text-14-2857-60 sk-text" decode="true">回答详情回答详情回答详情回答详情详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情回答详情</text>
+              </view>
+            </view>
+            <view class="answer-detail-item-index--content_footer">
+              <text class="sk-transparent sk-text-14-2857-789 sk-text"> 0 赞同 0 评论</text>
+              <text class="sk-transparent sk-text-14-2857-837 sk-text">2021-11-03 19:03:00</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

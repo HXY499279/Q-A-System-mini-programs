@@ -4,5 +4,5 @@
 		<image mode='aspectFill' class="item_pic" src="{{item}}"  data-src="{{item}}" bindtap="previewPic"></image>
 		<view class="item_delet" bindtap="imgDelete" data-index="{{index}}">✕</view>
 	</view>
-	<view class="update_pic" bindtap="imgChoose">+</view>
+	<view class="update_pic" wx:if="{{imgTempPath.length<allowPicNum}}" bindtap="imgChoose">+</view>
 </view>

@@ -1,4 +1,6 @@
 /* pages/personal/index.wxss */
+@import "index.skeleton.wxss";
+
 .personal_page{
   min-height: clac(100vh - 12rpx);
   padding: 6rpx;

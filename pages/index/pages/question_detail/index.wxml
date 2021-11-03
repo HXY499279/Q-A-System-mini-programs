@@ -1,5 +1,8 @@
 <!--pages/index/pages/question_detail/index.wxml-->
-<view class="question_detail_page">
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+
+<view class="question_detail_page" wx:else>
 	<question-card-item questionDetailData="{{questionDetailData}}">
 		<view class="footer" slot="footer">
 			<view class="collection" bindtap="addIntoCollection">

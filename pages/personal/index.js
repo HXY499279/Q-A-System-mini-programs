@@ -1,5 +1,6 @@
 // pages/personal/index.js
 import httpRequest from '../../utils/request/index'
+
 import { getStorageItem } from '../../utils/api'
 Page({
 
@@ -8,7 +9,8 @@ Page({
    */
   data: {
     userInfo: {},
-    isLogin: false
+    isLogin: false,
+    loading:true
   },
   pageData: {
     showGetInfo: false,
@@ -20,27 +22,6 @@ Page({
    */
   onLoad: function (options) {
     try {
-      // const accountId = wx.getStorageSync('accountId')
-      // if (accountId) {
-      //   httpRequest.getAccountById({ accountId })
-      //     .then(res => {
-      //       if (res.data.code !== 1) return Promise.reject();
-      //       let college = wx.getStorageSync('college');
-      //       let userInfo =  res.data.data;
-      //       userInfo.college = college;
-      //       wx.setStorageSync('userInfo', userInfo)
-      //       this.setData({
-      //         userInfo:userInfo,
-      //         isLogin: true
-      //       })
-      //     })
-      //     .catch(err => {
-      //       wx.showToast({
-      //         title: '网络繁忙',
-      //         icon: 'error'
-      //       })
-      //     })
-      // } else {
         const uniqueId = wx.getStorageSync('uniqueId')
         if (uniqueId) {
           httpRequest.getBindUserInfo({ uniqueId })
@@ -68,7 +49,8 @@ Page({
               wx.setStorageSync('userInfo',userInfo)
               this.setData({
                 userInfo: userInfo,
-                isLogin: true
+                isLogin: true,
+                loading:false
               })
             })
             .catch(err => {

@@ -1,4 +1,7 @@
 <!--pages/personal/index.wxml-->
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+
 <view class="personal_page">
 	<personal-card userInfo="{{userInfo}}"/>
   <view class="operate">

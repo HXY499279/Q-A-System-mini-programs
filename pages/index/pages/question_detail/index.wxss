@@ -1,5 +1,6 @@
 /* pages/index/pages/question_detail/index.wxss */
 @import "/img/operate/iconfont.wxss";
+@import "index.skeleton.wxss";
 
 .question_detail_page{
   padding: 20rpx;

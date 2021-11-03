@@ -1,5 +1,8 @@
 <!--pages/index/pages/answer_detail/index.wxml-->
-<view class="answer_detail_page">
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}"></template>
+
+<view class="answer_detail_page" wx:else>
 	<qustion-detail-item questionDetailData="{{questionDetail}}" />
 	<view class="title">回答</view>
 	<answer-detail questionerId="{{questionDetail.accountId}}" answerDetail="{{answerDetail}}" bindonAdopt="onAdopt" bindonAgree="onAgree" bindonComment="onComment" />

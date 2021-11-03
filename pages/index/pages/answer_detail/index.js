@@ -11,7 +11,8 @@ Page({
     answerDetail:{},
     questionDetail:{},
     commentList:[],
-    commentCount:0
+    commentCount:0,
+    loading:true
   },
   pageData:{
     canClickAgree:true,
@@ -59,7 +60,8 @@ Page({
     .then(res=>{
       if(res.data.code !== 1) return Promise.reject();
       this.setData({
-        answerDetail:res.data.data
+        answerDetail:res.data.data,
+        loading:false
       })
     })
     .catch(err=>{

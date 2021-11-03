@@ -1,0 +1,77 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/11/3 下午5:14:28
+使用方法：
+在 C:\Users\hp\Documents\ACS 1.0.0\pages\personal\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 C:\Users\hp\Documents\ACS 1.0.0\pages\personal\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="personal_page">
+      <view is="components/personal/userInfo/index">
+        <view class="userInfo-index--userInfo">
+          <view class="userInfo-index--userInfo_left">
+            <image class="userInfo-index--user_head sk-image" data-src="/static/ywbd.jpg"></image>
+            <view class="userInfo-index--personal_edit">
+              <view class="userInfo-index--navigator sk-transparent sk-text-14-2857-516 sk-text"
+                style="border: none; background-position-x: 50%;">编辑资料</view>
+            </view>
+            <view class="sk-transparent sk-text-14-2857-363 sk-text" style="background-position-x: 50%;">积分：0</view>
+          </view>
+          <view class="userInfo-index--userInfo_right">
+            <view class="userInfo-index--name sk-transparent sk-text-14-2857-679 sk-text">未登录</view>
+            <view class="userInfo-index--userInfo_right_personalMsg">
+              <view class="userInfo-index--userInfo_right_personalMsg_item">
+                <image class="userInfo-index--user_identity_icon sk-image"></image>
+                <text class="userInfo-index--user_identity_text sk-transparent sk-text-14-2857-555 sk-text">学生</text>
+              </view>
+              <view class="userInfo-index--userInfo_right_personalMsg_item">
+                <image class="sk-image"></image>
+                <view class="userInfo-index--college sk-transparent sk-text-14-2857-523 sk-text">经管学院</view>
+              </view>
+              <view class="userInfo-index--userInfo_right_personalMsg_item">
+                <image class="sk-image"></image>
+                <view class="sk-transparent sk-text-14-2857-574 sk-text">默默无闻</view>
+              </view>
+            </view>
+            <view class="userInfo-index--userInfo_right_introduce">
+              <text decode="true"></text>
+            </view>
+            <view class="userInfo-index--user_track">
+              <view class="userInfo-index--user_track_item">
+                <view class="sk-transparent sk-text-14-2857-186 sk-text" style="background-position-x: 50%;">0</view>
+                <view class="sk-transparent sk-text-14-2857-437 sk-text" style="background-position-x: 50%;">提问</view>
+              </view>
+              <view class="userInfo-index--user_track_item">
+                <view class="sk-transparent sk-text-14-2857-889 sk-text" style="background-position-x: 50%;">0</view>
+                <view class="sk-transparent sk-text-14-2857-715 sk-text" style="background-position-x: 50%;">回答</view>
+              </view>
+              <view class="userInfo-index--user_track_item">
+                <view class="sk-transparent sk-text-14-2857-823 sk-text" style="background-position-x: 50%;">0</view>
+                <view class="sk-transparent sk-text-14-2857-405 sk-text" style="background-position-x: 50%;">收藏</view>
+              </view>
+              <view class="userInfo-index--user_track_item">
+                <view class="sk-transparent sk-text-14-2857-770 sk-text" style="background-position-x: 50%;">0</view>
+                <view class="sk-transparent sk-text-14-2857-88 sk-text" style="background-position-x: 50%;">赞同</view>
+              </view>
+              <view class="userInfo-index--user_track_item">
+                <view class="sk-transparent sk-text-14-2857-803 sk-text" style="background-position-x: 50%;">0</view>
+                <view class="sk-transparent sk-text-14-2857-616 sk-text" style="background-position-x: 50%;">采纳</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

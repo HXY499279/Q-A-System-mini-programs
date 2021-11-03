@@ -1,4 +1,6 @@
 /* pages/index/pages/answer_detail/index.wxss */
+@import "index.skeleton.wxss";
+
 .answer_detail_page{
   position: relative;
   padding: 10rpx;
