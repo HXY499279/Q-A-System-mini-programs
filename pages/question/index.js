@@ -29,7 +29,7 @@ Page({
    * 点击提交
    */
   handleClick: function () {
-      const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
+      // const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();
     const accountId = wx.getStorageSync('accountId')
     if (accountId) {
       const { titleInput: title, textAreat: { currentWord: describes }, tempFilePath: { imgTempPath } } = this.getValues();

@@ -1,0 +1,163 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "个人中心",
+          "pathName": "pages/personal/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "关于",
+          "pathName": "pages/personal/pages/aboutApp/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "排行榜",
+          "pathName": "pages/personal/pages/rank/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "编辑资料",
+          "pathName": "pages/personal/pages/edit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "反馈",
+          "pathName": "pages/personal/pages/feedback/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "资讯",
+          "pathName": "pages/message/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择类别",
+          "pathName": "pages/question/choose_ category/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "提问",
+          "pathName": "pages/question/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "邮件",
+          "pathName": "pages/email/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 11,
+          "name": "举报",
+          "pathName": "pages/index/pages/complain/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 12,
+          "name": "问题列表",
+          "pathName": "pages/index/pages/question_list/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 13,
+          "name": "问题详情页",
+          "pathName": "pages/index/pages/question_detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 14,
+          "name": "pages/index/pages/answer_detail/index",
+          "pathName": "pages/index/pages/answer_detail/index",
+          "query": "questionId=5",
+          "scene": null
+        },
+        {
+          "id": 15,
+          "name": "评论",
+          "pathName": "pages/index/pages/comment/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "写回答",
+          "pathName": "pages/index/pages/write_answer/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "咨询详情",
+          "pathName": "pages/message/message_detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 18,
+          "name": "他人主页",
+          "pathName": "pages/index/pages/other_index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "查看评论",
+          "pathName": "pages/index/pages/show_comments/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "修改问题",
+          "pathName": "pages/index/pages/edit_question/index",
+          "query": "data=%257B%2522title%2522%253A%2522%25E3%2580%2582%2522%252C%2522describes%2522%253A%2522%25E5%25A6%2582%25E4%25BD%2595%25E6%258F%2590%25E9%25AB%2598%25E8%2587%25AA%25E5%2588%25B6%25E5%258A%259B%2522%252C%2522imgPath%2522%253A%2522-1%2522%257D",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

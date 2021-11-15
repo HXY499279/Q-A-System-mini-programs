@@ -83,11 +83,14 @@ const handleInput = function(string){
   return string.replace(/\n/g,"\\n").replace(/[ ]/g,"&nbsp;")
 }
 
+const baseImgUrl = "https://xscqa.cqupt.edu.cn/question/img"
+
 
 module.exports = {
   chooseImg,
   getStorageItem,
   upLoadFile,
   mergeObj,
-  handleInput
+  handleInput,
+  baseImgUrl
 }

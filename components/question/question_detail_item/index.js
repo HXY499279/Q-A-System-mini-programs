@@ -17,12 +17,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-    url:''
+    url:'',
+    accountId:''
   },
   lifetimes:{
     attached(){
+      const accountId = wx.getStorageSync('accountId')
       this.setData({
-        url:getApp().url.currentUrl+'/img'
+        url:getApp().url.currentUrl+'/img',
+        accountId
       })
     }
   },
@@ -43,7 +46,14 @@ Component({
         url: `/pages/index/pages/complain/index?type=0&param=${encodeURIComponent(JSON.stringify(param))}`,
       })
     },
+    editQuestion(){
+      const {title,describes,imgPath,questionId} = this.properties.questionDetailData
+      const data = {title,describes,imgPath,questionId}
 
+      wx.navigateTo({
+        url: `/pages/index/pages/edit_question/index?data=${encodeURIComponent(JSON.stringify(data))}`,
+      })
+    },
     //预览图片
     previewPic(e) {
       console.log(e.currentTarget.dataset.src)

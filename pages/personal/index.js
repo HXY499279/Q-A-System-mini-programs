@@ -61,6 +61,9 @@ Page({
               })
             })
         } else {
+          this.setData({
+            loading:false
+          })
           wx.showToast({
             title: '请登录',
             icon: 'none'
@@ -68,7 +71,11 @@ Page({
         }
       // }
     }
-    catch (err) { }
+    catch (err) {
+      this.setData({
+        loading:false
+      })
+     }
   },
 
   /**

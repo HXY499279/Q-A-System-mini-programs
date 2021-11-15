@@ -196,6 +196,14 @@ class httpRequest {
    * 查看个人收藏
    */
   getAboutMyQuestion = param => httpUtil({ url: '/question/relatedQuestion', param })
+
+  /**
+   * 修改问题
+   */
+  updateQuestion =({ filePath, data }) => {
+    if (filePath) return upLoadFile({ url: '/question/updateQuestion', filePath, data });
+    else return httpUtil({ url: "/question/updateQuestion", param: data, method: 'post', header: { "Content-Type": "application/x-www-form-urlencoded" } })
+  }
 }
 
 export default new httpRequest();

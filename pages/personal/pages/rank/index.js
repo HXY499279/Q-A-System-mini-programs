@@ -13,7 +13,8 @@ Page({
     rankList: [],
     myInfo: {},
     url:'',
-    imgMsg:{}
+    imgMsg:{},
+    loading:true
   },
 
   /**
@@ -42,10 +43,15 @@ Page({
     .then(res => {
       if (!res.data.code) return Promise.reject();
       this.setData({
-        rankList: res.data.data.list
-      })
-      this.setData({
+        loading:false,
+        rankList: res.data.data.list,
         myInfo: res.data.data.myData
+      })
+    })
+    .catch(err=>{
+      wx.showToast({
+        title: '获取失败',
+        icon:'none'
       })
     })
   },

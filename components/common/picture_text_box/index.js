@@ -11,6 +11,17 @@ Component({
     "contentPlaceholder":{
       type:String,
       value:"内容的描述"
+    },
+    "values":{
+      type:Object,
+      value:{
+        titleInput:'',
+        contentIput:'',
+        imgPath:''
+      },
+      observer(val) {
+        val && this.init()
+     }
     }
   },
 
@@ -18,13 +29,23 @@ Component({
    * 组件的初始数据
    */
   data: {
-    titleInput:""
+    titleInput:"",
+    contentInput:"",
+    imgPath:""
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    init(){
+      const {titleInput,contentInput,imgPath} = this.properties.values
+      this.setData({
+        titleInput,
+        contentInput,
+        imgPath
+      })
+    },
     //获取标题输入框的内容
     titleInput(e){
       const titleInput = e.detail.value;

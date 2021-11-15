@@ -1,0 +1,7 @@
+<!--pages/index/pages/edit_question/index.wxml-->
+<wxs src="../../../../utils/filter.wxs" module="util"></wxs>
+<view class="add_question_page">
+	<picture-text-box id="picture_text_box" values="{{values}}"/>
+	<button class="btn" hover-class="btn-hover" style="width:90vw" bindtap="handleClick">确认修改{{titleInput}}</button>
+	<i-toast id="toast" />
+</view>

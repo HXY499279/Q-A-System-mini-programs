@@ -31,6 +31,7 @@
   padding: 15rpx;
 }
 .navigator{
+  font-size: 28rpx;
   display: inline;
   border: 2rpx solid var(--theme);
   color: var(--theme);
@@ -65,7 +66,8 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
-  padding:20rpx 10rpx 0 0;
+  padding:10rpx 10rpx 0 0;
+  margin-top:12rpx ;
 }
 
 .user_track_item>view:nth-child(1){

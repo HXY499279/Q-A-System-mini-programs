@@ -51,10 +51,17 @@ Page({
     this.pageData.newAnswerList = [];
     this.pageData.totalPages = 1;
     this.setData({
-      answerList: []
+      answerList: [],
+      answerSortType:0
     }, this.getAnswerList())
   },
 
+  /**
+   * 从修改问题页面跳转回来重新加载数据
+   */
+  initQuestion:function(){
+    this.getQuestionDetail();
+  },
   /*
    *选择回答的排序方式
    */

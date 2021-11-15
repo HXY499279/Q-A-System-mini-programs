@@ -1,0 +1,131 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/11/15 下午12:23:44
+使用方法：
+在 C:\Users\hp\Documents\ACS 1.0.0\pages\personal\pages\rank\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 C:\Users\hp\Documents\ACS 1.0.0\pages\personal\pages\rank\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="rank_page">
+      <view class="my_score">
+        <image class="bg_img sk-image" mode="aspectFill"></image>
+      </view>
+      <view class="rank_title" style="border: none;">
+        <view class="rank_title_left">
+          <image class="rank_icon sk-image"></image>
+          <span class="rank_span active_type sk-transparent sk-text-14-2857-368 sk-text" data-type="0">全校总榜</span>
+          <span class="rank_span sk-transparent sk-text-14-2857-998 sk-text" data-type="1">志愿者榜</span>
+        </view>
+        <view class="my_rank sk-transparent sk-text-14-2857-759 sk-text">我的排名:25</view>
+      </view>
+      <view class="rank_list">
+        <view is="components/rank/rankItem/index">
+          <view class="  rank_item_box" style="border: none;">
+            <view class="  rank_item_left">
+              <image class="  rank_item_icon sk-image"></image>
+              <view class="  user_msg">
+                <image class="  user_mag_img sk-image"></image>
+                <text class="  user_msg_level sk-transparent sk-text-14-2857-332 sk-text"> 
+ 名扬四海</text>
+              </view>
+            </view>
+            <text class="  rank_item_right sk-transparent sk-text-14-2857-359 sk-text">
+ 1180</text>
+          </view>
+        </view>
+        <view is="components/rank/rankItem/index">
+          <view class="  rank_item_box" style="border: none;">
+            <view class="  rank_item_left">
+              <image class="  rank_item_icon sk-image"></image>
+              <view class="  user_msg">
+                <image class="  user_mag_img sk-image"></image>
+                <text class="  user_msg_level sk-transparent sk-text-14-2857-795 sk-text"> 
+ 远近闻名</text>
+              </view>
+            </view>
+            <text class="  rank_item_right sk-transparent sk-text-14-2857-181 sk-text">
+ 857</text>
+          </view>
+        </view>
+        <view is="components/rank/rankItem/index">
+          <view class="  rank_item_box" style="border: none;">
+            <view class="  rank_item_left">
+              <image class="  rank_item_icon sk-image"></image>
+              <view class="  user_msg">
+                <image class="  user_mag_img sk-image"></image>
+                <text class="  user_msg_level sk-transparent sk-text-14-2857-316 sk-text">  
+ 远近闻名</text>
+              </view>
+            </view>
+            <text class="  rank_item_right sk-transparent sk-text-14-2857-655 sk-text">
+ 838</text>
+          </view>
+        </view>
+        <view is="components/rank/rankItem/index">
+          <view class="  rank_item_box" style="border: none;">
+            <view class="  rank_item_left">
+              <image class="  rank_item_icon sk-image"></image>
+              <view class="  user_msg">
+                <image class="  user_mag_img sk-image"></image>
+                <text class="  user_msg_level sk-transparent sk-text-14-2857-787 sk-text">
+ 远近闻名</text>
+              </view>
+            </view>
+            <text class="  rank_item_right sk-transparent sk-text-14-2857-709 sk-text">
+ 771</text>
+          </view>
+        </view>
+        <view is="components/rank/rankItem/index">
+          <view class="  rank_item_box" style="border: none;">
+            <view class="  rank_item_left">
+              <image class="  rank_item_icon sk-image"></image>
+              <view class="  user_msg">
+                <image class="  user_mag_img sk-image"></image>
+                <text class="  user_msg_level sk-transparent sk-text-14-2857-816 sk-text">
+ 远近闻名</text>
+              </view>
+            </view>
+            <text class="  rank_item_right sk-transparent sk-text-14-2857-843 sk-text">
+ 719</text>
+          </view>
+        </view>
+        <view is="components/rank/rankItem/index">
+          <view class="  rank_item_box" style="border: none;">
+            <view class="  rank_item_left">
+              <image class="  rank_item_icon sk-image"></image>
+              <view class="  user_msg">
+                <image class="  user_mag_img sk-image"></image>
+                <text class="  user_msg_level sk-transparent sk-text-14-2857-200 sk-text"> 
+ 远近闻名</text>
+              </view>
+            </view>
+            <text class="  rank_item_right sk-transparent sk-text-14-2857-643 sk-text">
+ 624</text>
+          </view>
+        </view>
+      </view>
+      <view class="rank_introduce">
+        <view is="components/common/title/index">
+          <view class="title-index--title_box">
+            <image class="title-index--title_box_icon sk-image"></image>
+            <view class="title-index--title_box_title sk-transparent sk-text-14-2857-60 sk-text" style="background-position-x: 50%;">排行榜说明</view>
+          </view>
+        </view>
+        <view class="rank_introduce_content">
+          <text class="sk-transparent sk-text-14-2857-456 sk-text">排行说明排行说明排行说明排行说明排行说明排行说明排行说明排行说明排行说明排行说明</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

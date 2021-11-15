@@ -34,6 +34,10 @@
 .un_solute{
   color: var(--unsoluteColor);
 }
+.danger_operate{
+  color: red;
+  margin-left: 15rpx;
+}
 .iconfont {
   margin-left: 12rpx;
   font-size: 30rpx;
@@ -71,6 +75,6 @@
 }
 .del_btn{
   padding: 0 15rpx;
-  color: rgb(255,87,51)
+  color: rgb(240, 114, 86)
 }
 

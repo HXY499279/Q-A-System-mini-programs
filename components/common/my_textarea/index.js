@@ -9,6 +9,13 @@ Component({
     "myPlaceholder": {
       type: String,
       value: ""
+    },
+    "value":{
+      type:"string",
+      value:"",
+      observer(val){
+        val && this.init()
+      }
     }
   },
 
@@ -25,6 +32,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    init(){
+      this.setData({
+        currentWord:this.properties.value
+      })
+    },
     //输入触发 字数校验
     textareaInput(e) {
       const inputValue = e.detail.value;

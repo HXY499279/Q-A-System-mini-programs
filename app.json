@@ -20,7 +20,8 @@
     "pages/index/pages/show_more_course/index",
     "pages/index/pages/other_index/index",
     "pages/index/pages/show_comments/index",
-    "pages/casLogin/index"
+    "pages/casLogin/index",
+    "pages/index/pages/edit_question/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

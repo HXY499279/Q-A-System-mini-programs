@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText":"修改问题",
+  "usingComponents": {
+    "picture-text-box":"/components/common/picture_text_box/index",
+    "i-toast": "/iview/toast/index"
+  }
+}

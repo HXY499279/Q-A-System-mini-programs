@@ -1,4 +1,6 @@
 /* pages/personal/pages/rank/index.wxss */
+@import "./index.skeleton.wxss";
+
 .rank_page {
   font-size: var(--fontSize);
 }
