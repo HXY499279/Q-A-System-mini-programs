@@ -26,6 +26,14 @@
   color: var(--theme);
 }
 
+.long_text {
+  font-size: 22rpx;
+}
+
+.long_long_text {
+  font-size: 18rpx;
+}
+
 .icon {
   width: 96rpx;
   height: 96rpx;

@@ -15,7 +15,7 @@
 		<view class="basic_inform">
 			<view class="user_infor">
 				<view class="user_head" catchtap="gotoPersonalIndex">
-					<image  class="user_head_img" src="{{url && answer.userImg && answer.userImg!='-1'?url+answer.userImg:''}}"></image>
+					<image class="user_head_img" src="{{url && answer.userImg && answer.userImg!='-1'?url+answer.userImg:''}}"></image>
 					<text>{{answer.userName}}</text>
 				</view>
 				<view class="user_identity">
@@ -28,8 +28,8 @@
 		<view class="item_content">
 			<text class="content_words" decode="true">{{answer.content ? util.format(answer.content):'[图片]'}}</text>
 			<view class="content_img" wx:if="{{answer.contentImg && answer.contentImg != -1 }}">
-				<image  wx:if="{{url}}" mode='aspectFill' class="img"  src="{{url+answer.contentImg}}"></image>
-				<image  wx:else mode='aspectFill' class="img" ></image>
+				<image wx:if="{{url}}" mode='aspectFill' class="img" src="{{url+answer.contentImg}}"></image>
+				<image wx:else mode='aspectFill' class="img"></image>
 			</view>
 		</view>
 	</view>

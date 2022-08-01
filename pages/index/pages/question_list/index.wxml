@@ -1,22 +1,22 @@
 <!--pages/index/pages/question_list/index.wxml-->
 <view class="question_list_page">
-	<view class="search_box">
-		<view class="search_box_left">
-			<image src="/img/common/search.svg" class="search_icon"></image>
-			<input type="text" class="search_ipt" placeholder="{{searchPlaceholder}}" bindinput="searchInput" />
-		</view>
-		<view>
-			<i-switch value="{{state}}" size="large" bind:change="onChange" slot="footer">
-				<view slot="open">已解</view>
-				<view slot="close">未解</view>
-			</i-switch>
-		</view>
-	</view>
-	<view wx:if="{{questionList.length!==0}}">
-		<block wx:for="{{questionList}}" wx:key="item">
-			<question-list-item question="{{item.question}}" answer="{{item.answer}}" />
-		</block>
-	</view>
-	<noting wx:else/>
-	<i-load-more loading="{{ currentPage<totalPages }}" />
+  <view class="search_box">
+    <view class="search_box_left">
+      <image src="/img/common/search.svg" class="search_icon"></image>
+      <input type="text" class="search_ipt" placeholder="{{searchPlaceholder}}" bindinput="searchInput" />
+    </view>
+    <view>
+      <i-switch value="{{state}}" size="large" bind:change="onChange" slot="footer">
+        <view slot="open">已解</view>
+        <view slot="close">未解</view>
+      </i-switch>
+    </view>
+  </view>
+  <view wx:if="{{questionList.length!==0}}">
+    <block wx:for="{{questionList}}" wx:key="item">
+      <question-list-item question="{{item.question}}" answer="{{item.answer}}" />
+    </block>
+  </view>
+  <noting wx:else />
+  <i-load-more loading="{{ currentPage<totalPages }}" />
 </view>

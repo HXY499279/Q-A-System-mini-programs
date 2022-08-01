@@ -2,7 +2,7 @@
 page {
   --theme: #30CB88;
   --fontSize: 28rpx;
-  --background: #F0F0F0;
+  --background: #F5F5F5;
   --line: #F0F0F0;
   --grayWord: #999999;
   --unsoluteColor: #F87053;

@@ -4,6 +4,5 @@
     "question-list-item":"/components/question/question_list_item/index",
     "nothing":"/components/common/nothing/index",
     "i-load-more": "/iview/load-more/index"
-
   }
 }

@@ -19,6 +19,10 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.question_titile_text{
+  margin-left: 15rpx;
+  font-size: 35rpx;
+}
 .state{
   font-size: var(fontSize);
   white-space: nowrap;

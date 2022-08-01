@@ -82,7 +82,7 @@ Page({
    * 点击登录
    */
   gotoLogin: function () {
-    /**生成随机数最为用户uniqueId */
+    /**生成随机数做为用户uniqueId */
     const dataString = new Date().getTime();
     const randomString = this.getRandom();
     const uniqueId = randomString + dataString;
@@ -92,6 +92,8 @@ Page({
       mask: true,
       duration:5000
     })
+    console.log(uniqueId);
+    wx.setStorageSync("uniqueId", uniqueId);
     httpRequest.login({ uniqueId })
       .then(res => {
         if (res.data.code !== 1) return Promise.reject()
@@ -135,6 +137,7 @@ Page({
       try {
         const uniqueId = wx.getStorageSync('uniqueId')
         if (uniqueId) {
+          console.log(uniqueId);
           httpRequest.getBindUserInfo({ uniqueId })
             .then(res => {
               if (res.data.code !== 1 || res.data.data === null){

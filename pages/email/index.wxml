@@ -1,53 +1,51 @@
 <!--pages/email/index.wxml-->
+<view class="top_banner">
+  <block wx:for="{{topBar}}" wx:key="type">
+    <view class="top_banner_item" bindtap="changeItem" data-type="{{item.type}}">
+      <view class="item_img  {{item.type === currentType ? 'item_click_class':''}}" style="background-color:{{item.backgroundColor}}">
+        <image class="item_icon" src="{{item.icon}}"></image>
+      </view>
+      <view class="item_text">{{item.text}}</view>
+    </view>
+  </block>
+</view>
 <view class="email_page">
-	<view class="top_banner">
-		<block wx:for="{{topBar}}" wx:key="type">
-			<view class="top_banner_item" bindtap="changeItem" data-type="{{item.type}}">
-				<view class="item_img  {{item.type === currentType ? 'item_click_class':''}}" style="background-color:{{item.backgroundColor}}">
-					<image class="item_icon" src="{{item.icon}}"></image>
-				</view>
-				<view class="item_text">{{item.text}}</view>
-			</view>
-		</block>
-	</view>
+  <view wx:if="{{currentType === 'dynamic'}}">
+    <view wx:if="{{dynamicList.length!==0}}">
+      <block wx:for="{{dynamicList}}" wx:key="item">
+        <dynamic-item msg="{{item}}" />
+      </block>
+    </view>
+    <nothing wx:else />
+  </view>
 
 
-	<view wx:if="{{currentType === 'dynamic'}}">
-		<view wx:if="{{dynamicList.length!==0}}">
-			<block wx:for="{{dynamicList}}" wx:key="item">
-				<dynamic-item msg="{{item}}" />
-			</block>
-		</view>
-		<nothing wx:else />
-	</view>
+  <view wx:elif="{{currentType === 'invitation'}}">
+    <view wx:if="{{invitationList.length!==0}}">
+      <block wx:for="{{invitationList}}" wx:key="item">
+        <invitation-item msg="{{item}}" />
+      </block>
+    </view>
+    <nothing wx:else />
+  </view>
 
 
-	<view wx:elif="{{currentType === 'invitation'}}">
-		<view wx:if="{{invitationList.length!==0}}">
-			<block wx:for="{{invitationList}}" wx:key="item">
-				<invitation-item msg="{{item}}" />
-			</block>
-		</view>
-		<nothing wx:else />
-	</view>
+  <view wx:elif="{{currentType === 'collection'}}">
+    <view wx:if="{{collectionList.length!==0}}">
+      <block wx:for="{{collectionList}}" wx:key="item">
+        <collection-myquestion-item msg="{{item}}" />
+      </block>
+    </view>
+    <nothing wx:else />
+  </view>
 
-
-	<view wx:elif="{{currentType === 'collection'}}">
-		<view wx:if="{{collectionList.length!==0}}">
-			<block wx:for="{{collectionList}}" wx:key="item">
-				<collection-myquestion-item msg="{{item}}" />
-			</block>
-		</view>
-		<nothing wx:else />
-	</view>
-
-	<view wx:elif="{{currentType === 'myquestion'}}">
-		<view wx:if="{{myquestionList.length!==0}}">
-			<block wx:for="{{myquestionList}}" wx:key="item">
-				<collection-myquestion-item msg="{{item}}" />
-			</block>
-		</view>
-		<nothing wx:else />
-	</view>
-	<i-load-more loading="{{ totalPages > currentPage }}" />
+  <view wx:elif="{{currentType === 'myquestion'}}">
+    <view wx:if="{{myquestionList.length!==0}}">
+      <block wx:for="{{myquestionList}}" wx:key="item">
+        <collection-myquestion-item msg="{{item}}" />
+      </block>
+    </view>
+    <nothing wx:else />
+  </view>
+  <i-load-more loading="{{ totalPages > currentPage }}" />
 </view>

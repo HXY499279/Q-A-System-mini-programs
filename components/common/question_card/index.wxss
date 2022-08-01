@@ -32,6 +32,7 @@
 }
 
 .question_titile_text{
+  margin-left: 15rpx;
   font-size: 35rpx;
 }
 

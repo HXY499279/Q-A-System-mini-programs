@@ -6,5 +6,6 @@
     "i-toast": "/iview/toast/index"
   },
   "enablePullDownRefresh":true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "backgroundColorBottom":"#F5F5F5"
 }

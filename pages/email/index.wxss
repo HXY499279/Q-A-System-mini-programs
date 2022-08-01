@@ -1,40 +1,46 @@
-/* pages/email/index.wxss */
-.email_page{
-  padding:0 20rpx 30rpx;
-}
 /* components/email/top_banner_item/index.wxss */
-.top_banner{
-  padding:20rpx 40rpx;
+.top_banner {
+  padding: 20rpx 40rpx;
   display: flex;
   justify-content: space-between;
   background-color: white;
   border-radius: 6rpx;
   box-shadow: 0 10rpx 10rpx var(--background);
-  margin-bottom: 20rpx;
 }
 
-.top_banner_item{
+/* pages/email/index.wxss */
+.email_page {
+  min-height: 1050rpx;
+  background-color: #F5F5F5;
+  padding: 20rpx 20rpx 30rpx;
+}
+
+.top_banner_item {
   text-align: center;
   display: inline-block;
 }
-.item_img{
+
+.item_img {
   width: 110rpx;
   height: 110rpx;
   border-radius: 50%;
   position: relative;
-  transition: 0.1s all 
+  transition: 0.5s all
 }
-.item_icon{
+
+.item_icon {
   width: 70rpx;
   height: 70rpx;
   position: absolute;
   left: 20rpx;
-  top:20rpx ;
+  top: 20rpx;
 }
-.item_text{
+
+.item_text {
   padding: 16rpx 0;
 }
-.item_click_class{
-  box-shadow:0px 0px 25rpx rgb(158, 157, 157); 
-  transition: 0.1s all 
+
+.item_click_class {
+  box-shadow: 0px 0px 25rpx rgb(158, 157, 157);
+  transition: 0.5s all
 }

@@ -5,11 +5,11 @@ class httpRequest {
   /**
    * 登录
    */
-  login = (param) =>httpUtil({url:"/casLogin",param})
+  login = (param) => httpUtil({ url: "/casLogin", param })
   /** 
    * 获取绑定的用户信息
   */
-  getBindUserInfo = (param) =>httpUtil({url:"/account/getAccountByUniqueId",param})
+  getBindUserInfo = (param) => httpUtil({ url: "/account/getAccountByUniqueId", param })
   /**
    * 根据用户学院获取课程信息
    * @param {object} param url,data,method,head
@@ -23,7 +23,7 @@ class httpRequest {
   /**
    * 获取所有学院
    */
-  getAllCollege = (param) => httpUtil({url:'/subject/listAllCollege'})
+  getAllCollege = (param) => httpUtil({ url: '/subject/listAllCollege' })
   /** 
    * 获取图片
    */
@@ -85,7 +85,7 @@ class httpRequest {
     if (filePath) return upLoadFile({ url: '/account/updateAccount', filePath, data });
     else return httpUtil({ url: "/account/updateAccount", param: data, method: 'post', header: { "Content-Type": "application/x-www-form-urlencoded" } })
   }
-  
+
   /**
    * 查看排行榜
    */
@@ -146,7 +146,7 @@ class httpRequest {
   /**
    * 获取回答详情 
    */
-  getAnswerDetail = param => httpUtil({url:'/answer/getAnswerById',param})
+  getAnswerDetail = param => httpUtil({ url: '/answer/getAnswerById', param })
   /**
    * 采纳回答
    */
@@ -200,7 +200,7 @@ class httpRequest {
   /**
    * 修改问题
    */
-  updateQuestion =({ filePath, data }) => {
+  updateQuestion = ({ filePath, data }) => {
     if (filePath) return upLoadFile({ url: '/question/updateQuestion', filePath, data });
     else return httpUtil({ url: "/question/updateQuestion", param: data, method: 'post', header: { "Content-Type": "application/x-www-form-urlencoded" } })
   }

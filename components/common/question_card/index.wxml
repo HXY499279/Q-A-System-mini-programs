@@ -21,7 +21,7 @@
 		<view class="content_left">
 			<view wx:if="{{!type}}" class="question_titile">
 				<slot name="category"></slot>
-				<text decode="true">{{util.format(dataDetail.title)}}</text>
+				<text decode="true" class="question_titile_text">{{util.format(dataDetail.title)}}</text>
 			</view>
 			<view wx:else class="question_titile">
 				<text  decode="true" class="question_titile_text">{{util.format(dataDetail.content)}}</text>

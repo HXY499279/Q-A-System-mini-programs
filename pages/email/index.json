@@ -8,5 +8,6 @@
   },
   "enablePullDownRefresh":true,
   "backgroundTextStyle": "dark",
-  "navigationBarTitleText":"信息中心"
+  "navigationBarTitleText":"信息中心",
+  "backgroundColorBottom":"#F5F5F5"
 }

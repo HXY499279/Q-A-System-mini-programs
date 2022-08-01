@@ -1,25 +1,29 @@
 /**index.wxss**/
-.index_page{
+.index_page {
   background-color: var(--background);
   width: 100%;
   min-height: 100vh;
   position: relative;
 }
-.swiper{
+
+.swiper {
   height: 28vh;
 }
-.img{
- /* width: 100%; */
- height: 100%;
+
+.img {
+  /* width: 100%; */
+  height: 100%;
 }
-.box{
-  white-space:nowrap;
+
+.box {
+  white-space: nowrap;
   background-color: white;
-  margin:0 0 15rpx 0;
+  margin: 0 0 15rpx 0;
   border-radius: 6rpx;
   padding: 0 20rpx;
 }
-.title_box{
+
+.title_box {
   background-color: white;
   display: flex;
   text-align: center;
@@ -27,25 +31,29 @@
   letter-spacing: 2rpx;
   justify-content: space-between;
 }
-.current_college{
+
+.current_college {
   display: flex;
   align-items: center;
 }
-.current_text{
+
+.current_text {
   max-width: 50vw;
-  flex:1;
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-.course{
-  padding:0 20rpx;
-  display:grid;
-  grid-template-columns: repeat(5,20%);
+
+.course {
+  padding: 0 20rpx;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
 }
-.course_item{
+
+.course_item {
   display: flex;
   /* background: content-box; */
   flex-direction: column;
@@ -53,57 +61,75 @@
   text-align: center;
   padding: 15rpx;
 }
-.course_item_img{
+
+.course_item_img {
   width: 100rpx;
   height: 100rpx;
   background-color: rgb(236, 236, 236);
   border-radius: 20rpx;
 }
-.course_item_more_img{
+
+.course_item_more_img {
   width: 60rpx;
   height: 60rpx;
   border-radius: 20rpx;
   display: flex;
   padding: 19rpx;
-  border:1px solid var(--theme)
+  border: 1px solid var(--theme)
 }
-.course_item_text{
+
+.course_item_text {
   padding: 10rpx 0;
   overflow: hidden;
   font-size: 22rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.other_question_title{
+
+.course_item_long_text {
+  padding: 10rpx 0;
+  overflow: hidden;
+  font-size: 17rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.other_question_title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 3rpx solid var(--line);
 }
-.show{
+
+.show {
   width: 30rpx;
   height: 30rpx;
-  padding:0 10rpx;
+  padding: 0 10rpx;
 }
-.title{
+
+.title {
   display: flex;
   justify-content: space-between;
 }
-.title_state{
+
+.title_state {
   color: var(--theme);
   white-space: nowrap;
 }
-.is_solute{
+
+.is_solute {
   color: var(--theme);
 }
-.un_solute{
-  color:var(--unsoluteColor);
+
+.un_solute {
+  color: var(--unsoluteColor);
 }
-.choose_college_mask{
+
+.choose_college_mask {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  overflow-y:hidden;
+  overflow-y: hidden;
   left: 0;
   right: 0;
   top: 0;
@@ -111,7 +137,8 @@
   background-color: white;
   opacity: .5;
 }
-.choose_college{
+
+.choose_college {
   opacity: 1;
   position: fixed;
   background-color: white;
@@ -122,18 +149,21 @@
   top: 20vh;
   overflow-y: auto;
   z-index: 999;
-  border:5rpx solid var(--background);
+  border: 5rpx solid var(--background);
 }
-.choose_college_title{
+
+.choose_college_title {
   text-align: center;
   padding: 20rpx;
-}   
-.college_item{
+}
+
+.college_item {
   display: flex;
   justify-content: space-between;
-  padding:15rpx  20rpx;
+  padding: 15rpx 20rpx;
   border-bottom: 1rpx solid var(--line);
 }
-.add_college{
-  color:var(--grayWord)
+
+.add_college {
+  color: var(--grayWord)
 }

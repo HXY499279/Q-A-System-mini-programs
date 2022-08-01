@@ -6,7 +6,7 @@
 		<view class="title" slot="title">
 			<view class="text">
 				<text class="category">{{msg.question.subjectName}}</text>
-				<text decode="true">{{ util.format(msg.question.title)}}</text>
+				<text decode="true" class="question_titile_text">{{ util.format(msg.question.title)}}</text>
 			</view>
 			<view class="state {{msg.question.state?'is_solute':'un_solute'}}">{{msg.question.state?'已解决':'未解决'}}</view>
 		</view>

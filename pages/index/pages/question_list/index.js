@@ -53,6 +53,7 @@ Page({
   setQuestionList: function (data) {
     httpRequest.getQuestionList(data)
       .then(res => {
+        console.log(data);
         const { list: questionList, pageInfo: { totalPages, totalRows } } = res.data.data;
         const newPageData = { totalPages, totalRows }
         mergeObj(this.pageData, newPageData)
