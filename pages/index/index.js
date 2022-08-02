@@ -329,6 +329,18 @@ Page({
           }, () => {
             wx.startPullDownRefresh()
           })
+          return Promise.all([this.getOtherOneQuestion(), this.getBasicSubject(), this.getPostgraduateArea(), this.listSubjectByCollege(this.pageData.currentCollege), this.getUnreadMsg(), this.getSwiper()].map(item =>
+            item.catch(err => {
+              wx.showToast({
+                title: String(err),
+                icon: 'none'
+              })
+            })))
+        })
+        .then(res => {
+          this.setData({
+            isLoading: false,
+          })
         })
         .catch(err => {
           const errMsg = typeof err === 'string' ? err : '网络繁忙'
@@ -336,8 +348,11 @@ Page({
             title: errMsg,
             icon: 'none'
           })
+          this.setData({
+            isLoading: false
+          })
         })
-    }else{
+    } else {
       wx.showToast({
         title: '未登录',
         icon: 'none'
@@ -348,10 +363,7 @@ Page({
   onShow: function () {
     const currentCollege = wx.getStorageSync('college')
     if (currentCollege) {
-      this.setData({
-        isLogin: true
-      })
-      Promise.all([this.getOtherOneQuestion(), this.getBasicSubject(), this.getPostgraduateArea(), this.listSubjectByCollege(currentCollege), this.getUnreadMsg(), this.getSwiper()].map(item =>
+      Promise.all([this.getUnreadMsg(), this.getSwiper()].map(item =>
         item.catch(err => {
           wx.showToast({
             title: String(err),
@@ -362,7 +374,6 @@ Page({
         .then(res => {
           wx.setStorageSync("currentCollege", currentCollege)
           this.setData({
-            isLoading: false,
             currentCollege
           })
         })

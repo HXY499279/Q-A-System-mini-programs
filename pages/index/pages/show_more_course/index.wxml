@@ -1,15 +1,18 @@
 <view class="choose_category_page">
   <view class="search_box">
     <image src="/img/common/search.svg" class="search_icon"></image>
-    <input type="text" placeholder="请输入{{category}}" bindinput="searchInput" />
+    <input class="search_ipt" type="text" placeholder="请输入{{category}}" bindinput="searchInput" />
   </view>
-  <view wx:if="{{couseList.length!==0}}">
-    <block wx:for="{{couseList}}" wx:key="item">
-      <category-item categoryMsg="{{item}}" data-subjectid="{{item.subjectId}}" data-name="{{item.subjectName}}" bindtap="gotoQuestionList">
-        <image slot="operate" src="/img/common/show.svg" class="show"></image>
-      </category-item>
-    </block>
+  <view wx:if="{{!listLoading}}">
+    <view wx:if="{{couseList.length!==0}}">
+      <block wx:for="{{couseList}}" wx:key="item">
+        <category-item categoryMsg="{{item}}" data-subjectid="{{item.subjectId}}" data-name="{{item.subjectName}}" bindtap="gotoQuestionList">
+          <image slot="operate" src="/img/common/show.svg" class="show"></image>
+        </category-item>
+      </block>
+    </view>
+    <nothing wx:else />
   </view>
-  <nothing wx:else />
-  <i-load-more loading="{{ totalPages>currentPage}}" />
+  <i-load-more wx:else loading="{{true}}" />
+  <i-load-more wx:if="{{couseList.length!==0}}" loading="{{ totalPages>currentPage}}" />
 </view>

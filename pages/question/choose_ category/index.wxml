@@ -1,14 +1,17 @@
 <!--pages/question/choose_ category/index.wxml-->
 <view class="choose_category_page">
-	<view class="search_box">
-		<image src="/img/common/search.svg" class="search_icon"></image>
-		<input type="text" placeholder="{{searchPlaceholder}}" bindinput="searchInput"/>
-	</view>
-	<view wx:if="{{categorys.length!==0}}">
-		<block wx:for="{{categorys}}" wx:key="item">
-			<choose-category-item categoryMsg="{{item}}" />
-		</block>
-	</view>
-	<nothing wx:else />
-	<i-load-more loading="{{ currentPage < totalPages }}" />
+  <view class="search_box">
+    <image src="/img/common/search.svg" class="search_icon"></image>
+    <input class="search_ipt" type="text" placeholder="请输入学科名称/院校名称" bindinput="searchInput" />
+  </view>
+  <view wx:if="{{!listLoading}}">
+    <view wx:if="{{categorys.length!==0}}">
+      <block wx:for="{{categorys}}" wx:key="item">
+        <choose-category-item categoryMsg="{{item}}" />
+      </block>
+    </view>
+    <nothing wx:else />
+  </view>
+  <i-load-more wx:else loading="{{ true }}" />
+  <i-load-more wx:if="{{categorys.length!==0}}" loading="{{ currentPage < totalPages }}" />
 </view>

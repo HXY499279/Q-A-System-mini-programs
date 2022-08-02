@@ -13,15 +13,10 @@ Component({
       observer(data) {
         // 根据返回的学科名字长度来应用不同样式
         const { subjectName } = data
-        if (subjectName.length > 6) {
-          this.setData({
-            subjectClassName: "long_long_text"
-          })
-        } else if (subjectName.length > 4) {
-          this.setData({
-            subjectClassName: "long_text"
-          })
-        }
+        // 暂时统一改成long_text字号
+        this.setData({
+          subjectClassName: "long_text"
+        })
       }
     },
   },

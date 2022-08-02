@@ -16,11 +16,11 @@ Page({
     questionDetailData: {},
     currentPage: 0,
     totalPages: 1,
-    loading:true
+    loading: true
   },
 
   pageData: {
-    canClickCollect:true,
+    canClickCollect: true,
     questionId: undefined,
     currentHotPage: 1,
     currentNewPage: 1,
@@ -41,6 +41,10 @@ Page({
     this.getAnswerList();
   },
 
+  onShow: function () {
+    this.initAnswerList()
+  },
+
   /**
    * 从写回答页面跳转回来重新加载数据
    */
@@ -52,14 +56,14 @@ Page({
     this.pageData.totalPages = 1;
     this.setData({
       answerList: [],
-      answerSortType:0
+      answerSortType: 0
     }, this.getAnswerList())
   },
 
   /**
    * 从修改问题页面跳转回来重新加载数据
    */
-  initQuestion:function(){
+  initQuestion: function () {
     this.getQuestionDetail();
   },
   /*
@@ -111,13 +115,13 @@ Page({
         this.setData({
           isCollected,
           questionDetailData: res.data.data,
-          loading:false
+          loading: false
         })
       })
       .catch(err => {
         wx.showToast({
           title: '网络繁忙',
-          type:'error'
+          type: 'error'
         })
       })
   },
@@ -176,7 +180,7 @@ Page({
    *收藏/取消收藏
    */
   addIntoCollection: function () {
-    if(!this.pageData.canClickCollect) return;
+    if (!this.pageData.canClickCollect) return;
     this.pageData.canClickCollect = false
     getStorageItem("accountId")
       .then(res => {
@@ -195,9 +199,9 @@ Page({
             isCollected,
             questionDetailData
           })
-        }else return Promise.reject('收藏失败')
+        } else return Promise.reject('收藏失败')
       })
-      .catch(err=>{
+      .catch(err => {
         this.pageData.canClickCollect = true;
       })
   },
@@ -207,7 +211,7 @@ Page({
    */
   gotoAnswerDetail: function (e) {
     const answerId = e.currentTarget.dataset.answerid;
-    const currentIndex = e.currentTarget.dataset.index*1+1;
+    const currentIndex = e.currentTarget.dataset.index * 1 + 1;
     const questionDetail = this.data.questionDetailData;
     wx.navigateTo({
       url: `/pages/index/pages/answer_detail/index?answerId=${answerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentIndex}&totalRows=${this.pageData.totalRows}&sortOrder=${this.data.answerSortType}&questionId=${this.data.questionDetailData.questionId}`,
@@ -255,7 +259,7 @@ Page({
       },
       fail: function (res) {
       },
-      complete:function(res){
+      complete: function (res) {
       }
     }
   }

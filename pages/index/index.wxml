@@ -35,23 +35,6 @@
         </block>
       </view>
       <view class="box">
-        <title icon="/img/identity/volunteer.svg" title="考研专区" />
-        <block wx:if="{{postgraduateArea.length!==0}}">
-          <view class="course">
-            <block wx:for="{{postgraduateArea}}" wx:key="subjectId">
-              <view class="course_item" data-id="{{item.subjectId}}" data-name="{{item.subjectName}}" bindtap="gotoQuestionList">
-                <image src="{{url+item.imgPath}}" class="course_item_img"></image>
-                <span class="{{item.subjectName.length>4 ? 'course_item_long_text' : 'course_item_text'}}">{{item.subjectName}}</span>
-              </view>
-            </block>
-            <view class="course_item" bindtap="showMore" data-type="postgraduate">
-              <image src="/img/more.svg" class="course_item_more_img"></image>
-              <span class="course_item_text">更多</span>
-            </view>
-          </view>
-        </block>
-      </view>
-      <view class="box">
         <view class="title_box">
           <title icon="/img/identity/volunteer.svg" title="专业课程" />
           <view class="current_college" bindtap="showAllCollege">
@@ -68,6 +51,23 @@
               </view>
             </block>
             <view class="course_item" bindtap="showMore" data-type="professional">
+              <image src="/img/more.svg" class="course_item_more_img"></image>
+              <span class="course_item_text">更多</span>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="box">
+        <title icon="/img/identity/volunteer.svg" title="考研专区" />
+        <block wx:if="{{postgraduateArea.length!==0}}">
+          <view class="course">
+            <block wx:for="{{postgraduateArea}}" wx:key="subjectId">
+              <view class="course_item" data-id="{{item.subjectId}}" data-name="{{item.subjectName}}" bindtap="gotoQuestionList">
+                <image src="{{url+item.imgPath}}" class="course_item_img"></image>
+                <span class="course_item_text">{{item.subjectName}}</span>
+              </view>
+            </block>
+            <view class="course_item" bindtap="showMore" data-type="postgraduate">
               <image src="/img/more.svg" class="course_item_more_img"></image>
               <span class="course_item_text">更多</span>
             </view>

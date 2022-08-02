@@ -14,7 +14,8 @@ Page({
     categoryMap: {
       basic: '学科名称',
       postgraduate: "院校名称"
-    }
+    },
+    listLoading: true,
   },
 
   pageData: {
@@ -54,7 +55,8 @@ Page({
         this.setData({
           couseList: [...this.data.couseList, ...res.data.data.list],
           currentPage: this.pageData.currentPage,
-          totalPages: this.pageData.totalPages
+          totalPages: this.pageData.totalPages,
+          listLoading: false,
         })
       })
       .catch(err => {
@@ -91,7 +93,8 @@ Page({
           data = { currentPage, pageSize, keyWords }
       }
       this.setData({
-        couseList: []
+        couseList: [],
+        listLoading:true,
       }, this.getCourse(data));
 
     }, 500);
