@@ -10,34 +10,44 @@
   margin-bottom: 10rpx;
 }
 
-.head{
+.head {
   white-space: pre-wrap;
   line-height: 40rpx;
   font-weight: 550
 }
-.title{
+
+.title {
   font-size: 35rpx
 }
 
 .state {
   display: flex;
   align-items: center;
-  float:right;
+  float: right;
   white-space: nowrap;
 }
-.state_text{
+
+.state_text {
   color: var(--theme);
 }
-.is_solute{
+
+.is_top {
+  color: var(--topQuestionColor);
+}
+
+.is_solute {
   color: var(--theme);
 }
-.un_solute{
+
+.un_solute {
   color: var(--unsoluteColor);
 }
-.danger_operate{
+
+.danger_operate {
   color: red;
   margin-left: 15rpx;
 }
+
 .iconfont {
   margin-left: 12rpx;
   font-size: 30rpx;
@@ -58,23 +68,25 @@
 .img {
   height: 350rpx;
   margin-right: 10rpx;
-  margin-top:10rpx;
+  margin-top: 10rpx;
   background-color: var(--background);
   margin: 0 auto;
 }
-.content_footer{
+
+.content_footer {
   margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
   color: var(--grayWord);
 }
-.edit_btn{
+
+.edit_btn {
   padding: 0 15rpx;
   color: var(--theme);
 }
-.del_btn{
+
+.del_btn {
   padding: 0 15rpx;
   color: rgb(240, 114, 86)
 }
-

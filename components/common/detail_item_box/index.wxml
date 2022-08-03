@@ -7,36 +7,38 @@
  -->
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 
-<view class="detail_item_box">
-	<view class="title">
-		<slot name="title"></slot>
-	</view>
-	<view wx:if="{{answer}}">
-		<view class="basic_inform">
-			<view class="user_infor">
-				<view class="user_head" catchtap="gotoPersonalIndex">
-					<image class="user_head_img" src="{{url && answer.userImg && answer.userImg!='-1'?url+answer.userImg:''}}"></image>
-					<text>{{answer.userName}}</text>
-				</view>
-				<view class="user_identity">
-					<image class="user_identity_icon" src="{{answer.role == 3 ? '/img/identity/student.svg':answer.role == 2 ? '/img/identity/volunteer.svg':answer.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
-					<text class="user_identity_text">{{answer.role == 3 ? "学生":answer.role == 2 ? "志愿者":answer.role == 4 ? "管理员":"老师"}}</text>
-				</view>
-			</view>
-			<slot name="ru_operate"></slot>
-		</view>
-		<view class="item_content">
-			<text class="content_words" decode="true">{{answer.content ? util.format(answer.content):'[图片]'}}</text>
-			<view class="content_img" wx:if="{{answer.contentImg && answer.contentImg != -1 }}">
-				<image wx:if="{{url}}" mode='aspectFill' class="img" src="{{url+answer.contentImg}}"></image>
-				<image wx:else mode='aspectFill' class="img"></image>
-			</view>
-		</view>
-	</view>
-	<view wx:else class="nothing">该问题暂时还没有回答，期待您的回答~</view>
-	<view class="item_footer">
-		<slot name="bl_operate"></slot>
-	</view>
+<view class="detail_item_box {{isTop && 'top_item'}}">
+  <view class="title">
+    <slot name="title"></slot>
+  </view>
+  <view wx:if="{{!isTop}}">
+    <view wx:if="{{answer}}">
+      <view class="basic_inform">
+        <view class="user_infor">
+          <view class="user_head" catchtap="gotoPersonalIndex">
+            <image class="user_head_img" src="{{url && answer.userImg && answer.userImg!='-1'?url+answer.userImg:''}}"></image>
+            <text>{{answer.userName}}</text>
+          </view>
+          <view class="user_identity">
+            <image class="user_identity_icon" src="{{answer.role == 3 ? '/img/identity/student.svg':answer.role == 2 ? '/img/identity/volunteer.svg':answer.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+            <text class="user_identity_text">{{answer.role == 3 ? "学生":answer.role == 2 ? "志愿者":answer.role == 4 ? "管理员":"老师"}}</text>
+          </view>
+        </view>
+        <slot name="ru_operate"></slot>
+      </view>
+      <view class="item_content">
+        <text class="content_words" decode="true">{{answer.content ? util.format(answer.content):'[图片]'}}</text>
+        <view class="content_img" wx:if="{{answer.contentImg && answer.contentImg != -1 }}">
+          <image wx:if="{{url}}" mode='aspectFill' class="img" src="{{url+answer.contentImg}}"></image>
+          <image wx:else mode='aspectFill' class="img"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="nothing">该问题暂时还没有回答，期待您的回答~</view>
+  </view>
+  <view class="item_footer">
+    <slot name="bl_operate"></slot>
+  </view>
 
 
 </view>

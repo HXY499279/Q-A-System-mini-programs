@@ -7,9 +7,13 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    answer:{
-      type:Object,
-      value:null
+    answer: {
+      type: Object,
+      value: null
+    },
+    isTop: {
+      type: Boolean,
+      value: false,
     }
   },
 
@@ -17,15 +21,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-    url:"",
+    url: "",
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    gotoPersonalIndex(){
-      if(this.properties.answer.accountId){
+    gotoPersonalIndex() {
+      if (this.properties.answer.accountId) {
         wx.navigateTo({
           url: `/pages/index/pages/other_index/index?accountId=${this.properties.answer.accountId}`,
         })
@@ -34,9 +38,9 @@ Component({
   },
 
   //组件挂载时设置当前URL
-  attached(){
+  attached() {
     this.setData({
-      url:getApp().url.currentUrl+'/img'
+      url: getApp().url.currentUrl + '/img'
     })
   }
 })

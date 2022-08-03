@@ -17,6 +17,7 @@ Page({
     myquestionList: [],
     totalPages: 1,
     currentPage: 0,
+    listLoading: true,
     //邮件模块上面的导航栏
     topBar: [{
       "icon": "/img/email/dynamic.svg",
@@ -72,32 +73,43 @@ Page({
       this.setData({
         totalPages: 0
       })
-
     }
   },
 
   changeItem: function (e) {
     const { type } = e.currentTarget.dataset;
-    if(this.pageData.currentType === type) return
+    if (this.pageData.currentType === type) return
     this.pageData.currentType = type;
     switch (type) {
       case "dynamic":
         if (this.data.dynamicList.length === 0) {
+          this.setData({
+            listLoading: true
+          })
           this.getDynamic();
         }
         break;
       case "invitation":
         if (this.data.invitationList.length === 0) {
+          this.setData({
+            listLoading: true
+          })
           this.getInvitation();
         }
         break;
       case "collection":
         if (this.data.collectionList.length === 0) {
+          this.setData({
+            listLoading: true
+          })
           this.getCollection();
         }
         break;
       case "myquestion":
         if (this.data.myquestionList.length === 0) {
+          this.setData({
+            listLoading: true
+          })
           this.getMyqustion();
         }
         break;
@@ -125,13 +137,16 @@ Page({
         this.setData({
           dynamicList: [...this.data.dynamicList, ...res.data.data.list],
           totalPages: this.pageData.dynamicTotalPages,
-          currentPage: this.pageData.dynamicCurrentPage
+          currentPage: this.pageData.dynamicCurrentPage,
+          listLoading: false
         })
       })
-      .catch(err => { wx.showToast({
-        title: String(err),
-        icon:"none"
-      })})
+      .catch(err => {
+        wx.showToast({
+          title: String(err),
+          icon: "none"
+        })
+      })
   },
 
   getInvitation: function () {
@@ -151,13 +166,16 @@ Page({
         this.setData({
           invitationList: res.data.data.list,
           totalPages: this.pageData.invitationTotalPages,
-          currentPage: this.pageData.invitationCurrentPage
+          currentPage: this.pageData.invitationCurrentPage,
+          listLoading: false
         })
       })
-      .catch(err => { wx.showToast({
-        title: String(err),
-        icon:"none"
-      })})
+      .catch(err => {
+        wx.showToast({
+          title: String(err),
+          icon: "none"
+        })
+      })
   },
 
   getCollection: function () {
@@ -178,13 +196,16 @@ Page({
         this.setData({
           collectionList: [...this.data.collectionList, ...res.data.data.list],
           totalPages: this.pageData.collectionTotalPages,
-          currentPage: this.pageData.collectionCurrentPage
+          currentPage: this.pageData.collectionCurrentPage,
+          listLoading: false
         })
       })
-      .catch(err => {wx.showToast({
-        title: String(err),
-        icon:"none"
-      }) })
+      .catch(err => {
+        wx.showToast({
+          title: String(err),
+          icon: "none"
+        })
+      })
   },
 
   getMyqustion: function () {
@@ -205,13 +226,16 @@ Page({
         this.setData({
           myquestionList: [...this.data.myquestionList, ...res.data.data.list],
           totalPages: this.pageData.myqustionTotalPages,
-          currentPage: this.pageData.myquestionCurrentPage
+          currentPage: this.pageData.myquestionCurrentPage,
+          listLoading: false
         })
       })
-      .catch(err => { wx.showToast({
-        title: String(err),
-        icon:"none"
-      })})
+      .catch(err => {
+        wx.showToast({
+          title: String(err),
+          icon: "none"
+        })
+      })
   },
 
   onShow: function () {
@@ -260,7 +284,7 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    if (!this.data.isLogin){
+    if (!this.data.isLogin) {
       wx.stopPullDownRefresh()
       return;
     };

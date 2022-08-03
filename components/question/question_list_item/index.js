@@ -6,7 +6,14 @@ Component({
   properties: {
     "question": {
       type: Object,
-      value: {}
+      value: {},
+      observer(data) {
+        if (data.isTop === 1) {
+          this.setData({
+            isTop: true
+          })
+        }
+      }
     },
     "answer": {
       type: Object,
@@ -18,7 +25,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    isTop: false
   },
 
   /**
@@ -29,7 +36,7 @@ Component({
     gotoQuestionDetail(e) {
       const questionId = e.currentTarget.dataset.questionid;
       wx.navigateTo({
-        url: `/pages/index/pages/question_detail/index?questionId=${questionId}`,
+        url: `/pages/index/pages/question_detail/index?questionId=${questionId}&isTop=${this.data.isTop}`,
       })
     },
 
@@ -41,7 +48,7 @@ Component({
         url: `/pages/index/pages/complain/index?type=0&param=${encodeURIComponent(JSON.stringify(param))}`,
       })
     },
-    gotoShare(){
+    gotoShare() {
       wx.showShareMenu()
     }
   }

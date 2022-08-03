@@ -16,7 +16,10 @@ Page({
     questionDetailData: {},
     currentPage: 0,
     totalPages: 1,
-    loading: true
+    loading: true,
+    answerListLoading: true,
+    // 是否是置顶问题
+    isTop: false
   },
 
   pageData: {
@@ -35,10 +38,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { questionId } = options;
+    const { questionId, isTop = false } = options;
+    this.setData({
+      isTop: JSON.parse(isTop)
+    })
     this.pageData.questionId = questionId;
     this.getQuestionDetail();
-    this.getAnswerList();
   },
 
   onShow: function () {
@@ -112,10 +117,13 @@ Page({
       .then(res => {
         if (!res.data.code) return Promise.reject();
         const isCollected = res.data.data.isCollected ? true : false;
+        const isTop = res.data.data?.isTop === 1 ? true : false;
+        console.log(isTop);
         this.setData({
           isCollected,
           questionDetailData: res.data.data,
-          loading: false
+          loading: false,
+          isTop
         })
       })
       .catch(err => {
@@ -156,13 +164,17 @@ Page({
           })
         }
         this.setData({
-          answerList: this.data.answerSortType ? this.pageData.hotAnswerList : this.pageData.newAnswerList
+          answerList: this.data.answerSortType ? this.pageData.hotAnswerList : this.pageData.newAnswerList,
+          answerListLoading: false
         })
       })
       .catch(err => {
         wx.showToast({
           title: '回答列表err',
           icon: 'error'
+        })
+        this.setData({
+          answerListLoading: false
         })
       })
   },
@@ -214,7 +226,7 @@ Page({
     const currentIndex = e.currentTarget.dataset.index * 1 + 1;
     const questionDetail = this.data.questionDetailData;
     wx.navigateTo({
-      url: `/pages/index/pages/answer_detail/index?answerId=${answerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentIndex}&totalRows=${this.pageData.totalRows}&sortOrder=${this.data.answerSortType}&questionId=${this.data.questionDetailData.questionId}`,
+      url: `/pages/index/pages/answer_detail/index?answerId=${answerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentIndex}&totalRows=${this.pageData.totalRows}&sortOrder=${this.data.answerSortType}&questionId=${this.data.questionDetailData.questionId}&isTop=${this.data.isTop}`,
     })
   },
 

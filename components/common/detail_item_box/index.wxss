@@ -6,6 +6,10 @@
   background-color: white;
 }
 
+.top_item {
+  /* background-color: rgb(242,242,242); */
+}
+
 .title {
   font-size: 34rpx;
   margin-bottom: 10rpx;

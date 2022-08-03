@@ -1,5 +1,5 @@
 /* components/email/collection/index.wxss */
-.category{
+.category {
   display: inline-block;
   font-size: 24rpx;
   padding: 8rpx;
@@ -8,32 +8,43 @@
   border-radius: 8rpx;
   white-space: nowrap;
 }
-.title{
+
+.title {
   display: flex;
   justify-content: space-between;
 }
-.text{
+
+.text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.question_titile_text{
+
+.question_titile_text {
   margin-left: 15rpx;
   font-size: 35rpx;
 }
-.state{
+
+.state {
   font-size: var(fontSize);
   white-space: nowrap;
 }
-.is_solute{
+
+.is_top {
+  color: var(--topQuestionColor);
+}
+
+.is_solute {
   color: var(--theme);
 }
-.un_solute{
+
+.un_solute {
   color: var(--unsoluteColor);
 }
-.footer{
+
+.footer {
   display: flex;
   justify-content: space-between;
 }

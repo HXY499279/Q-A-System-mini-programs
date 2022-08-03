@@ -8,6 +8,7 @@ Page({
    */
   data: {
     state: 0,
+    topQuestionList: [],
     questionList: [],
     totalPages: 1,
     currentPage: 0,
@@ -45,16 +46,40 @@ Page({
     })
     this.pageData.subjectId = subjectId;
     this.pageData.subjectName = subjectName;
-    // 提前获取未解和已解的问题数量，进行用户体验优化，如果未解数量为0并且已解数量不为0则直接显示已解问题
+    // 提前获取未解和已解的问题数量，进行用户体验优化，如果未解数量为0并且已解数量不为0或者指定问题数量不为0则直接显示已解问题
+    const topQuestionList = await this.getTopQuestionList({ subjectId })
+    this.setData({
+      topQuestionList
+    })
     const unFinishedLength = await this.getQuestionListLength(data)
     const finishedLength = await this.getQuestionListLength({ ...data, state: 1 })
-    if (unFinishedLength === 0 && finishedLength !== 0) {
+    if (unFinishedLength === 0 && (topQuestionList.length !== 0 || finishedLength !== 0)) {
       // 显示已解问题
       this.setQuestionList({ ...data, state: 1 });
     } else {
       // 显示未解问题
       this.setQuestionList(data);
     }
+  },
+
+  /* 
+    获取置顶问题列表
+  */
+  getTopQuestionList: async function (data) {
+    return httpRequest.getTopQuestionList(data)
+      .then(res => {
+        const topQuestionList = res.data.data
+        for (let item of topQuestionList) {
+          item.question.isTop = 1
+        }
+        return topQuestionList
+      })
+      .catch(err => {
+        wx.showToast({
+          title: '网络忙',
+          icon: 'error'
+        })
+      })
   },
 
   /* 
@@ -83,8 +108,14 @@ Page({
         const { list: questionList, pageInfo: { totalPages, totalRows } } = res.data.data;
         const newPageData = { totalPages, totalRows }
         mergeObj(this.pageData, newPageData)
+        let mergeQuestionList = null
+        if (data.state === 1) {
+          mergeQuestionList = [...this.data.topQuestionList, ...this.data.questionList, ...questionList]
+        } else {
+          mergeQuestionList = [...this.data.questionList, ...questionList]
+        }
         this.setData({
-          questionList: [...this.data.questionList, ...questionList],
+          questionList: mergeQuestionList,
           currentPage: this.pageData.currentPage,
           totalPages: this.pageData.totalPages,
           questionListLoading: false,

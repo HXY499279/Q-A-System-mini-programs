@@ -1,36 +1,38 @@
 // pages/index/pages/answer_detail/index.js
-import {getStorageItem,mergeObj} from '../../../../utils/api'
+import { getStorageItem, mergeObj } from '../../../../utils/api'
 import httpRequest from '../../../../utils/request/index'
-import {$Toast} from '../../../../iview/base/index'
+import { $Toast } from '../../../../iview/base/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    answerDetail:{},
-    questionDetail:{},
-    commentList:[],
-    commentCount:0,
-    loading:true
+    answerDetail: {},
+    questionDetail: {},
+    commentList: [],
+    commentCount: 0,
+    loading: true,
+    // 是否是置顶问题
+    isTop: false
   },
-  pageData:{
-    canClickAgree:true,
-    canClickAdopt:true,
-    answerId:undefined,
-    answer:{
-      currentPage:1,
-      pageSize:1,
-      totalPages:1,
-      totalRows:0,
-      answerSortType:0,
-      questionId:0
+  pageData: {
+    canClickAgree: true,
+    canClickAdopt: true,
+    answerId: undefined,
+    answer: {
+      currentPage: 1,
+      pageSize: 1,
+      totalPages: 1,
+      totalRows: 0,
+      answerSortType: 0,
+      questionId: 0
     },
-    comment:{
-      currentPage:1,
-      pageSize:2,
-      totalPages:1,
-      totalRows:0,
+    comment: {
+      currentPage: 1,
+      pageSize: 2,
+      totalPages: 1,
+      totalRows: 0,
     }
   },
   /**
@@ -38,11 +40,12 @@ Page({
    */
   onLoad: function (options) {
     const questionDetail = (JSON.parse(decodeURIComponent(options.questionDetail)));
-    const { currentIndex,totalRows,sortOrder,questionId,answerId} = options;
-    mergeObj(this.pageData.answer,{currentPage:currentIndex*1,totalRows,sortOrder,questionId});
+    const { currentIndex, totalRows, sortOrder, questionId, answerId, isTop } = options;
+    mergeObj(this.pageData.answer, { currentPage: currentIndex * 1, totalRows, sortOrder, questionId });
     this.pageData.answerId = answerId;
     this.setData({
-      questionDetail
+      questionDetail,
+      isTop:JSON.parse(isTop)
     })
     this.getComment();
     this.getAnswerDetail()
@@ -51,117 +54,117 @@ Page({
   /**
    * 得到回答详情
    */
-  getAnswerDetail:function(){
+  getAnswerDetail: function () {
     getStorageItem("accountId")
-    .then(accountId=>{
-      const data = {accountId,answerId:this.pageData.answerId}
-      return httpRequest.getAnswerDetail(data)
-    })
-    .then(res=>{
-      if(res.data.code !== 1) return Promise.reject();
-      this.setData({
-        answerDetail:res.data.data,
-        loading:false
+      .then(accountId => {
+        const data = { accountId, answerId: this.pageData.answerId }
+        return httpRequest.getAnswerDetail(data)
       })
-    })
-    .catch(err=>{
-      wx.showToast({
-        title: '网络忙',
-        icon:"error"
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject();
+        this.setData({
+          answerDetail: res.data.data,
+          loading: false
+        })
       })
-    })
-  }, 
-   /**
-   * 获取评论
-   */
-  getComment:function(){
+      .catch(err => {
+        wx.showToast({
+          title: '网络忙',
+          icon: "error"
+        })
+      })
+  },
+  /**
+  * 获取评论
+  */
+  getComment: function () {
     const data = {
-      answerId:this.pageData.answerId,
-      currentPage:this.pageData.comment.currentPage,
-      pageSize:this.pageData.comment.pageSize
+      answerId: this.pageData.answerId,
+      currentPage: this.pageData.comment.currentPage,
+      pageSize: this.pageData.comment.pageSize
     }
     httpRequest.getComment(data)
-    .then(res=>{
-      const {currentPage,pageSize,totalPages,totalRows} = res.data.data.pageInfo;
-      mergeObj(this.pageData.comment,{currentPage,pageSize,totalPages,totalRows})
-      this.setData({
-        // commentList:[...this.data.commentList,...res.data.data.list]
-        commentList:[...res.data.data.list],
-        commentCount:res.data.data.pageInfo.totalRows
+      .then(res => {
+        const { currentPage, pageSize, totalPages, totalRows } = res.data.data.pageInfo;
+        mergeObj(this.pageData.comment, { currentPage, pageSize, totalPages, totalRows })
+        this.setData({
+          // commentList:[...this.data.commentList,...res.data.data.list]
+          commentList: [...res.data.data.list],
+          commentCount: res.data.data.pageInfo.totalRows
+        })
       })
-    })
   },
-  
+
   /**
    * 点击采纳
    */
-  onAdopt:function(){
-    if(!this.pageData.canClickAdopt) return;
+  onAdopt: function () {
+    if (!this.pageData.canClickAdopt) return;
     this.pageData.canClickAdopt = false
     let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
-    let newQuestionDetail =  JSON.parse(JSON.stringify(this.data.questionDetail));
-    if((newAnswerDetail.isAdopt && newQuestionDetail.state)||(!newAnswerDetail.isAdopt && !newQuestionDetail.state) ){
-      newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
-      newQuestionDetail.state = newQuestionDetail.state?0:1;
+    let newQuestionDetail = JSON.parse(JSON.stringify(this.data.questionDetail));
+    if ((newAnswerDetail.isAdopt && newQuestionDetail.state) || (!newAnswerDetail.isAdopt && !newQuestionDetail.state)) {
+      newAnswerDetail.isAdopt = newAnswerDetail.isAdopt ? 0 : 1;
+      newQuestionDetail.state = newQuestionDetail.state ? 0 : 1;
     }
-    else if(!newAnswerDetail.isAdopt && newQuestionDetail.state ){
-      newAnswerDetail.isAdopt = newAnswerDetail.isAdopt?0:1;
+    else if (!newAnswerDetail.isAdopt && newQuestionDetail.state) {
+      newAnswerDetail.isAdopt = newAnswerDetail.isAdopt ? 0 : 1;
     }
     this.setData({
-      answerDetail:newAnswerDetail,
-      questionDetail:newQuestionDetail
+      answerDetail: newAnswerDetail,
+      questionDetail: newQuestionDetail
     })
     getStorageItem('accountId')
-    .then(accountId=>{
-      const data = {
-        questionId:this.data.questionDetail.questionId,
-        answerId:this.data.answerDetail.answerId,
-        accountId
-      }
-      return httpRequest.acceptAnswer(data)
-    })
-    .then(res=>{
-      if(res.data.code !== 1) return Promise.reject();
-      this.pageData.canClickAdopt = true;
-    })
-    .catch(err=>{
-      this.pageData.canClickAdopt = true
-    })
+      .then(accountId => {
+        const data = {
+          questionId: this.data.questionDetail.questionId,
+          answerId: this.data.answerDetail.answerId,
+          accountId
+        }
+        return httpRequest.acceptAnswer(data)
+      })
+      .then(res => {
+        if (res.data.code !== 1) return Promise.reject();
+        this.pageData.canClickAdopt = true;
+      })
+      .catch(err => {
+        this.pageData.canClickAdopt = true
+      })
   },
 
   /**
    * 点击赞同
    */
-  onAgree:function(){
-    if(!this.pageData.canClickAgree) return;
+  onAgree: function () {
+    if (!this.pageData.canClickAgree) return;
     this.pageData.canClickAgree = false;
     let newAnswerDetail = JSON.parse(JSON.stringify(this.data.answerDetail));
     newAnswerDetail.isAgree = newAnswerDetail.isAgree ? 0 : 1;
-    newAnswerDetail.isAgree ? newAnswerDetail.agreeCount++ :  newAnswerDetail.agreeCount--;
+    newAnswerDetail.isAgree ? newAnswerDetail.agreeCount++ : newAnswerDetail.agreeCount--;
     this.setData({
-      answerDetail:newAnswerDetail
+      answerDetail: newAnswerDetail
     })
 
     getStorageItem("accountId")
-    .then(accountId=>{
-      const answerId = this.data.answerDetail.answerId;
-      const isAgree = this.data.answerDetail.isAgree
-      if( isAgree)  return httpRequest.agreeAnswer({answerId,accountId})
-      else return httpRequest.cancelAgreeAnswer({answerId,accountId})
-    })
-    .then(res=>{
-     if(!res.data.code) return Promise.reject();
-     this.pageData.canClickAgree = true
-    })
-    .catch(err=>{
-      this.pageData.canClickAgree = true
-    })
+      .then(accountId => {
+        const answerId = this.data.answerDetail.answerId;
+        const isAgree = this.data.answerDetail.isAgree
+        if (isAgree) return httpRequest.agreeAnswer({ answerId, accountId })
+        else return httpRequest.cancelAgreeAnswer({ answerId, accountId })
+      })
+      .then(res => {
+        if (!res.data.code) return Promise.reject();
+        this.pageData.canClickAgree = true
+      })
+      .catch(err => {
+        this.pageData.canClickAgree = true
+      })
   },
 
   /**
    * 点击评论
    */
-  onComment:function(){
+  onComment: function () {
     wx.navigateTo({
       url: `/pages/index/pages/comment/index?answerId=${this.data.answerDetail.answerId}&answerName=${this.data.answerDetail.userName}`,
     })
@@ -170,42 +173,42 @@ Page({
   /**
    * 去评论页面
    */
-  showComments:function(){
+  showComments: function () {
     wx.navigateTo({
       url: `/pages/index/pages/show_comments/index?answerId=${this.data.answerDetail.answerId}`,
     })
   },
 
-  showNext:function(){
-    if(this.pageData.answer.totalRows>this.pageData.answer.currentPage){
+  showNext: function () {
+    if (this.pageData.answer.totalRows > this.pageData.answer.currentPage) {
       this.pageData.answer.currentPage++;
-      const {sortOrder,currentPage,pageSize,questionId,totalRows} = this.pageData.answer;
-       getStorageItem("accountId")
-      .then(accountId=>{
-        const data = {accountId,currentPage,pageSize,questionId,sortOrder};
-        return httpRequest.getAnswerList(data)
-      })
-      .then(res=>{
-        if(res.data.code!==1) return Promise.reject();
-        const nextAnswerId = res.data.data.list[0].answerId;
-        const questionDetail = this.data.questionDetail;
-        wx.redirectTo({
-          url: `/pages/index/pages/answer_detail/index?answerId=${nextAnswerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentPage}&totalRows=${totalRows}&sortOrder=${sortOrder}&questionId=${questionDetail.questionId}`
+      const { sortOrder, currentPage, pageSize, questionId, totalRows } = this.pageData.answer;
+      getStorageItem("accountId")
+        .then(accountId => {
+          const data = { accountId, currentPage, pageSize, questionId, sortOrder };
+          return httpRequest.getAnswerList(data)
         })
-      })
-     .catch(err=>{
-       console.log(err)
-       wx.showToast({
-         title: '网络忙',
-         icon:'error'
-       })
-     })
-     }else{
+        .then(res => {
+          if (res.data.code !== 1) return Promise.reject();
+          const nextAnswerId = res.data.data.list[0].answerId;
+          const questionDetail = this.data.questionDetail;
+          wx.redirectTo({
+            url: `/pages/index/pages/answer_detail/index?answerId=${nextAnswerId}&questionDetail=${encodeURIComponent(JSON.stringify(questionDetail))}&currentIndex=${currentPage}&totalRows=${totalRows}&sortOrder=${sortOrder}&questionId=${questionDetail.questionId}`
+          })
+        })
+        .catch(err => {
+          console.log(err)
+          wx.showToast({
+            title: '网络忙',
+            icon: 'error'
+          })
+        })
+    } else {
       $Toast({
         content: '已经是最后啦'
-    });
-     }
-  } ,
+      });
+    }
+  },
 
   /**
    * 用户点击右上角分享

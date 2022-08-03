@@ -6,6 +6,7 @@ page {
   --line: #F0F0F0;
   --grayWord: #999999;
   --unsoluteColor: #F87053;
+  --topQuestionColor: rgb(255, 187, 1);
   font-size: 28rpx;
 }
 
@@ -13,7 +14,7 @@ page {
   color: white;
   background-color: var(--theme);
   font-weight: 500;
-  font-size:32rpx;
+  font-size: 32rpx;
   word-spacing: 4rpx;
 }
 

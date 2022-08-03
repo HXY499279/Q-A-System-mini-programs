@@ -3,7 +3,7 @@
 <view class="question_detail_item">
 	<view class="head">
 		<view class="state">
-			<view class="state_text {{questionDetailData.state?'is_solute':'un_solute'}}">{{questionDetailData.state?"已解决":"未解决"}}</view>
+			<view class="state_text {{questionDetailData.state?(isTop?'is_top':'is_solute'):'un_solute'}}">{{questionDetailData.state?(isTop?"心得贴":"已解决"):"未解决"}}</view>
 			<view class="iconfont icon-jubao" bindtap="gotoReport"></view>
 		</view>
 		<text class="title" decode="true">{{util.format(questionDetailData.title)}}</text>

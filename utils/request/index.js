@@ -40,6 +40,11 @@ class httpRequest {
   getQuestionList = param => httpUtil({ url: "/question/search", param })
 
   /**
+   * 获取问题列表的置顶问题
+   */
+  getTopQuestionList = param => httpUtil({ url: "/question/searchTop", param })
+
+  /**
    * 收藏问题
    */
   CollectionProblem = param => httpUtil({ url: "/question/followQuestion", param, method: 'post', header: { "Content-Type": "application/x-www-form-urlencoded" } })
