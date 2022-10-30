@@ -44,7 +44,7 @@ Page({
 
   pageData: {
     currentType: "dynamic",
-    pageSize: 5,
+    pageSize: 10,
     dynamicTotalPages: 1,
     dynamicCurrentPage: 1,
     invitationTotalPages: 1,

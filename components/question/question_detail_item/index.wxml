@@ -1,25 +1,25 @@
 <!--components/question/question_card_item/index.wxml-->
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view class="question_detail_item">
-	<view class="head">
-		<view class="state">
-			<view class="state_text {{questionDetailData.state?(isTop?'is_top':'is_solute'):'un_solute'}}">{{questionDetailData.state?(isTop?"心得贴":"已解决"):"未解决"}}</view>
-			<view class="iconfont icon-jubao" bindtap="gotoReport"></view>
-		</view>
-		<text class="title" decode="true">{{util.format(questionDetailData.title)}}</text>
-	</view>
-	<view class="content">
-		<view><text decode="true">{{util.format(questionDetailData.describes)}}</text></view>
-		<view class="content_img">
-			<image wx:if="{{questionDetailData.imgPath && questionDetailData.imgPath!=-1 && url}}"  class="img" src="{{url+questionDetailData.imgPath}}" mode='aspectFill' bindtap="previewPic" data-src="{{questionDetailData.imgPath}}"></image>
-			<image wx:elif="{{questionDetailData.imgPath && questionDetailData.imgPath!=-1}}" class="img"></image>
-		</view>
-		<view class="content_footer">
-			<view>{{questionDetailData.answerCount}} 回答 {{questionDetailData.collectionCount}} 收藏 <text class="danger_operate" bindtap="editQuestion" wx:if="{{questionDetailData.accountId === accountId}}">修改</text></view>
-			<view>{{questionDetailData.publishTime}}</view>
-		</view>
+  <view class="head">
+    <view class="state">
+      <view class="state_text {{isTop?'is_top':(questionDetailData.state?'is_solute':'un_solute')}}">{{isTop?"心得贴":(questionDetailData.state?"已解决":"未解决")}}</view>
+      <view class="iconfont icon-jubao" bindtap="gotoReport"></view>
+    </view>
+    <text class="title" decode="true">{{util.format(questionDetailData.title)}}</text>
+  </view>
+  <view class="content">
+    <view><text decode="true">{{util.format(questionDetailData.describes)}}</text></view>
+    <view class="content_img">
+      <image wx:if="{{questionDetailData.imgPath && questionDetailData.imgPath!=-1 && url}}" class="img" src="{{url+questionDetailData.imgPath}}" mode='aspectFill' bindtap="previewPic" data-src="{{questionDetailData.imgPath}}"></image>
+      <image wx:elif="{{questionDetailData.imgPath && questionDetailData.imgPath!=-1}}" class="img"></image>
+    </view>
+    <view class="content_footer">
+      <view>{{questionDetailData.answerCount}} 回答 {{questionDetailData.collectionCount}} 收藏 <text class="danger_operate" bindtap="editQuestion" wx:if="{{questionDetailData.accountId === accountId}}">修改</text></view>
+      <view>{{questionDetailData.publishTime}}</view>
+    </view>
 
-	</view>
-	<slot name="footer">
-	</slot>
+  </view>
+  <slot name="footer">
+  </slot>
 </view>

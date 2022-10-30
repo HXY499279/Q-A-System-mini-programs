@@ -14,6 +14,11 @@ Component({
     isTop: {
       type: Boolean,
       value: false,
+    },
+    // 控制是否有回答样式
+    showAnswerStyle: {
+      type: Boolean,
+      value: false
     }
   },
 

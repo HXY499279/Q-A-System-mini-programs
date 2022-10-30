@@ -7,12 +7,12 @@
  -->
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 
-<view class="detail_item_box {{isTop && 'top_item'}}">
+<view class="detail_item_box">
   <view class="title">
     <slot name="title"></slot>
   </view>
   <view wx:if="{{!isTop}}">
-    <view wx:if="{{answer}}">
+    <view wx:if="{{answer}}" class="{{showAnswerStyle ? 'answer_content':''}}">
       <view class="basic_inform">
         <view class="user_infor">
           <view class="user_head" catchtap="gotoPersonalIndex">

@@ -26,15 +26,14 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#30CB88",
-    "navigationBarTitleText": "邮问必答学业辅导中心",
+    "navigationBarTitleText": "邮问必答重邮学习发展中心",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999999",
     "selectedColor": "#30CB88",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "/img/tabBar/index.png",

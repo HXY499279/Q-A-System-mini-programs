@@ -1,7 +1,7 @@
 <!--components/question_list/question_list_item/index.wxml-->
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <view bindtap="gotoQuestionDetail" data-questionId="{{question.questionId}}" class="wrapper">
-  <detail-item-box answer="{{answer}}" isTop="{{isTop}}">
+  <detail-item-box answer="{{answer}}" isTop="{{isTop}}" showAnswerStyle="{{true}}">
     <view slot="title" class="title">
       <view class="title_describes"><text decode="true">{{util.format(question.title)}}</text></view>
       <view>

@@ -2,48 +2,48 @@
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 
 <view class="answer_detail_item">
-	<view class="head">
-		<view class="user_info" bindtap="gotoPersonalIndex">
-			<view class="user_head">
-				<image  class="user_head_img" src="{{(url && answerDetail.userImg && answerDetail.userImg!='-1') ? url+answerDetail.userImg:''}}" mode='aspectFill'></image>
-				<text>{{answerDetail.userName}}</text>
-			</view>
-			<view class="user_identity">
-				<image class="user_identity_icon" src="{{answerDetail.role == 3 ? '/img/identity/student.svg':answerDetail.role == 2 ? '/img/identity/volunteer.svg':answerDetail.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
-				<text class="user_identity_text">{{answerDetail.role == 3 ? "学生":answerDetail.role == 2 ? "志愿者":answerDetail.role == 4 ? "管理员":"老师"}}</text>
-			</view>
-		</view>
-		<view class="head_operate">
-			<view class="state">{{answerDetail.isAdopt?"已采纳":""}}</view>
-			<view class="iconfont icon-jubao" bindtap="gotoComplain"></view>
-		</view>
-	</view>
-	<view class="content">
-		<view class="content_msg">
-			<view><text decode="true" class="content_text">{{util.format(answerDetail.content)}}</text></view>
-			<image wx:if="{{answerDetail.contentImg && answerDetail.contentImg != -1 && url}}" class="content_img" mode='widthFix' src="{{url+answerDetail.contentImg}}" data-src="{{answerDetail.contentImg}}" bindtap="previewPic"></image>
-			<image wx:elif="{{answerDetail.contentImg && answerDetail.contentImg != -1 }}" class="content_img_gray" mode='widthFix'></image>
-		</view>
-		<view class="content_footer">
-			<text> {{answerDetail.agreeCount}} 赞同 {{answerDetail.commentCount}} 评论</text>
-			<text>{{answerDetail.answerTime}}</text>
-		</view>
-	</view>
-	<view class="footer">
-		<view class="footer_tips">看完回答，您可能还会进行以下操作</view>
-		<view class="operate">
-			<view class="operate_item" bindtap="handleAdopt" wx:if="{{questionerId === currentAccount}}">
-				<view class="iconfont icon-chuizi {{answerDetail.isAdopt?'adopted':''}}"></view>
-				<view>采纳</view>
-			</view>
-			<view class="operate_item" bindtap="handleAgree">
-				<view class="iconfont icon-taoxin {{answerDetail.isAgree?'agreed':''}}"></view>
-				<view>赞同</view>
-			</view>
-			<view class="operate_item" bindtap="handleComment">
-				<view class="iconfont icon-message"></view>
-				<view>评论</view>
-			</view>
-		</view>
-	</view>
+  <view class="head">
+    <view class="user_info" bindtap="gotoPersonalIndex">
+      <view class="user_head">
+        <image class="user_head_img" src="{{(url && answerDetail.userImg && answerDetail.userImg!='-1') ? url+answerDetail.userImg:''}}" mode='aspectFill'></image>
+        <text>{{answerDetail.userName}}</text>
+      </view>
+      <view class="user_identity">
+        <image class="user_identity_icon" src="{{answerDetail.role == 3 ? '/img/identity/student.svg':answerDetail.role == 2 ? '/img/identity/volunteer.svg':answerDetail.role == 4 ? '/img/identity/manager.svg':'/img/identity/teacher.svg'}}"></image>
+        <text class="user_identity_text">{{answerDetail.role == 3 ? "学生":answerDetail.role == 2 ? "志愿者":answerDetail.role == 4 ? "管理员":"老师"}}</text>
+      </view>
+    </view>
+    <view class="head_operate">
+      <view class="state">{{answerDetail.isAdopt?"已采纳":""}}</view>
+      <view class="iconfont icon-jubao" bindtap="gotoComplain"></view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="content_msg">
+      <view><text decode="true" class="content_text">{{util.format(answerDetail.content)}}</text></view>
+      <image wx:if="{{answerDetail.contentImg && answerDetail.contentImg != -1 && url}}" class="content_img" mode='widthFix' src="{{url+answerDetail.contentImg}}" data-src="{{answerDetail.contentImg}}" bindtap="previewPic"></image>
+      <image wx:elif="{{answerDetail.contentImg && answerDetail.contentImg != -1 }}" class="content_img_gray" mode='widthFix'></image>
+    </view>
+    <view class="content_footer">
+      <text> {{answerDetail.agreeCount}} 赞同 {{answerDetail.commentCount}} 评论</text>
+      <text>{{answerDetail.answerTime}}</text>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="footer_tips">看完回答，您可能还会进行以下操作</view>
+    <view class="operate">
+      <view class="operate_item" bindtap="handleAdopt" wx:if="{{questionerId === currentAccount && canAdopt}}">
+        <view class="iconfont icon-chuizi {{answerDetail.isAdopt?'adopted':''}}"></view>
+        <view>采纳</view>
+      </view>
+      <view class="operate_item" bindtap="handleAgree">
+        <view class="iconfont icon-taoxin {{answerDetail.isAgree?'agreed':''}}"></view>
+        <view>赞同</view>
+      </view>
+      <view class="operate_item" bindtap="handleComment">
+        <view class="iconfont icon-message"></view>
+        <view>评论</view>
+      </view>
+    </view>
+  </view>
 </view>

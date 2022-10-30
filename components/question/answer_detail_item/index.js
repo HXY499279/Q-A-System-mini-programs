@@ -3,13 +3,22 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    answerDetail:{
-      type:Object,
-      value:{}
+    answerDetail: {
+      type: Object,
+      value: {},
+      observer(data) {
+        const { accountId } = data
+        const userAccountId = wx.getStorageSync('accountId')
+        if (accountId === userAccountId) {
+          this.setData({
+            canAdopt: false
+          })
+        }
+      }
     },
-    questionerId:{
-      type:Number,
-      value:0
+    questionerId: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -17,18 +26,19 @@ Component({
    * 组件的初始数据
    */
   data: {
+    canAdopt: true,
     isAdopt: false,
     isAgree: false,
-    url:'',
-    currentAccount:undefined
+    url: '',
+    currentAccount: undefined
   },
 
-  lifetimes:{
-    attached:function(){
+  lifetimes: {
+    attached: function () {
       const accountId = wx.getStorageSync('accountId')
       this.setData({
-        url:getApp().url.currentUrl+'/img',
-        currentAccount:accountId
+        url: getApp().url.currentUrl + '/img',
+        currentAccount: accountId
       })
     }
   },
@@ -38,7 +48,7 @@ Component({
   methods: {
 
     //去别人的个人页
-    gotoPersonalIndex(){
+    gotoPersonalIndex() {
       wx.navigateTo({
         url: `/pages/index/pages/other_index/index?accountId=${this.properties.answerDetail.accountId}`,
       })
@@ -54,12 +64,12 @@ Component({
     },
 
     //点击评论
-    handleComment(){
-     this.triggerEvent("onComment")
+    handleComment() {
+      this.triggerEvent("onComment")
     },
 
     //去举报
-    gotoComplain(){
+    gotoComplain() {
       wx.navigateTo({
         url: `/pages/index/pages/complain/index?type=1&param=${encodeURIComponent(JSON.stringify(this.properties.answerDetail))}`,
       })
@@ -69,8 +79,8 @@ Component({
     previewPic(e) {
       const src = e.currentTarget.dataset.src; //获取data-src
       wx.previewImage({
-        current: this.data.url+src, // 当前显示图片的http链接
-        urls:[this.data.url+src]
+        current: this.data.url + src, // 当前显示图片的http链接
+        urls: [this.data.url + src]
       })
     },
   }

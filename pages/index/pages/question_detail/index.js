@@ -75,6 +75,7 @@ Page({
    *选择回答的排序方式
    */
   changeAnswerSortType(e) {
+
     const answerSortType = e.target.dataset.type;
     if (answerSortType !== 0 && answerSortType !== 1) return;
     if (answerSortType === 1 && this.pageData.hotAnswerList.length !== 0) {
@@ -90,12 +91,12 @@ Page({
         answerList: this.pageData.newAnswerList,
         currentPage: this.pageData.currentNewPage
       })
-    }
-    else {
+    } else {
       this.setData({
         answerList: [],
         answerSortType,
-        currentPage: 0
+        currentPage: 0,
+        answerListLoading: true
       }, () => {
         this.getAnswerList();
       })

@@ -10,46 +10,55 @@
   </block>
 </view>
 <view class="email_page">
-  <view wx:if="{{!listLoading}}">
-    <view wx:if="{{currentType === 'dynamic'}}">
-      <view wx:if="{{dynamicList.length!==0}}">
-        <block wx:for="{{dynamicList}}" wx:key="item">
-          <dynamic-item msg="{{item}}" />
-        </block>
-      </view>
-      <nothing wx:else />
-      <i-load-more wx:if="{{dynamicList.length!==0}}" loading="{{ totalPages > currentPage }}" />
-    </view>
 
-    <view wx:elif="{{currentType === 'invitation'}}">
-      <view wx:if="{{invitationList.length!==0}}">
-        <block wx:for="{{invitationList}}" wx:key="item">
-          <invitation-item msg="{{item}}" />
-        </block>
+  <view wx:if="{{isLogin}}">
+    <view wx:if="{{!listLoading}}">
+      <!-- 动态 -->
+      <view wx:if="{{currentType === 'dynamic'}}">
+        <view wx:if="{{dynamicList.length!==0}}">
+          <block wx:for="{{dynamicList}}" wx:key="item">
+            <dynamic-item msg="{{item}}" />
+          </block>
+        </view>
+        <nothing wx:else />
+        <i-load-more wx:if="{{dynamicList.length!==0}}" loading="{{ totalPages > currentPage }}" />
       </view>
-      <nothing wx:else />
-      <i-load-more wx:if="{{invitationList.length!==0}}" loading="{{ totalPages > currentPage }}" />
-    </view>
 
-    <view wx:elif="{{currentType === 'collection'}}">
-      <view wx:if="{{collectionList.length!==0}}">
-        <block wx:for="{{collectionList}}" wx:key="item">
-          <collection-myquestion-item msg="{{item}}" />
-        </block>
+      <!-- 邀请回答 -->
+      <view wx:elif="{{currentType === 'invitation'}}">
+        <view wx:if="{{invitationList.length!==0}}">
+          <block wx:for="{{invitationList}}" wx:key="item">
+            <invitation-item msg="{{item}}" />
+          </block>
+        </view>
+        <nothing wx:else />
+        <i-load-more wx:if="{{invitationList.length!==0}}" loading="{{ totalPages > currentPage }}" />
       </view>
-      <nothing wx:else />
-      <i-load-more wx:if="{{collectionList.length!==0}}" loading="{{ totalPages > currentPage }}" />
-    </view>
 
-    <view wx:elif="{{currentType === 'myquestion'}}">
-      <view wx:if="{{myquestionList.length!==0}}">
-        <block wx:for="{{myquestionList}}" wx:key="item">
-          <collection-myquestion-item msg="{{item}}" />
-        </block>
+      <!-- 收藏 -->
+      <view wx:elif="{{currentType === 'collection'}}">
+        <view wx:if="{{collectionList.length!==0}}">
+          <block wx:for="{{collectionList}}" wx:key="item">
+            <collection-myquestion-item msg="{{item}}" />
+          </block>
+        </view>
+        <nothing wx:else />
+        <i-load-more wx:if="{{collectionList.length!==0}}" loading="{{ totalPages > currentPage }}" />
       </view>
-      <nothing wx:else />
-      <i-load-more wx:if="{{myquestionList.length!==0}}" loading="{{ totalPages > currentPage }}" />
+
+      <!-- 我的提问 -->
+      <view wx:elif="{{currentType === 'myquestion'}}">
+        <view wx:if="{{myquestionList.length!==0}}">
+          <block wx:for="{{myquestionList}}" wx:key="item">
+            <collection-myquestion-item msg="{{item}}" />
+          </block>
+        </view>
+        <nothing wx:else />
+        <i-load-more wx:if="{{myquestionList.length!==0}}" loading="{{ totalPages > currentPage }}" />
+      </view>
     </view>
+    <i-load-more wx:else loading="{{ true }}" />
   </view>
-  <i-load-more wx:else loading="{{ true }}" />
+  <nothing wx:else />
+
 </view>

@@ -32,9 +32,9 @@ Page({
   onLoad: async function (options) {
     const { subjectId, subjectName } = options;
     const { state } = this.data;
+
     const { currentPage, pageSize } = this.pageData;
     let data;
-
     if (subjectId == 'undefined') {
       data = { subjectName, state, currentPage, pageSize }
     } else {
@@ -47,7 +47,7 @@ Page({
     this.pageData.subjectId = subjectId;
     this.pageData.subjectName = subjectName;
     // 提前获取未解和已解的问题数量，进行用户体验优化，如果未解数量为0并且已解数量不为0或者指定问题数量不为0则直接显示已解问题
-    const topQuestionList = await this.getTopQuestionList({ subjectId })
+    const topQuestionList = subjectId !== 'undefined' ? await this.getTopQuestionList({ subjectId }) : []
     this.setData({
       topQuestionList
     })

@@ -80,7 +80,7 @@
           <image src="/img/common/show.svg" class="show"></image>
         </view>
 
-        <detail-item-box wx:if="{{otherDetail.question}}" bindtap="togoQuestionDetail" answer="{{otherDetail.answer}}">
+        <detail-item-box wx:if="{{otherDetail.question}}" bindtap="togoQuestionDetail" answer="{{otherDetail.answer}}" showAnswerStyle="{{true}}">
           <view slot="title" class="title">
             <view class="title_text">
               {{otherDetail.question.title}}
